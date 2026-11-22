@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>miint.s0da — Collage Editorial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=DM+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;700;900&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+<style>
+/* 2027 S/S (WGSN·Coloro) 근사값 */
+:root{--paper:#F3ECE3;--paper2:#E9DFD2;--ink:#1D1A17;--muted:#6E655C;
+  --blue:#2F5BFF;--orange:#FF6A1F;--pink:#FF5FA8;--green:#6E8B4E;--clay:#C9A48A;
+  --serif:'Playfair Display',serif;--mono:'DM Mono',monospace;--sans:'Noto Sans KR',sans-serif;--hand:'Nanum Pen Script',cursive}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);word-break:keep-all;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.grain{pointer-events:none;position:fixed;inset:0;z-index:30;opacity:.13;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E")}
+header{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 4vw;border-bottom:1px solid rgba(29,26,23,.18)}
+.brand{font:800 24px var(--serif);font-variant-numeric:lining-nums;letter-spacing:-.04em;transition:color .5s}
+nav{display:flex;gap:clamp(16px,3vw,44px);font:12px var(--mono);letter-spacing:.1em}
+nav a span{color:var(--muted);font-family:var(--sans);margin-left:4px}
+/* HERO: 콜라주 + 타이포 */
+.hero{position:relative;min-height:760px;padding:40px 4vw 60px;overflow:hidden}
+.hero h1{font-variant-numeric:lining-nums;position:relative;z-index:4;margin:30px 0 0;font:800 clamp(88px,15vw,220px)/.82 var(--serif);letter-spacing:-.06em}
+.hero h1 .o{color:var(--blue)}
+.hero .line2{position:relative;z-index:6;display:inline-block;background:var(--paper);padding:0 10px;margin:8px 0 0 18%;font:600 clamp(30px,4.4vw,64px)/1 var(--serif);font-style:italic}
+.hero .kr{position:relative;z-index:6;margin:34px 0 0 18%;max-width:420px;font:500 17px/1.8 var(--sans)}
+.hero .kr b{background:linear-gradient(transparent 62%,rgba(255,106,31,.35) 62%)}
+.piece{position:absolute;z-index:2;box-shadow:0 14px 30px rgba(60,40,20,.18)}
+.piece img{display:block;width:100%;height:100%;object-fit:cover}
+.torn{clip-path:polygon(0 3%,8% 0,22% 4%,37% 1%,52% 5%,68% 0,84% 4%,100% 1%,98% 30%,100% 58%,97% 82%,100% 100%,80% 97%,61% 100%,43% 96%,24% 100%,6% 97%,0 100%,2% 70%,0 44%,3% 20%)}
+.p1{right:4%;top:70px;width:34vw;max-width:520px;aspect-ratio:16/10;transform:rotate(3deg)}
+.p2{right:24%;top:330px;width:24vw;max-width:360px;aspect-ratio:16/10;transform:rotate(-5deg);z-index:3}
+.blk{position:absolute;z-index:1}
+.b1{right:2%;top:300px;width:16vw;height:16vw;max-width:240px;max-height:240px;background:var(--orange);border-radius:50%}
+.b2{right:30%;top:20px;width:110px;height:150px;background:var(--pink);transform:rotate(-8deg)}
+.b3{left:4vw;bottom:40px;width:180px;height:60px;background:var(--green);transform:rotate(-2deg);opacity:.9}
+.tape{position:absolute;z-index:5;width:96px;height:26px;background:rgba(233,223,210,.82);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.t1{right:calc(6% + 34vw/2 - 48px);top:28px;transform:rotate(-4deg)}
+.t2{right:calc(24% + 6vw);top:318px;transform:rotate(7deg)}
+.note{position:absolute;z-index:5;font:30px/1.1 var(--hand);color:var(--blue);transform:rotate(-7deg)}
+.n1{right:8%;top:560px}
+.star{position:absolute;z-index:5}
+.label{position:absolute;z-index:5;left:4vw;top:24px;font:11px/1.7 var(--mono);letter-spacing:.14em;color:var(--muted)}
+/* WORKS: 인덱스 + 큰 이미지 */
+.works{padding:90px 4vw;border-top:1px solid rgba(29,26,23,.18)}
+.head{display:flex;justify-content:space-between;align-items:end;margin-bottom:36px}
+.head h2{margin:0;font:600 clamp(44px,6vw,80px)/.9 var(--serif);letter-spacing:-.05em}
+.head small{font:11px var(--mono);letter-spacing:.12em;color:var(--muted)}
+.lay{display:grid;grid-template-columns:minmax(240px,.7fr) minmax(0,1.6fr);gap:4vw}
+.idx button{width:100%;display:grid;grid-template-columns:44px 1fr 14px;gap:12px;align-items:center;padding:20px 6px;background:none;border:0;border-bottom:1px solid rgba(29,26,23,.18);font:inherit;color:inherit;text-align:left;cursor:pointer;transition:background .2s}
+.idx .n{font:italic 600 26px var(--serif);color:var(--c)}
+.idx .t{font:600 22px var(--serif)}
+.idx .t small{display:block;font:10px var(--mono);letter-spacing:.08em;color:var(--muted);margin-top:4px}
+.idx .dot{width:12px;height:12px;border-radius:50%;background:var(--c)}
+.idx button.on{background:color-mix(in srgb,var(--c) 14%,transparent)}
+.feat{position:relative;aspect-ratio:16/10;background:var(--paper2);overflow:hidden}
+.feat img{width:100%;height:100%;object-fit:cover;display:block}
+.feat .empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:12px var(--mono);color:var(--muted)}
+.feat .cap{position:absolute;left:0;right:0;bottom:0;padding:20px 24px;display:flex;justify-content:space-between;align-items:end;background:linear-gradient(transparent,rgba(0,0,0,.6));color:#fff}
+.feat .cap b{font:italic 600 40px/1 var(--serif)}
+.btns{display:flex;gap:10px;margin-top:16px}
+.btn{display:inline-flex;align-items:center;min-height:46px;padding:0 20px;border-radius:999px;font-weight:700;font-size:14px;border:1px solid var(--ink)}
+.btn.pri{background:var(--ink);color:var(--paper)}
+@media(max-width:860px){.hero{min-height:auto;padding-bottom:40px}.hero h1{font-size:19vw}.hero .line2,.hero .kr{margin-left:0}
+  .p1{position:relative;right:auto;top:auto;width:100%;max-width:none;margin-top:30px;transform:rotate(1.5deg)}
+  .p2,.t2,.b2{display:none}.b1{top:auto;bottom:120px;width:120px;height:120px}.t1{right:40%;top:auto}.n1{position:relative;right:auto;top:auto;display:block;margin-top:14px}
+  .lay{grid-template-columns:1fr}nav a span{display:none}}
+@media(max-width:520px){nav{gap:10px;font-size:10px}.head{display:block}.head small{display:block;margin-top:12px}}
+</style>
+</head>
+<body><div class="grain"></div>
+<header><a class="brand" id="brand" href="#top">miint.s0da</a><nav><a href="#works">WORKS<span>작업</span></a><a href="#about">ABOUT<span>소개</span></a><a href="mailto:lemonti07@naver.com">CONTACT ↗</a></nav></header>
+<main id="top">
+<section class="hero" data-c="var(--blue)">
+  <div class="label">VISUAL CREATIVE PORTFOLIO<br>VOL.01 — 2027</div>
+  <h1>miint.s<span class="o">0</span>da</h1>
+  <p class="line2">visual worlds, in motion.</p>
+  <p class="kr">생각을 시각 언어로 옮기고,<br><b>살아 움직이는 웹 경험</b>으로 확장합니다.</p>
+  <div class="blk b1"></div><div class="blk b2"></div><div class="blk b3"></div>
+  <figure class="piece torn p1" style="margin:0"><img src="../../build/vortexfall/vortexfall_04_live.webp" alt="VORTEXFALL 사이트 화면 조각"></figure>
+  <figure class="piece torn p2" style="margin:0"><img src="../../build/pixelink/pixelink_04_live.webp" alt="PIXELINK 사이트 화면 조각"></figure>
+  <span class="tape t1"></span><span class="tape t2"></span>
+  <span class="note n1">make it, by hand ✦</span>
+  <svg class="star" style="right:46%;top:120px" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 4 C34 22,40 29,60 31 C41 34,35 40,32 60 C29 41,23 35,4 32 C23 29,30 23,32 4 Z" fill="none" stroke="#1D1A17" stroke-width="1.6" stroke-linejoin="round"/></svg>
+</section>
+
+<section class="works" id="works">
+  <div class="head"><h2>Selected works</h2><small>SELECT A PROJECT · 프로젝트를 골라 보세요</small></div>
+  <div class="lay">
+    <div class="idx" id="idx">
+      <button class="on" style="--c:var(--orange)" data-i="0"><span class="n">01</span><span class="t">UNI+ON<small>문화 IP 플랫폼</small></span><span class="dot"></span></button>
+      <button style="--c:var(--pink)" data-i="1"><span class="n">02</span><span class="t">PIXELINK<small>캐릭터 IP 브랜드</small></span><span class="dot"></span></button>
+      <button style="--c:var(--blue)" data-i="2"><span class="n">03</span><span class="t">VORTEXFALL<small>게임 IP 런칭 사이트</small></span><span class="dot"></span></button>
+      <button style="--c:var(--green)" data-i="3"><span class="n">04</span><span class="t">GYEOL 결<small>라이프스타일 브랜드 · 구상 중</small></span><span class="dot"></span></button>
+      <button style="--c:var(--clay)" data-i="4"><span class="n">05</span><span class="t">MO:A<small>니치 퍼퓸 캠페인 · 구상 중</small></span><span class="dot"></span></button>
+    </div>
+    <div>
+      <div class="feat"><img id="fimg" alt="" hidden><div class="empty" id="fempty">UNI+ON 대표 이미지 (준비 중)</div><div class="cap"><b id="ftitle">UNI+ON</b><span id="fsub" style="font:11px var(--mono)">01 / 05</span></div></div>
+      <div class="btns"><a class="btn pri" id="fsite" href="https://unionverse.vercel.app" target="_blank" rel="noopener">사이트 보기 ↗</a><a class="btn" id="fcase" href="#">작업 과정</a></div>
+    </div>
+  </div>
+</section>
+</main>
+<script>
+const P=[
+ {t:'UNI+ON',c:'#FF6A1F',src:'',site:'https://unionverse.vercel.app'},
+ {t:'PIXELINK',c:'#FF5FA8',src:'../../build/pixelink/pixelink_04_live.webp',site:'https://pixel-neon-linked.vercel.app'},
+ {t:'VORTEXFALL',c:'#2F5BFF',src:'../../build/vortexfall/vortexfall_04_live.webp',site:'https://vortexfall.vercel.app'},
+ {t:'GYEOL 결',c:'#6E8B4E',src:'',site:''},
+ {t:'MO:A',c:'#C9A48A',src:'',site:''}];
+const bs=[...document.querySelectorAll('#idx button')],brand=document.getElementById('brand');
+function show(i){const p=P[i];bs.forEach((b,k)=>b.classList.toggle('on',k===i));
+ const img=document.getElementById('fimg'),em=document.getElementById('fempty');
+ if(p.src){img.src=p.src;img.alt=p.t+' 사이트 화면';img.hidden=false;em.hidden=true}else{img.hidden=true;em.hidden=false;em.textContent=p.t+(i>2?' · 구상 중':' 대표 이미지 (준비 중)')}
+ document.getElementById('ftitle').textContent=p.t;document.getElementById('fsub').textContent=String(i+1).padStart(2,'0')+' / 05';
+ const s=document.getElementById('fsite');s.style.display=p.site?'':'none';s.href=p.site||'#';brand.style.color=p.c}
+bs.forEach((b,i)=>b.addEventListener('click',()=>show(i)));show(0);
+</script>
+</body></html>
