@@ -1,0 +1,20 @@
+# 포트폴리오 개편 시안 모음
+
+공개 사이트에는 올라가지 않는다 (`.vercelignore`에서 제외). 로컬에서 각 폴더의 `index.html`을 열어 비교한다.
+
+## 정한 방향 (2026.11)
+- 에디토리얼 레이아웃 + 휴먼 엣지(손맛·질감) — 2027 트렌드와 일치
+- 작업물이 먼저 보이게: 프로젝트는 실제 사이트 화면으로
+- 개성: 프로젝트별 색 별(✦) 시스템, 섹션별 로고 색 변화
+- 캐릭터는 쓰더라도 작게 한 번 (본인 기반)
+- 대표 3개(UNI+ON, PIXELINK, VORTEXFALL) + 구상 중 2개(MO:A, GYEOL)
+
+## 시안
+| 폴더 | 이름 | 메모 |
+|---|---|---|
+| `field-notes/` | Creative Field Notes | 종이 그레인, 세리프 헤드라인 "Make it matter.", 왼쪽 프로젝트 인덱스 + 오른쪽 큰 대표 이미지, 그린 매니페스토 띠. 정리: 오타(VORTEXFALL), 이메일, 구상 중 표시, 실제 도구로 교체, 이미지 경로를 `build/`로 |
+
+## 공통으로 남은 것
+- UNI+ON 대표 이미지(`build/uni-on/`)가 아직 없음 → UNI+ON 사진 정리 후
+- 문구("Make it matter.", 매니페스토 등)는 시안용 임시. 확정 문구는 직접 정하기
+- 와이어프레임 캔버스: https://claude.ai/artifact/Ebz84qwyeftzNsD6tXHKR8 (Editorial E1~E3, v4)
