@@ -13,6 +13,7 @@
 | 폴더 | 이름 | 메모 |
 |---|---|---|
 | `collage/` | Collage Editorial | 히어로 = 큰 워드마크 타이포 + 실제 사이트 화면을 찢은 종이 조각·테이프·색 종이·손글씨·손그림 별로 콜라주. 2027 S/S 컬러(Luminous Blue·Energy Orange·Pop Pink·Meadowland Green·Clay, 근사값)를 프로젝트 색으로 배정: UNI+ON 오렌지 · PIXELINK 핑크 · VORTEXFALL 블루 · GYEOL 그린 · MO:A 클레이. 프로젝트를 고르면 로고 색이 그 색으로 바뀜 |
+| `grid-collage/` | Grid Collage (2027) | Gemini 03번(2px 보더 그리드·망점·인덱스 번호)을 기본으로 01번 요소(테이프·틸트 폴라로이드·손그림 밑줄·마키)를 합침. 팔레트 4색만 사용: #EFECE4 · #111914 · #1D4ED8 · 라임 #D4FF00(기존 다크모드 라임, 애시드 라임 #D9F99D로 교체 가능). 마스트헤드 miint.s0da, 필터 없음, 벤토(UNI+ON 2칸) + 제작 중 2개. 카피는 사용자 제공 문구 |
 | `field-notes/` | Creative Field Notes | 종이 그레인, 세리프 헤드라인 "Make it matter.", 왼쪽 프로젝트 인덱스 + 오른쪽 큰 대표 이미지, 그린 매니페스토 띠. 정리: 오타(VORTEXFALL), 이메일, 구상 중 표시, 실제 도구로 교체, 이미지 경로를 `build/`로 |
 
 ## 공통으로 남은 것

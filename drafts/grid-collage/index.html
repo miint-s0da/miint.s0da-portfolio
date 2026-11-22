@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>miint.s0da — Grid Collage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@500;700&family=Noto+Sans+KR:wght@400;500;700;900&family=Gaegu:wght@700&display=swap" rel="stylesheet">
+<style>
+/* 팔레트 4색만 사용. 라임은 기존 다크모드 라임 #D4FF00 (애시드 라임으로 바꾸려면 --lime:#D9F99D) */
+:root{--paper:#EFECE4;--ink:#111914;--cobalt:#1D4ED8;--lime:#D4FF00;
+  --line:2px solid var(--ink);
+  --sans:'Noto Sans KR',sans-serif;--disp:'Space Grotesk','Noto Sans KR',sans-serif;--mono:'JetBrains Mono',monospace;--hand:'Gaegu',cursive}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);word-break:keep-all;overflow-x:hidden;
+  background-image:radial-gradient(rgba(17,25,20,.16) 1px,transparent 1.2px);background-size:14px 14px}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* 마키 띠 */
+.marq{background:var(--ink);color:var(--lime);border-bottom:var(--line);overflow:hidden;white-space:nowrap}
+.marq-in{display:inline-flex;gap:48px;padding:12px 0;font:700 13px var(--mono);letter-spacing:.06em;animation:mq 32s linear infinite}
+.marq-in span:nth-child(3n+2){color:var(--paper)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* 헤더 · 마스트헤드 */
+header{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;padding:44px 0 18px;border-bottom:var(--line)}
+.mast{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap}
+.logo{font:700 clamp(56px,10vw,128px)/.82 var(--disp);letter-spacing:-.06em;margin:0}
+.logo .o{color:var(--cobalt)}
+.stamp{display:inline-block;padding:4px 10px;border:var(--line);background:var(--lime);font:700 12px var(--mono);letter-spacing:.06em;transform:rotate(-4deg);box-shadow:3px 3px 0 var(--ink);margin-bottom:10px}
+nav{display:flex;gap:26px;align-items:center;font:700 14px var(--disp);letter-spacing:.02em;padding-bottom:6px}
+nav a:not(.btn):hover{color:var(--cobalt)}
+
+/* 버튼 */
+.btn{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 16px;border:var(--line);background:var(--paper);font:700 13px var(--mono);box-shadow:3px 3px 0 var(--ink);transition:transform .12s,box-shadow .12s,background .12s,color .12s;cursor:pointer}
+.btn:hover{background:var(--lime)}
+.btn:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.btn.dark{background:var(--ink);color:var(--lime)}
+.btn.dark:hover{background:var(--cobalt);color:#fff}
+.btn.blue{background:var(--cobalt);color:#fff}
+.btn.blue:hover{background:var(--ink);color:var(--lime)}
+
+/* 테이프 · 손글씨 */
+.tape{position:absolute;width:86px;height:24px;background:repeating-linear-gradient(-45deg,rgba(212,255,0,.75) 0 7px,rgba(239,236,228,.75) 7px 14px);border:1px solid rgba(17,25,20,.18)}
+.tape.plain{background:rgba(239,236,228,.85)}
+.hand{font-family:var(--hand);font-weight:700}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px;align-items:center;padding:64px 0 80px;border-bottom:var(--line)}
+.card{position:relative;background:#F7F5EF;border:var(--line);box-shadow:6px 6px 0 var(--ink)}
+.intro{padding:40px 36px 32px}
+.intro .tape{left:20px;top:-14px;transform:rotate(-3deg)}
+.kick{display:flex;justify-content:space-between;align-items:center;gap:12px;font:700 12px var(--mono);letter-spacing:.06em;color:var(--cobalt)}
+.kick .badge{border:2px solid var(--cobalt);padding:3px 8px;transform:rotate(3deg);background:#F7F5EF}
+.intro h1{margin:22px 0 20px;font:900 clamp(34px,4.4vw,54px)/1.22 var(--sans);letter-spacing:-.04em}
+.hl{background:var(--lime);padding:0 6px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.circ{position:relative;white-space:nowrap}
+.circ svg{position:absolute;left:-12px;top:-6px;width:calc(100% + 24px);height:calc(100% + 12px);overflow:visible;pointer-events:none}
+.uline{position:relative;white-space:nowrap}
+.uline svg{position:absolute;left:0;bottom:-8px;width:100%;height:14px;overflow:visible}
+.intro p.lead{margin:0;font-size:16px;line-height:1.85;color:#2b332e;max-width:520px}
+.memo{position:relative;margin:28px 0 24px;padding:16px 20px;background:var(--lime);border:var(--line);box-shadow:4px 4px 0 var(--ink);transform:rotate(-1.2deg);font-size:24px;line-height:1.3}
+.skills{display:flex;flex-wrap:wrap;gap:10px;padding-top:20px;border-top:2px dashed rgba(17,25,20,.35)}
+.skills span{padding:6px 12px;border:var(--line);font:700 12px var(--mono);background:var(--paper)}
+.skills span:nth-child(1){background:var(--lime)}
+.skills span:nth-child(3){background:var(--cobalt);color:#fff}
+
+/* 히어로 콜라주: 실제 사이트 화면 */
+.collage{position:relative;min-height:470px}
+.pola{position:absolute;background:#F7F5EF;border:var(--line);padding:12px 12px 44px;box-shadow:6px 6px 0 var(--ink);transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.pola img{width:100%;aspect-ratio:16/10;object-fit:cover;border:1.5px solid var(--ink);filter:saturate(.92) contrast(1.02)}
+.pola figcaption{position:absolute;left:14px;right:14px;bottom:10px;display:flex;justify-content:space-between;align-items:center;font-size:20px}
+.pola figcaption small{font:700 11px var(--mono);border:1.5px solid var(--ink);padding:2px 6px;background:var(--paper)}
+.pa{width:88%;right:0;top:10px;transform:rotate(3deg);z-index:2;box-shadow:6px 6px 0 var(--cobalt)}
+.pb{width:70%;left:0;top:230px;transform:rotate(-5deg);z-index:3}
+.pa:hover{transform:rotate(1deg) scale(1.02)}.pb:hover{transform:rotate(-2deg) scale(1.03)}
+.pa .tape{left:42%;top:-14px;transform:rotate(-2deg)}
+.pb .tape{right:18px;top:-12px;transform:rotate(6deg)}
+.scribble{position:absolute;right:2%;bottom:-6px;z-index:4;color:var(--cobalt);font-size:22px;transform:rotate(-4deg);display:flex;align-items:center;gap:6px}
+
+/* WORKS */
+.works{padding:72px 0 80px;border-bottom:var(--line)}
+.whead{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:34px}
+.whead .hand{color:var(--cobalt);font-size:20px}
+.whead h2{margin:4px 0 0;font:700 clamp(30px,4vw,44px)/1 var(--disp);letter-spacing:-.03em}
+.whead .count{font:700 12px var(--mono);border:var(--line);padding:6px 10px;background:var(--lime);box-shadow:3px 3px 0 var(--ink)}
+.bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:34px 30px}
+.work{display:flex;flex-direction:column;padding:22px;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.work:hover{transform:rotate(-.6deg) translateY(-3px)}
+.w1{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:stretch}
+.w2{grid-column:span 7;box-shadow:6px 6px 0 var(--cobalt)}
+.w3{grid-column:span 5}
+.shot{position:relative;border:var(--line);background:var(--paper);overflow:hidden;aspect-ratio:16/10}
+.shot img{width:100%;height:100%;object-fit:cover}
+.shot .empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font:700 12px var(--mono);color:#59625c;
+  background:repeating-linear-gradient(-45deg,transparent 0 10px,rgba(17,25,20,.05) 10px 20px)}
+.shot .empty b{font:700 30px var(--disp);color:var(--ink);letter-spacing:-.03em}
+.work .tape{top:-13px;left:24px;transform:rotate(-4deg);z-index:2}
+.w2 .tape,.w3 .tape{left:auto;right:30px;transform:rotate(5deg)}
+.meta{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:18px 0 8px}
+.num{font:700 14px var(--mono);color:var(--cobalt)}
+.cat{font:700 11px var(--mono);border:1.5px solid var(--ink);padding:2px 7px;margin-left:8px;background:var(--lime)}
+.state{font:700 12px var(--mono);padding:4px 9px;border:2px solid var(--ink);transform:rotate(3deg)}
+.state.done{background:var(--ink);color:var(--lime)}
+.state.wip{border-color:var(--cobalt);color:var(--cobalt);border-style:dashed;background:#F7F5EF}
+.work h3{margin:0 0 8px;font:700 clamp(26px,3vw,34px)/1.05 var(--disp);letter-spacing:-.03em}
+.work .slogan{margin:-2px 0 8px;font:700 12px var(--mono);color:var(--cobalt)}
+.work p.tag{margin:0 0 14px;font-size:15px;line-height:1.7;color:#2b332e}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px;padding:0;list-style:none}
+.tags li{font:500 12px var(--sans);padding:3px 9px;border:1.5px solid var(--ink);border-radius:999px}
+.foot{margin-top:auto;padding-top:14px;border-top:2px dashed rgba(17,25,20,.3);display:flex;flex-wrap:wrap;gap:10px}
+.w1 .body{display:flex;flex-direction:column}
+.w1 .meta{margin-top:0}
+
+/* ABOUT / CONTACT */
+.about{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:34px;padding:72px 0 90px;align-items:center}
+.about .pola{position:relative;transform:rotate(-3deg);width:100%}
+.about .pola:hover{transform:rotate(-1deg) scale(1.02)}
+.about .pola .tape{left:24px;top:-12px;transform:rotate(-6deg)}
+.contact{padding:32px}
+.contact .hand{color:var(--cobalt);font-size:20px}
+.contact h3{margin:6px 0 10px;font:900 clamp(24px,2.6vw,30px)/1.25 var(--sans);letter-spacing:-.03em}
+.contact p{margin:0 0 22px;line-height:1.8;color:#2b332e}
+.contact .row{display:flex;flex-wrap:wrap;gap:12px}
+footer{border-top:var(--line);padding:20px 0 34px;display:flex;justify-content:space-between;font:700 12px var(--mono)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,120px);background:var(--ink);color:var(--lime);font:700 13px var(--mono);padding:10px 16px;border:2px solid var(--lime);transition:transform .3s,visibility .3s;z-index:50;visibility:hidden}
+.toast.on{transform:translate(-50%,0);visibility:visible}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;gap:40px}
+  .collage{min-height:0;display:grid;gap:30px;padding:0 6px}
+  .pola.pa,.pola.pb{position:relative;width:100%;top:auto}
+  .scribble{position:relative;right:auto;bottom:auto;justify-self:end}
+  .w1{grid-template-columns:1fr}
+  .w2,.w3{grid-column:1/-1}
+  .about{grid-template-columns:1fr}
+  .about .pola{max-width:420px}
+}
+@media (max-width:600px){
+  .wrap{padding:0 16px}
+  header{flex-direction:column;align-items:flex-start;padding-top:30px}
+  nav{gap:18px}
+  .intro{padding:32px 20px 24px}
+  .memo{font-size:21px}
+  .whead{flex-direction:column;align-items:flex-start}
+  .work{padding:16px}
+  .contact{padding:24px 20px}
+}
+@media (prefers-reduced-motion:reduce){.marq-in{animation:none}*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="marq" aria-hidden="true"><div class="marq-in">
+  <span>miint.s0da</span><span>UNI+ON</span><span>✦ PIXELINK</span><span>VORTEXFALL</span><span>UI/UX · BRANDING · AI VIBE CODING</span><span>✦ SELECTED INDEX 01–03</span>
+  <span>miint.s0da</span><span>UNI+ON</span><span>✦ PIXELINK</span><span>VORTEXFALL</span><span>UI/UX · BRANDING · AI VIBE CODING</span><span>✦ SELECTED INDEX 01–03</span>
+</div></div>
+
+<div class="wrap">
+<header>
+  <div class="mast"><div class="logo"><a href="#top">miint.s<span class="o">0</span>da</a></div><span class="stamp">PORTFOLIO · 2027</span></div>
+  <nav><a href="#works">INDEX</a><a href="#about">ABOUT</a><a class="btn blue" href="#about">CONTACT</a></nav>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="card intro">
+    <span class="tape"></span>
+    <div class="kick"><span>✦ UI/UX · BRANDING · AI VIBE CODING</span><span class="badge">YUJAY</span></div>
+    <h1><span class="hl">손끝의 온기</span>가<br>남는
+      <span class="circ">웹<svg viewBox="0 0 100 60" preserveAspectRatio="none" aria-hidden="true"><path d="M8 34 C6 12,40 2,70 6 C96 10,98 40,78 52 C56 62,16 58,6 40 C2 30,12 18,26 14" fill="none" stroke="#1D4ED8" stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg></span>을
+      <span class="uline">만듭니다.<svg viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 9 C40 3,80 12,120 6 C150 2,175 10,198 5" fill="none" stroke="#1D4ED8" stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg></span></h1>
+    <p class="lead">웹 표준의 단단한 뼈대 위에 종이 같은 촉감과 생생한 이야기를 얹는 디자이너 유제이입니다. 기획부터 디자인, AI 바이브코딩 구현까지 직접 손으로 빚어냅니다.</p>
+    <div class="memo hand">“반듯한 그리드 위에, 예상 밖의 한 끗을.” ✎</div>
+    <div class="skills"><span>[01] UI/UX</span><span>[02] BRANDING</span><span>[03] AI VIBE CODING</span></div>
+  </div>
+
+  <div class="collage">
+    <figure class="pola pa" style="margin:0"><span class="tape plain"></span>
+      <img src="../../build/vortexfall/vortexfall_04_live.webp" alt="VORTEXFALL 사이트 첫 화면">
+      <figcaption class="hand">VORTEXFALL <small>FIG.03</small></figcaption></figure>
+    <figure class="pola pb" style="margin:0"><span class="tape"></span>
+      <img src="../../build/pixelink/pixelink_04_live.webp" alt="PIXELINK 사이트 첫 화면">
+      <figcaption class="hand">PIXELINK <small>FIG.02</small></figcaption></figure>
+    <div class="scribble hand"><svg width="34" height="30" viewBox="0 0 34 30" aria-hidden="true"><path d="M30 26 C24 14,16 8,4 6 M4 6 L12 2 M4 6 L9 13" fill="none" stroke="#1D4ED8" stroke-width="2.4" stroke-linecap="round"/></svg>실제 작업 화면</div>
+  </div>
+</section>
+
+<section class="works" id="works">
+  <div class="whead">
+    <div><span class="hand">직접 기획하고 코드로 빚은 작업들</span><h2>SELECTED INDEX (01–03)</h2></div>
+    <span class="count">완료 1 · 제작 중 2</span>
+  </div>
+  <div class="bento">
+    <article class="card work w1">
+      <span class="tape"></span>
+      <div class="shot"><div class="empty"><b>UNI+ON</b>대표 이미지 (추후)</div></div>
+      <div class="body">
+        <div class="meta"><span><span class="num">#01</span><span class="cat">브랜드 · 플랫폼</span></span><span class="state done">완료 ✓</span></div>
+        <h3>UNI+ON</h3>
+        <p class="tag">게임·웹툰 굿즈가 흩어져 찾기 어려운 문제를, 카테고리 탐색에서 장바구니까지 이어지는 하나의 흐름으로 해결</p>
+        <ul class="tags"><li>카테고리 탐색</li><li>커머스 동선</li><li>반응형</li></ul>
+        <div class="foot"><a class="btn dark" href="../../case/uni-on.html">CASE STUDY →</a><a class="btn" href="https://unionverse.vercel.app" target="_blank" rel="noopener">사이트 보기 ↗</a></div>
+      </div>
+    </article>
+
+    <article class="card work w2">
+      <span class="tape plain"></span>
+      <div class="shot"><img src="../../build/pixelink/pixelink_04_live.webp" alt="PIXELINK 사이트 화면" loading="lazy"></div>
+      <div class="meta"><span><span class="num">#02</span><span class="cat">캐릭터 IP · 브랜드</span></span><span class="state wip">제작 중</span></div>
+      <h3>PIXELINK</h3>
+      <p class="slogan">PIXEL + NEON, LINKED.</p>
+      <p class="tag">캐릭터 하나로 브랜드를 만들 때 글 없이도 성격이 전달되도록, 인트로·커서·호버를 캐릭터 경험으로 설계</p>
+      <ul class="tags"><li>캐릭터 경험 설계</li><li>브랜드 확장 구조</li><li>인터랙션</li></ul>
+      <div class="foot"><a class="btn dark" href="../../case/pixelink.html">CASE STUDY →</a><a class="btn" href="https://pixel-neon-linked.vercel.app" target="_blank" rel="noopener">사이트 보기 ↗</a></div>
+    </article>
+
+    <article class="card work w3">
+      <span class="tape"></span>
+      <div class="shot"><img src="../../build/vortexfall/vortexfall_04_live.webp" alt="VORTEXFALL 사이트 화면" loading="lazy"></div>
+      <div class="meta"><span><span class="num">#03</span><span class="cat">게임 IP · 시네마틱</span></span><span class="state wip">제작 중</span></div>
+      <h3>VORTEXFALL</h3>
+      <p class="tag">낯선 세계관을 글로 설명하는 대신, 직접 비교하고 조작하며 이해하는 원페이지 런칭 흐름으로 설계</p>
+      <ul class="tags"><li>체험형 스토리텔링</li><li>원페이지 흐름</li><li>직접 조작 UI</li></ul>
+      <div class="foot"><a class="btn dark" href="../../case/vortexfall.html">CASE STUDY →</a><a class="btn" href="https://vortexfall.vercel.app" target="_blank" rel="noopener">사이트 보기 ↗</a></div>
+    </article>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <figure class="pola" style="margin:0"><span class="tape"></span>
+    <img src="../../case/pixelink/img/result2_characters.webp" alt="PIXELINK 캐릭터 화면" loading="lazy">
+    <figcaption class="hand">PIXELINK · CHARACTERS <small>FIG.04</small></figcaption></figure>
+  <div class="card contact">
+    <span class="hand">✦ miint.s0da · 유제이</span>
+    <h3>투명한 깊이감 위에<br>살아있는 코드를 구현합니다.</h3>
+    <p>읽기 편한 Soft Interface 설계와 AI 바이브코딩을 결합해, 정적인 시안을 넘어 실제 브라우저에서 작동하는 프로덕트를 만듭니다.</p>
+    <div class="row">
+      <button class="btn dark" id="copyMail" type="button">이메일 주소 복사하기</button>
+      <a class="btn" href="https://www.instagram.com/miint.s0da" target="_blank" rel="noopener">@miint.s0da ↗</a>
+      <a class="btn" href="https://github.com/miint-s0da" target="_blank" rel="noopener">GITHUB ↗</a>
+    </div>
+  </div>
+</section>
+</main>
+<footer><span>© miint.s0da</span><span>UNI+ON · PIXELINK · VORTEXFALL</span></footer>
+</div>
+<div class="toast" id="toast" role="status">이메일 주소를 복사했어요</div>
+<script>
+document.getElementById('copyMail').addEventListener('click',async()=>{
+  const t=document.getElementById('toast');
+  try{await navigator.clipboard.writeText('lemonti07@naver.com');t.textContent='이메일 주소를 복사했어요'}
+  catch(e){t.textContent='lemonti07@naver.com'}
+  t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1800);
+});
+</script>
+</body>
+</html>
