@@ -2157,8 +2157,7 @@ body::after { left: 6px; }
           &lt;h2 class=&quot;board-title&quot;&gt;노트 위에 기록된 전체 발자취&lt;/h2&gt;
         &lt;/div&gt;
         &lt;div class=&quot;tab-pills&quot; id=&quot;historyTabs&quot;&gt;
-          &lt;button class=&quot;tab-pill active&quot; data-tab=&quot;all&quot;&gt;전체보기 (24)&lt;/button&gt;
-          &lt;button class=&quot;tab-pill&quot; data-tab=&quot;design&quot;&gt;✦ DESIGN PICK (10)&lt;/button&gt;
+          &lt;button class=&quot;tab-pill active&quot; data-tab=&quot;design&quot;&gt;✦ DESIGN PICK (10)&lt;/button&gt;
           &lt;button class=&quot;tab-pill&quot; data-tab=&quot;career&quot;&gt;경력 (9)&lt;/button&gt;
           &lt;button class=&quot;tab-pill&quot; data-tab=&quot;edu&quot;&gt;교육 · 학력 (5)&lt;/button&gt;
           &lt;button class=&quot;tab-pill&quot; data-tab=&quot;cert&quot;&gt;자격 · 활동 (10)&lt;/button&gt;
@@ -2440,7 +2439,7 @@ tab.classList.add(&quot;active&quot;);
 renderHistory(tab.dataset.tab);
 });
 });
-renderHistory(&quot;all&quot;);
+renderHistory(&quot;design&quot;);
 /* 9. 이력 카드 클릭 상세 모달 */
 const modalOverlay = document.createElement(&quot;div&quot;);
 Object.assign(modalOverlay.style, {
