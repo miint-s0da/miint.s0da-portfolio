@@ -339,7 +339,10 @@ html:not(.hero-wait) #hero .hero-ko .hk{background-size:100% 100%}
 /* 히어로 별: 배경 그리드 교차점에 ✦ ✧ · (정적) */
 #hero .hero-stars{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 #hero .hero-stars i{position:absolute;font-style:normal;line-height:1;transform:translate(-50%,-50%);color:var(--acc);opacity:.55}
-#hero .hero-stars i:nth-child(3n){color:var(--fg);opacity:.28}
+#hero .hero-stars i:nth-child(3n){color:var(--fg);--hi:.4}
+#hero .hero-stars i{--hi:.9;animation:starTw var(--d,6s) ease-in-out var(--dl,0s) infinite}
+@keyframes starTw{0%,100%{opacity:.12;transform:translate(-50%,-50%) scale(.78)}50%{opacity:var(--hi);transform:translate(-50%,-50%) scale(1.15)}}
+@media(prefers-reduced-motion:reduce){#hero .hero-stars i{animation:none;opacity:.5}}
 @media(max-width:819px){#hero .hero-stars{display:none}}
 /* 히어로 정리: 영문 타이틀은 작게 왼쪽, 한글 문구를 크게 */
 @media(max-width:819px){.pill-en{display:none}}
@@ -2684,6 +2687,8 @@ document.querySelectorAll('.strip').forEach(s => s.addEventListener('click', () 
       const i = document.createElement('i'), g = G[k % G.length];
       i.textContent = g; i.style.left = c[0] + 'px'; i.style.top = c[1] + 'px';
       i.style.fontSize = (g === '·' ? 34 : 14 + ((k * 7) % 11)) + 'px';
+      i.style.setProperty('--d', (4.5 + ((k * 37) % 55) / 10).toFixed(1) + 's');      /* 별마다 4.5~10초로 서로 다른 속도 */
+      i.style.setProperty('--dl', '-' + (((k * 53) % 90) / 10).toFixed(1) + 's');    /* 시작 위치도 제각각 */
       box.appendChild(i);
     });
   }
