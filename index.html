@@ -110,7 +110,7 @@ header.top{
 /* =========================================================
    HERO
    ========================================================= */
-#hero{position:relative;z-index:21;min-height:100vh;min-height:100svh;padding:112px max(24px,env(safe-area-inset-left)) 56px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+#hero{position:relative;z-index:21;min-height:100vh;min-height:100svh;padding:112px 0 56px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;--rpad:24px}
 .wrap{width:100%;max-width:1280px;margin:0 auto;position:relative}
 .hero-meta{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px}
 .pill{display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:rgb(var(--bgv)/.8);font:600 11px/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase}
@@ -148,7 +148,7 @@ header.top{
 .hc2 small{color:var(--acc)}
 
 /* ---- HERO: 픽셀 격자 (PIXELINK 호버 모션) ---- */
-#pxgrid{position:absolute;inset:0;z-index:0;pointer-events:none}
+#pxgrid{position:absolute;top:0;bottom:0;left:calc(50% - min(50%,640px) + 24px);width:calc(min(100%,1280px) - 24px - var(--rpad));z-index:0;pointer-events:none;overflow:hidden;border-radius:20px}
 .px{position:absolute;border-radius:12px;overflow:hidden;background:color-mix(in srgb,var(--fg) 4.5%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--fg) 9%,transparent)}
 .px::after{content:"";position:absolute;inset:0;background:var(--acc);opacity:.3;transform:scaleY(0);transform-origin:50% 100%;transition:transform 1.2s cubic-bezier(.22,1,.36,1)}
 .px.on::after,.px.fill::after{transform:scaleY(1)}
@@ -188,7 +188,7 @@ header.top{
 .fan{margin:18px 0 0;font-size:11.5px;line-height:1.7;color:var(--mut);word-break:keep-all;padding-left:12px;border-left:2px solid var(--line)}
 .num{position:absolute;z-index:0;left:-.06em;top:50%;transform:translateY(-58%);font:800 clamp(9rem,25vw,22rem)/.8 var(--f-display);letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1.5px color-mix(in srgb,var(--fg) 9%,transparent);opacity:calc(var(--p) * .95);pointer-events:none;user-select:none}
 
-@media(min-width:820px){#hero,.proj,#about,footer{padding-right:84px}}
+@media(min-width:820px){.proj,#about,footer{padding-right:84px}#hero{--rpad:84px}}
 @media(max-width:819px){
   .proj{align-items:flex-end;padding-top:max(46vh,320px);padding-bottom:64px}
   .num{top:4px;transform:none;font-size:9.5rem;left:-.02em}
@@ -264,7 +264,8 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 .in-skip{position:absolute;right:24px;bottom:24px;background:transparent;border:1px solid rgba(255,255,255,.3);color:#F4F4F6;border-radius:999px;padding:10px 16px;font:700 11px/1 var(--f-mono);letter-spacing:.12em;cursor:pointer}
 @media(prefers-reduced-motion:reduce){#intro{display:none}}
 /* 히어로 꽉 채우기: 헤드라인이 화면 폭을 가득 채우도록 래퍼 제한 해제 */
-#hero .kin.wrap{max-width:none;padding-left:clamp(16px,3vw,48px);padding-right:clamp(16px,3vw,48px)}
+/* 히어로 내용은 다른 섹션과 같은 폭(1280, 좌우 24, 오른쪽 점 영역)에 맞춤 */
+#hero .wrap{max-width:1280px;padding-left:24px;padding-right:var(--rpad)}
 /* 히어로 정리: 영문 타이틀은 작게 왼쪽, 한글 문구를 크게 */
 @media(max-width:819px){.pill-en{display:none}}
 #hero .kin{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(20px,3vw,36px);padding-top:32px;padding-bottom:48px}
@@ -780,7 +781,7 @@ let cells = [], cols = 0, cw = 0, gap = 0, gx0 = 0, gy0 = 0;
 function buildGrid() {
   if (!PXG) return;
   PXG.textContent = ''; cells = [];
-  const w = hero.clientWidth;
+  const w = PXG.clientWidth;
   cw = Math.round(clamp(w / 16, 48, 96)); gap = cw > 96 ? 14 : 9;
   cols = Math.ceil(w / (cw + gap)) + 1;
   gx0 = (w - (cols * (cw + gap) - gap)) / 2;
@@ -825,7 +826,7 @@ if (!RM) {
   let lastHot = -1;              /* 마우스·터치가 지나간 칸이 켜짐 */
   const hot = (x, y) => {
     if (!cells.length || scrollY > innerHeight) return;
-    const hr = hero.getBoundingClientRect(), px = x - hr.left, py = y - hr.top;
+    const hr = hero.getBoundingClientRect(), pr = PXG.getBoundingClientRect(), px = x - pr.left, py = y - hr.top;
     const c = Math.floor((px - gx0) / (cw + gap)), r = Math.floor((py - gy0) / (cw + gap));
     if (c < 0 || c >= cols || r < 0 || r >= ROWS) { lastHot = -1; return; }
     const i = c * ROWS + r; if (i === lastHot) return; lastHot = i; lit(cells[i], 'fill', 700);
