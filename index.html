@@ -207,7 +207,7 @@ header.top{
 .sym6{position:relative;height:150px;margin:0 auto 56px;max-width:1280px}
 .sym6 small{position:absolute;left:0;right:0;bottom:0;text-align:center;font:500 12px/1 var(--f-sans);letter-spacing:.04em;color:var(--mut)}
 .about-grid{display:grid;gap:48px;grid-template-columns:1fr;align-items:center}
-@media(min-width:1000px){.about-grid{grid-template-columns:6fr 5fr;gap:56px;align-items:start}}
+@media(min-width:1000px){.about-grid{grid-template-columns:6fr 5fr;gap:56px;align-items:stretch}}
 .eyebrow{font:600 12px/1 var(--f-mono);letter-spacing:.16em;color:var(--acc);display:block;margin-bottom:18px}
 .about-grid h2{margin:0 0 20px;font:800 clamp(1.6rem,3.2vw,2.5rem)/1.3 var(--f-display);letter-spacing:-.03em;word-break:keep-all}
 .about-grid .h2-ko{margin:-6px 0 22px;font-size:14px;line-height:1.7;color:var(--mut);word-break:keep-all}
@@ -282,6 +282,15 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 #hero .wrap{max-width:1280px;padding-left:24px;padding-right:var(--rpad)}
 /* 라이트: 루미너스 블루의 깊이감 */
 :root[data-theme="light"] #hero{background:radial-gradient(900px 520px at 88% 6%,rgba(47,91,255,.14),transparent 62%),radial-gradient(900px 520px at 12% 98%,rgba(47,91,255,.14),transparent 62%)}
+/* ABOUT 좌측 확대: 우측 카드와 높이 균형 */
+@media(min-width:1000px){  .about-grid>div:first-child{display:flex;flex-direction:column}
+  .about-grid h2{font-size:clamp(3rem,5.2vw,4.6rem);line-height:1.12;margin-bottom:22px}
+  .about-grid .h2-ko{font-size:16px;margin:0 0 28px}
+  .about-grid p.lead{font-size:17px;margin-bottom:auto;padding-bottom:32px}
+  .steps{grid-template-columns:1fr;gap:8px}
+  .steps li,.steps li:last-child{grid-column:auto;display:flex;align-items:center;gap:18px;padding:14px 18px}
+  .steps small{margin:0;font-size:12px}
+  .steps b{font-size:14px}}
 /* 히어로 카피: 인트로 뒤(또는 바로) 한 번만 한 줄씩 올라오고, 포인트 단어에 밑줄이 그어짐 */
 #hero .hero-ko .ln{display:block;overflow:hidden;padding-bottom:.08em}
 #hero .hero-ko .ln>span{display:block;transition:transform .9s cubic-bezier(.22,1,.36,1)}
