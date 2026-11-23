@@ -111,7 +111,7 @@ header.top{
 /* =========================================================
    HERO
    ========================================================= */
-#hero{position:relative;z-index:21;min-height:100vh;min-height:100svh;padding:112px 0 56px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;--rpad:24px}
+#hero{position:relative;z-index:21;min-height:100vh;min-height:100svh;padding:96px 0 48px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;--rpad:24px}
 .wrap{width:100%;max-width:1280px;margin:0 auto;position:relative}
 .hero-meta{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px}
 .pill{display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:rgb(var(--bgv)/.8);font:600 11px/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase}
@@ -332,7 +332,7 @@ html.hero-wait #hero .hero-ko .ln>span{transform:translateY(110%)}
 html.hero-go #hero .hero-ko .hk{background-size:100% 100%}
 html:not(.hero-wait) #hero .hero-ko .hk{background-size:100% 100%}
 @media(prefers-reduced-motion:reduce){html.hero-wait #hero .hero-ko .ln>span{transform:none}#hero .hero-ko .hk{background-size:100% 100%;transition:none}}
-#hero .hero-sub{margin:-6px 0 0;font-size:15px;line-height:1.7;color:var(--mut);word-break:keep-all;max-width:560px}
+#hero .hero-sub{margin:-6px 0 0;padding-bottom:clamp(0px,9vw,150px);font-size:15px;line-height:1.7;color:var(--mut);word-break:keep-all;max-width:560px}
 #hero .hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
 @media(min-width:820px){#hero .hero-tags{position:absolute;right:clamp(0px,calc(var(--rpad) - (100vw - 1280px) / 2),var(--rpad));bottom:48px;flex-direction:column;align-items:flex-end;flex-wrap:nowrap}}
 #hero .hero-tags li{font:500 11px/1 var(--f-mono);letter-spacing:.06em;padding:8px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg)}
@@ -515,7 +515,6 @@ html.live-shapes .emblem{visibility:hidden}
       <a class="btn fill" href="#p1"><span>작업 보기 (03)<span style="opacity:.6;margin-left:10px">VIEW SELECTED WORKS</span></span><span aria-hidden="true">↓</span></a>
       <a class="btn line" href="#aboutme" data-about="profile">소개 보기 <span style="opacity:.6;margin-left:6px">CREATOR PROFILE</span> →</a>
     </div>
-    <div class="role">ESTP CREATIVE DIRECTOR · DESIGN TO CODE</div>
   </div>
 </section>
 
@@ -765,8 +764,9 @@ function boxFor(i) {
       const ln = ko.children[1], rg = document.createRange(); rg.selectNodeContents(ln.firstElementChild);
       const tr = rg.getBoundingClientRect(), lr = ln.getBoundingClientRect(), kr = document.querySelector('#hero .kin').getBoundingClientRect();
       if (w >= 820 && tg) {
-        const left = tr.right + 40, right = tg.getBoundingClientRect().left - 40, S = Math.max(150, Math.min((right - left) / .74, 440));
-        return { cx: (left + right) / 2, cy: (lr.top + lr.bottom) / 2 - 4, S };
+        const sub = document.querySelector('#hero .hero-sub').getBoundingClientRect(), tr2 = tg.getBoundingClientRect();
+        const S = clamp(Math.min(w * .15, 240), 150, 240);
+        return { cx: tr2.left - 48 - S * .5, cy: tr2.top + tr2.height / 2, S };
       }
       const en = document.querySelector('#hero .hero-en').getBoundingClientRect(), S = 150;
       return { cx: kr.right - 24 - S * .37, cy: en.top + en.height / 2, S };
