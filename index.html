@@ -246,6 +246,13 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 .foot-in{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between;align-items:center}
 .foot-in .logo{font-size:24px}
 .foot-in small{display:block;margin-top:8px;font:400 11px/1.6 var(--f-mono);color:var(--mut);letter-spacing:.04em}
+.foot-in{flex-direction:column;align-items:stretch;gap:44px}
+.fb-en{margin:0;font:800 clamp(2.6rem,8vw,7.2rem)/1 var(--f-display);letter-spacing:-.04em;text-transform:uppercase}
+.fb-en span{color:var(--acc)}
+.fb-ko{margin:22px 0 0;max-width:560px;font-size:15px;line-height:1.75;color:var(--mut);word-break:keep-all}
+.foot-row{display:flex;flex-wrap:wrap;align-items:center;gap:18px 28px;padding-top:28px;border-top:1px solid var(--line)}
+.foot-row small{margin:0}
+.foot-row .intro-replay{margin:0 0 0 auto}
 .stats{display:flex;gap:0}
 .stats>div{padding:0 28px;border-left:1px solid var(--line)}
 .stats>div:first-child{border-left:0;padding-left:0}
@@ -303,7 +310,11 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 .steps li,.steps li:last-child{position:relative;display:grid;grid-template-columns:44px 1fr;grid-template-areas:"n t" "n d";column-gap:14px;row-gap:2px;align-items:center;padding:12px 0 12px 36px;border:0;border-radius:0;background:none;grid-column:auto}
 .steps li::before{content:"";position:absolute;left:5px;top:50%;width:13px;height:13px;border:1px solid var(--acc);border-radius:50%;background:var(--bg);transform:translateY(-50%);transition:background .25s}
 .steps li:hover{transform:none;background:none}
-.steps li:hover::before{background:var(--acc)}
+.steps li:hover::before,.steps li.on::before{background:var(--acc)}
+.steps li b{align-self:end;justify-self:start;background:linear-gradient(color-mix(in srgb,var(--acc) 30%,transparent),color-mix(in srgb,var(--acc) 30%,transparent)) no-repeat 100% 0/0% 100%;padding:0 6px;margin-left:-6px;transition:background-size 1s cubic-bezier(.22,1,.36,1)}
+.steps li.on b{background-position:0 0;background-size:100% 100%}
+.steps li.off b{background-position:100% 0;background-size:0% 100%}
+@media(prefers-reduced-motion:reduce){.steps li b{transition:none}}
 .steps small{grid-area:n;margin:0;font:italic 700 26px/1 var(--f-display);color:var(--mut)}
 .steps b{grid-area:t;font:700 17px/1.2 var(--f-display);letter-spacing:-.01em;align-self:end}
 .steps li em{grid-area:d;display:block;margin:0;font:500 13px/1.5 var(--f-sans);font-style:normal;color:var(--mut);align-self:start;word-break:keep-all}
@@ -318,13 +329,16 @@ html:not(.hero-wait) #hero .hero-ko .hk{background-size:100% 100%}
 @media(prefers-reduced-motion:reduce){html.hero-wait #hero .hero-ko .ln>span{transform:none}#hero .hero-ko .hk{background-size:100% 100%;transition:none}}
 #hero .hero-sub{margin:-6px 0 0;font-size:15px;line-height:1.7;color:var(--mut);word-break:keep-all;max-width:560px}
 #hero .hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+@media(max-width:819px){#hero .hero-ko{font-size:10.4vw}}
+@media(min-width:820px){#hero .hero-tags{position:absolute;right:var(--rpad);bottom:48px;flex-direction:column;align-items:flex-end;flex-wrap:nowrap}}
 #hero .hero-tags li{font:500 11px/1 var(--f-mono);letter-spacing:.06em;padding:8px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg)}
 /* 히어로 정리: 영문 타이틀은 작게 왼쪽, 한글 문구를 크게 */
 @media(max-width:819px){.pill-en{display:none}}
-#hero .kin{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(20px,3vw,36px);padding-top:32px;padding-bottom:48px}
+#hero .kin{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:clamp(20px,3vw,36px);padding-top:32px;padding-bottom:48px}
 #hero .hero-en{margin:0;font:600 clamp(.7rem,1vw,.9rem)/1.9 var(--f-mono);letter-spacing:.2em;color:var(--mut)}
 #hero .hero-en #t3{color:var(--acc)}
-#hero .hero-ko{margin:0;font-family:"Noto Sans KR",Pretendard,system-ui,sans-serif;font-weight:800;font-size:clamp(1.65rem,6.4vw,6.2rem);line-height:1.2;letter-spacing:-.045em;word-break:keep-all;color:var(--fg)}
+.ko-sub{display:block;margin-top:4px;font:500 12px/1.6 var(--f-sans);letter-spacing:0;color:var(--mut);opacity:.85}
+#hero .hero-ko{margin:0;font-family:"Noto Sans KR",Pretendard,system-ui,sans-serif;font-weight:800;font-size:clamp(2.1rem,8.4vw,8.8rem);line-height:1.16;letter-spacing:-.05em;word-break:keep-all;color:var(--fg)}
 /* 연락처: 카드 2장 레이아웃 (정보 카드 + 폼 카드) */
 .contact-grid{display:grid;grid-template-columns:1fr;gap:28px;align-items:stretch}
 .contact-card{position:relative;border-radius:26px;margin:0;max-width:none;box-shadow:12px 12px 0 #D4FF00}
@@ -485,7 +499,7 @@ html.live-shapes .emblem{visibility:hidden}
   </div>
 
   <div class="wrap kin">
-    <p class="hero-en"><span id="t1">VISUAL WORLDS</span> <span id="t2">IN MOTION</span><br><span id="t3">SYSTEMS &amp; CODE.</span></p>
+    <p class="hero-en"><span id="t1">VISUAL WORLDS</span> <span id="t2">IN MOTION</span><br><span id="t3">SYSTEMS &amp; CODE.</span><span class="ko-sub">움직이는 비주얼 월드 · 시스템과 코드</span></p>
     <h1 class="hero-ko"><span class="ln"><span>생각을 시각 언어로,</span></span><span class="ln"><span><em class="hk">움직이는 웹</em>으로.</span></span></h1>
     <p class="hero-sub">디자인과 이야기, 기술과 감성을 연결해 경험이 머무는 비주얼 월드를 만듭니다.</p>
     <ul class="hero-tags" aria-label="가능한 작업"><li>WEB DESIGN</li><li>BRANDING</li><li>ILLUSTRATION</li><li>UI/UX</li><li>MOTION</li><li>IP</li></ul>
@@ -573,7 +587,7 @@ html.live-shapes .emblem{visibility:hidden}
   <div class="sym6" id="sym6" aria-hidden="true"><small>세 개의 프로젝트, 하나의 도형 시스템</small></div>
   <div class="wrap about-grid">
     <div>
-      <span class="eyebrow">CREATOR &amp; WORKFLOW</span>
+      <span class="eyebrow">CREATOR &amp; WORKFLOW<span class="ko-sub" style="color:var(--mut)">크리에이터 · 작업 흐름</span></span>
       <h2>Creative Web &amp;<br>UI/UX Designer</h2>
       <p class="h2-ko">기획부터 모션 프로토타이핑, AI 바이브코딩 실구현까지 한 번에 연결합니다.</p>
       <p class="lead">N 성향을 가진 설계형 ESTP 창작자 miint.s0da입니다. 색과 그래픽을 기반으로 다양한 시각적 경험을 만드는 디자이너입니다.</p>
@@ -619,15 +633,14 @@ html.live-shapes .emblem{visibility:hidden}
 
 <footer>
   <div class="foot-in">
-    <div>
-      <a class="logo" href="#hero">mi<span class="i">i</span>nt<span class="dot">.</span>s<span class="zero">0</span>da</a>
-      <small>VISUAL WORLDS IN MOTION · © 2026 ALL RIGHTS RESERVED.</small>
-      <button class="intro-replay" type="button">INTRO 다시 보기 ▶</button>
+    <div class="foot-big">
+      <p class="fb-en">VISUAL WORLDS<br>IN MOTION.<br><span>SYSTEMS &amp; CODE.</span></p>
+      <p class="fb-ko">디자인과 이야기, 기술과 감성을 연결해 경험이 머무는 비주얼 월드를 만듭니다.</p>
     </div>
-    <div class="stats" aria-label="요약 수치">
-      <div><b>5</b><span>PROJECTS</span></div>
-      <div><b>5</b><span>PROCESS</span></div>
-      <div><b>∞</b><span>VISUAL WORLDS</span></div>
+    <div class="foot-row">
+      <a class="logo" href="#hero">mi<span class="i">i</span>nt<span class="dot">.</span>s<span class="zero">0</span>da</a>
+      <small>© 2026 ALL RIGHTS RESERVED.</small>
+      <button class="intro-replay" type="button">INTRO 다시 보기 ▶</button>
     </div>
   </div>
 </footer>
@@ -2565,6 +2578,28 @@ document.querySelectorAll('.strip').forEach(s => s.addEventListener('click', () 
     setTimeout(() => { mo.disconnect(); go(); }, 12000);
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wait); else wait();
+})();
+</script>
+<script>
+/* 5단계: 순서대로 점이 차고 키워드에 블루 배경이 칠해졌다 지워짐. 마우스를 올리면 멈춤 */
+(() => {
+  const ul = document.querySelector('.steps'); if (!ul) return;
+  const items = [...ul.children];
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let i = -1, timer = 0, paused = false, visible = false;
+  const clear = k => { items[k].classList.remove('on'); items[k].classList.add('off'); setTimeout(() => items[k].classList.remove('off'), 1000); };
+  function step() {
+    clearTimeout(timer);
+    if (!visible || paused) return;
+    if (i >= 0) clear(i);
+    i++;
+    if (i >= items.length) { i = -1; timer = setTimeout(step, 2400); return; }
+    items[i].classList.remove('off'); items[i].classList.add('on');
+    timer = setTimeout(step, 1500);
+  }
+  ul.addEventListener('mouseenter', () => { paused = true; clearTimeout(timer); items.forEach(x => x.classList.remove('on', 'off')); i = -1; });
+  ul.addEventListener('mouseleave', () => { paused = false; timer = setTimeout(step, 600); });
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible) { if (i < 0) timer = setTimeout(step, 400); } else { clearTimeout(timer); items.forEach(x => x.classList.remove('on', 'off')); i = -1; } }, { threshold: .4 }).observe(ul);
 })();
 </script>
 </body>
