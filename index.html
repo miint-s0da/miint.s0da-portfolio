@@ -291,6 +291,16 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
   .steps li,.steps li:last-child{grid-column:auto;display:flex;align-items:center;gap:18px;padding:14px 18px}
   .steps small{margin:0;font-size:12px}
   .steps b{font-size:14px}}
+/* 5단계: 세로 타임라인 (점 + 이어지는 선 + 큰 번호) */
+.steps{display:flex;flex-direction:column;gap:0;position:relative}
+.steps::before{content:"";position:absolute;left:11px;top:26px;bottom:26px;width:1px;background:var(--line)}
+.steps li,.steps li:last-child{position:relative;display:grid;grid-template-columns:44px 1fr;grid-template-areas:"n t" "n d";column-gap:14px;row-gap:2px;align-items:center;padding:12px 0 12px 36px;border:0;border-radius:0;background:none;grid-column:auto}
+.steps li::before{content:"";position:absolute;left:5px;top:50%;width:13px;height:13px;border:1px solid var(--acc);border-radius:50%;background:var(--bg);transform:translateY(-50%);transition:background .25s}
+.steps li:hover{transform:none;background:none}
+.steps li:hover::before{background:var(--acc)}
+.steps small{grid-area:n;margin:0;font:italic 700 26px/1 var(--f-display);color:var(--mut)}
+.steps b{grid-area:t;font:700 17px/1.2 var(--f-display);letter-spacing:-.01em;align-self:end}
+.steps li em{grid-area:d;display:block;margin:0;font:500 13px/1.5 var(--f-sans);font-style:normal;color:var(--mut);align-self:start;word-break:keep-all}
 /* 히어로 카피: 인트로 뒤(또는 바로) 한 번만 한 줄씩 올라오고, 포인트 단어에 밑줄이 그어짐 */
 #hero .hero-ko .ln{display:block;overflow:hidden;padding-bottom:.08em}
 #hero .hero-ko .ln>span{display:block;transition:transform .9s cubic-bezier(.22,1,.36,1)}
@@ -557,11 +567,11 @@ html.live-shapes .emblem{visibility:hidden}
       <p class="h2-ko">기획부터 모션 프로토타이핑, AI 바이브코딩 실구현까지 한 번에 연결합니다.</p>
       <p class="lead">N 성향을 가진 설계형 ESTP 창작자 miint.s0da입니다. 색과 그래픽을 기반으로 다양한 시각적 경험을 만드는 디자이너입니다.</p>
       <ul class="steps">
-        <li><small>01</small><b>IDEA</b></li>
-        <li><small>02</small><b>STRUCTURE</b></li>
-        <li><small>03</small><b>VISUAL</b></li>
-        <li><small>04</small><b>DETAIL</b></li>
-        <li><small>05</small><b>RESULT</b></li>
+        <li><small>01</small><b>IDEA</b><em>호기심에서 반짝이는 키워드 포착</em></li>
+        <li><small>02</small><b>STRUCTURE</b><em>머릿속 아이디어를 논리적 구조로 설계</em></li>
+        <li><small>03</small><b>VISUAL</b><em>컬러와 UI 입히기</em></li>
+        <li><small>04</small><b>DETAIL</b><em>인터랙션과 모션으로 생명력 불어넣기</em></li>
+        <li><small>05</small><b>RESULT</b><em>완성도 높은 경험으로 세상에 공개</em></li>
       </ul>
     </div>
     <div class="hist">
