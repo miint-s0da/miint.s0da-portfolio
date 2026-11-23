@@ -334,15 +334,16 @@ html:not(.hero-wait) #hero .hero-ko .hk{background-size:100% 100%}
 @media(prefers-reduced-motion:reduce){html.hero-wait #hero .hero-ko .ln>span{transform:none}#hero .hero-ko .hk{background-size:100% 100%;transition:none}}
 #hero .hero-sub{margin:-6px 0 0;font-size:15px;line-height:1.7;color:var(--mut);word-break:keep-all;max-width:560px}
 #hero .hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
-@media(min-width:820px){#hero .hero-tags{margin-left:auto;margin-right:calc(24px - var(--rpad));justify-content:flex-end}}
+@media(min-width:820px){#hero .hero-tags{position:absolute;right:clamp(0px,calc(var(--rpad) - (100vw - 1280px) / 2),var(--rpad));bottom:48px;flex-direction:column;align-items:flex-end;flex-wrap:nowrap}}
 #hero .hero-tags li{font:500 11px/1 var(--f-mono);letter-spacing:.06em;padding:8px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg)}
-/* 히어로 배경: 선으로만 이루어진 원·마름모·사각 (정적) */
-#hero .hero-lines{position:absolute;z-index:0;pointer-events:none;right:calc(var(--rpad) - 36px);top:52%;width:min(27vw,400px);height:auto;aspect-ratio:1;transform:translateY(-50%);overflow:visible}
-#hero .wrap{z-index:1}
-@media(max-width:819px){#hero .hero-lines{width:70vw;right:-18vw;top:120px;transform:none;opacity:.35}}
+/* 히어로 별: 배경 그리드 교차점에 ✦ ✧ · (정적) */
+#hero .hero-stars{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#hero .hero-stars i{position:absolute;font-style:normal;line-height:1;transform:translate(-50%,-50%);color:var(--acc);opacity:.55}
+#hero .hero-stars i:nth-child(3n){color:var(--fg);opacity:.28}
+@media(max-width:819px){#hero .hero-stars{display:none}}
 /* 히어로 정리: 영문 타이틀은 작게 왼쪽, 한글 문구를 크게 */
 @media(max-width:819px){.pill-en{display:none}}
-#hero .kin{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(20px,3vw,36px);padding-top:32px;padding-bottom:48px}
+#hero .kin{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:clamp(20px,3vw,36px);padding-top:32px;padding-bottom:48px}
 #hero .hero-en{margin:0;font:600 clamp(.7rem,1vw,.9rem)/1.9 var(--f-mono);letter-spacing:.2em;color:var(--mut)}
 #hero .hero-en #t3{color:var(--acc)}
 .ko-sub{display:block;margin-top:4px;font:500 12px/1.6 var(--f-sans);letter-spacing:0;color:var(--mut);opacity:.85}
@@ -503,7 +504,7 @@ html.live-shapes .emblem{visibility:hidden}
 <section id="hero">
   <div id="pxgrid" aria-hidden="true"></div>
 
-  <svg class="hero-lines" viewBox="-100 -100 200 200" aria-hidden="true" focusable="false"><g transform="scale(1)" opacity="0.55" fill="none" stroke="var(--acc)" stroke-width="1.2" vector-effect="non-scaling-stroke"><circle cx="-18" cy="-8" r="62" vector-effect="non-scaling-stroke"/></g><g transform="scale(0.82)" opacity="0.34" fill="none" stroke="var(--fg)" stroke-width="1.2" vector-effect="non-scaling-stroke"><circle cx="-18" cy="-8" r="62" vector-effect="non-scaling-stroke"/></g><g transform="scale(0.64)" opacity="0.24" fill="none" stroke="var(--fg)" stroke-width="1.2" vector-effect="non-scaling-stroke"><circle cx="-18" cy="-8" r="62" vector-effect="non-scaling-stroke"/></g><g transform="scale(0.46)" opacity="0.16" fill="none" stroke="var(--fg)" stroke-width="1.2" vector-effect="non-scaling-stroke"><circle cx="-18" cy="-8" r="62" vector-effect="non-scaling-stroke"/></g><g transform="scale(1)" opacity="0.55" fill="none" stroke="var(--acc)" stroke-width="1.2" vector-effect="non-scaling-stroke"><rect x="-58" y="-58" width="116" height="116" transform="translate(22 6) rotate(45)" vector-effect="non-scaling-stroke"/></g><g transform="scale(0.82)" opacity="0.34" fill="none" stroke="var(--fg)" stroke-width="1.2" vector-effect="non-scaling-stroke"><rect x="-58" y="-58" width="116" height="116" transform="translate(22 6) rotate(45)" vector-effect="non-scaling-stroke"/></g><g transform="scale(0.64)" opacity="0.24" fill="none" stroke="var(--fg)" stroke-width="1.2" vector-effect="non-scaling-stroke"><rect x="-58" y="-58" width="116" height="116" transform="translate(22 6) rotate(45)" vector-effect="non-scaling-stroke"/></g><g transform="scale(0.46)" opacity="0.16" fill="none" stroke="var(--fg)" stroke-width="1.2" vector-effect="non-scaling-stroke"><rect x="-58" y="-58" width="116" height="116" transform="translate(22 6) rotate(45)" vector-effect="non-scaling-stroke"/></g><g transform="scale(1)" opacity="0.55" fill="none" stroke="var(--acc)" stroke-width="1.2" vector-effect="non-scaling-stroke"><rect x="-46" y="-46" width="92" height="92" rx="16" transform="translate(-2 20)" vector-effect="non-scaling-stroke"/></g><g transform="scale(0.82)" opacity="0.34" fill="none" stroke="var(--fg)" stroke-width="1.2" vector-effect="non-scaling-stroke"><rect x="-46" y="-46" width="92" height="92" rx="16" transform="translate(-2 20)" vector-effect="non-scaling-stroke"/></g><g transform="scale(0.64)" opacity="0.24" fill="none" stroke="var(--fg)" stroke-width="1.2" vector-effect="non-scaling-stroke"><rect x="-46" y="-46" width="92" height="92" rx="16" transform="translate(-2 20)" vector-effect="non-scaling-stroke"/></g><g transform="scale(0.46)" opacity="0.16" fill="none" stroke="var(--fg)" stroke-width="1.2" vector-effect="non-scaling-stroke"><rect x="-46" y="-46" width="92" height="92" rx="16" transform="translate(-2 20)" vector-effect="non-scaling-stroke"/></g></svg>
+  <div class="hero-stars" id="heroStars" aria-hidden="true"></div>
   <div class="wrap hero-meta">
     <span class="pill">그래픽 시스템 · 인터랙티브 디자인<span class="pill-en" style="opacity:.55;margin-left:10px">GRAPHIC SYSTEM &amp; INTERACTIVE DESIGN</span></span>
   </div>
@@ -512,6 +513,7 @@ html.live-shapes .emblem{visibility:hidden}
     <p class="hero-en"><span id="t1">VISUAL WORLDS</span> <span id="t2">IN MOTION</span><br><span id="t3">SYSTEMS &amp; CODE.</span><span class="ko-sub">움직이는 비주얼 월드 · 시스템과 코드</span></p>
     <h1 class="hero-ko"><span class="ln"><span>생각을 시각 언어로,</span></span><span class="ln"><span><em class="hk">움직이는 웹</em>으로.</span></span></h1>
     <p class="hero-sub">디자인과 이야기, 기술과 감성을 연결해 경험이 머무는 비주얼 월드를 만듭니다.</p>
+    <ul class="hero-tags" aria-label="가능한 작업"><li>WEB DESIGN</li><li>BRANDING</li><li>ILLUSTRATION</li><li>UI/UX</li><li>MOTION</li><li>IP</li></ul>
   </div>
 
   <div class="wrap hero-foot">
@@ -519,7 +521,6 @@ html.live-shapes .emblem{visibility:hidden}
       <a class="btn fill" href="#p1"><span>작업 보기 (03)<span style="opacity:.6;margin-left:10px">VIEW SELECTED WORKS</span></span><span aria-hidden="true">↓</span></a>
       <a class="btn line" href="#aboutme" data-about="profile">소개 보기 <span style="opacity:.6;margin-left:6px">CREATOR PROFILE</span> →</a>
     </div>
-    <ul class="hero-tags" aria-label="가능한 작업"><li>WEB DESIGN</li><li>BRANDING</li><li>ILLUSTRATION</li><li>UI/UX</li><li>MOTION</li><li>IP</li></ul>
   </div>
 </section>
 
@@ -730,7 +731,7 @@ const pop = { sw: 3, sc: 'ink', sh: 5 };
 
 const CH = [
   /* 0 INDEX — 선형 도형 제거: 히어로는 격자 그래픽만 사용 */
-  [ H(), H(), H(), H(), H(), H(), H(), H(), H(), H(), H(), H() ],
+  [ p(-28,0,18,18,{rad:50,f:'P0'}), p(0,0,13.4,13.4,{r:45,f:'P2'}), p(28,0,18,18,{rad:22,f:'P3'}), H(), H(), H(), H(), H(), H(), H(), H(), H() ],
   /* 1 UNI+ON — 두 원 + 플러스 */
   [ p(-24,0,46,46,{rad:50,f:0,...pop}), p(24,0,46,46,{rad:50,f:1,...pop}), p(0,0,32,10,{rad:14,f:2,sw:3,sc:'ink',sh:4}), p(0,0,10,32,{rad:14,f:2,sw:3,sc:'ink',sh:4}),
     p(-42,-38,10,10,{r:15,f:1,sw:3,sc:'ink',sh:3}), p(42,-38,9,9,{rad:50,f:2,sw:3,sc:'ink',sh:3}), p(-40,38,9,9,{rad:50,f:0,sw:3,sc:'ink',sh:3}), p(42,38,10,10,{r:-12,f:2,sw:3,sc:'ink',sh:3}),
@@ -770,8 +771,7 @@ function boxFor(i) {
       const tr = rg.getBoundingClientRect(), lr = ln.getBoundingClientRect(), kr = document.querySelector('#hero .kin').getBoundingClientRect();
       if (w >= 820) {
         const sub = document.querySelector('#hero .hero-sub').getBoundingClientRect(), ft = document.querySelector('#hero .hero-foot').getBoundingClientRect();
-        const top = sub.bottom - parseFloat(getComputedStyle(document.querySelector('#hero .hero-sub')).paddingBottom) + 24, bot = ft.top - 24, S = clamp(Math.min(w * .3, (bot - top) / .34), 330, 560);
-        return { cx: w / 2, cy: (top + bot) / 2, S };
+        return { cx: w / 2, cy: (sub.bottom + ft.top) / 2, S: 270 };
       }
       const en = document.querySelector('#hero .hero-en').getBoundingClientRect(), S = 150;
       return { cx: kr.right - 24 - S * .37, cy: en.top + en.height / 2, S };
@@ -2646,6 +2646,45 @@ document.querySelectorAll('.strip').forEach(s => s.addEventListener('click', () 
   secs.forEach(t => [...t.querySelectorAll('.copy>*')].forEach((c, n) => c.style.setProperty('--n', n)));
   const io = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('in', e.isIntersecting)), { threshold: .3 });
   secs.forEach(t => io.observe(t));
+})();
+</script>
+<script>
+/* 히어로 별: 배경 그리드(64px) 교차점 중 글자·칩·버튼과 겹치지 않는 곳에 ✦ ✧ · 를 정적으로 배치 */
+(() => {
+  const box = document.getElementById('heroStars'), hero = document.getElementById('hero');
+  if (!box || !hero) return;
+  const G = ['✦', '✧', '·', '✧', '✦', '✧', '·'], U = 64;
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  function build() {
+    box.textContent = '';
+    if (innerWidth < 820) return;
+    const hr = hero.getBoundingClientRect();
+    const sel = ['.hero-meta .pill', '.hero-en', '.hero-ko', '.hero-sub', '.hero-tags', '.hero-foot'];
+    const rects = sel.map(q => hero.querySelector(q)).filter(Boolean).map(e => { const r = e.getBoundingClientRect(); return { l: r.left - hr.left - 28, r: r.right - hr.left + 28, t: r.top - hr.top - 28, b: r.bottom - hr.top + 28 }; });
+    const sb = hero.querySelector('.hero-sub').getBoundingClientRect(), fb = hero.querySelector('.hero-foot').getBoundingClientRect();
+    rects.push({ l: hr.width / 2 - 190, r: hr.width / 2 + 190, t: sb.bottom - hr.top - 4, b: fb.top - hr.top + 4 });   /* 가운데 도형 자리 */
+    const cells = [];
+    for (let y = 2 * U; y < hr.height - 40; y += U) for (let x = U; x < hr.width - 80; x += U)
+      if (!rects.some(a => x > a.l && x < a.r && y > a.t && y < a.b)) cells.push([x, y]);
+    seed = 7;
+    for (let i = cells.length - 1; i > 0; i--) { const j = (rnd() * (i + 1)) | 0; [cells[i], cells[j]] = [cells[j], cells[i]]; }
+    const picked = [];
+    for (const c of cells) {
+      if (picked.length >= 13) break;
+      if (picked.some(q => Math.abs(q[0] - c[0]) < 3 * U && Math.abs(q[1] - c[1]) < 3 * U)) continue;
+      picked.push(c);
+    }
+    picked.forEach((c, k) => {
+      const i = document.createElement('i'), g = G[k % G.length];
+      i.textContent = g; i.style.left = c[0] + 'px'; i.style.top = c[1] + 'px';
+      i.style.fontSize = (g === '·' ? 34 : 14 + ((k * 7) % 11)) + 'px';
+      box.appendChild(i);
+    });
+  }
+  build();
+  addEventListener('resize', build);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(build);
+  addEventListener('load', build);
 })();
 </script>
 </body>
