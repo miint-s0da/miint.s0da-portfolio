@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko" data-theme="light">
 <head>
-<meta charset="UTF-8"><link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta charset="UTF-8"><link rel="icon" href="favicon.ico?v=2" sizes="any"><link rel="icon" type="image/svg+xml" href="favicon.svg?v=2"><link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+<meta property="og:type" content="website"><meta property="og:title" content="miint.s0da — Visual Worlds in Motion"><meta property="og:description" content="디자인과 이야기, 기술과 감성을 연결해 경험이 머무는 비주얼 월드를 만듭니다."><meta property="og:image" content="https://miints0da.vercel.app/brand/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:url" content="https://miints0da.vercel.app/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://miints0da.vercel.app/brand/og.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>miint.s0da — VISUAL WORLDS IN MOTION</title>
 <meta name="description" content="생각을 명확한 시각 언어로 옮기고 그래픽을 분리해 다시 결합하는 miint.s0da 포트폴리오.">
@@ -60,9 +61,7 @@ header.top{
 }
 .top-in{max-width:1280px;margin:0 auto;height:100%;padding:0 max(24px,env(safe-area-inset-left));display:flex;align-items:center;justify-content:space-between;gap:16px}
 .brand{display:flex;align-items:center;gap:10px}
-.sym{flex:none;display:block;overflow:visible}
-.sym-g{opacity:var(--symg,1)}
-.sym-s{opacity:calc(1 - var(--symg,1))}
+.sym{flex:none;display:block;width:auto;height:40px}
 .logo{font:800 25px/1 "Pretendard",-apple-system,sans-serif;letter-spacing:-.02em}   /* 소개 페이지 워드마크와 같은 서체 */
 .logo .i{color:var(--acc)} .logo .dot{color:#f43f5e} .logo .zero{display:inline-block}
 .tools{display:flex;align-items:center;gap:10px}
@@ -250,7 +249,9 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 .foot-in{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between;align-items:center}
 .foot-in .logo{font-size:24px}
 .foot-in small{display:block;margin-top:8px;font:400 11px/1.6 var(--f-mono);color:var(--mut);letter-spacing:.04em}
-.foot-in{flex-direction:column;align-items:stretch;gap:44px}
+.foot-in{position:relative;flex-direction:column;align-items:stretch;gap:44px}
+.foot-planet{position:absolute;right:0;top:-8px;width:clamp(180px,24vw,360px);height:auto;pointer-events:none;opacity:.95}
+@media(max-width:819px){.foot-planet{position:static;width:150px;margin:0 0 -12px auto;order:-1}}
 .fb-en{margin:0;font:800 clamp(2.6rem,8vw,7.2rem)/1 var(--f-display);letter-spacing:-.012em;text-transform:uppercase}
 .fb-en span{color:var(--acc)}
 .fb-ko{margin:22px 0 0;max-width:560px;font-size:15px;line-height:1.75;color:var(--mut);word-break:keep-all}
@@ -292,6 +293,10 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 .in-list li.on{opacity:1;transform:none}
 .in-year{margin-top:28px;font:600 12px/1 var(--f-mono);letter-spacing:.16em;color:#D4FF00;opacity:0;transition:opacity .6s ease}
 .in-year.on{opacity:1}
+.in-planet{position:absolute;right:max(4vw,24px);top:50%;width:min(38vw,460px);height:auto;transform:translateY(-50%) scale(.86);opacity:0;animation:inPl 1.6s .5s cubic-bezier(.22,1,.36,1) forwards;pointer-events:none}
+@keyframes inPl{to{opacity:1;transform:translateY(-50%) scale(1)}}
+@media(max-width:700px){.in-planet{width:70vw;right:-14vw;top:auto;bottom:4vh;transform:none;opacity:0}@keyframes inPl{to{opacity:.55;transform:none}}}
+@media(prefers-reduced-motion:reduce){.in-planet{animation:none;opacity:1;transform:translateY(-50%)}}
 .in-skip{position:absolute;right:24px;bottom:24px;background:transparent;border:1px solid rgba(255,255,255,.3);color:#F4F4F6;border-radius:999px;padding:10px 16px;font:700 11px/1 var(--f-mono);letter-spacing:.12em;cursor:pointer}
 @media(prefers-reduced-motion:reduce){#intro{display:none}}
 /* 히어로 꽉 채우기: 헤드라인이 화면 폭을 가득 채우도록 래퍼 제한 해제 */
@@ -462,6 +467,7 @@ html.live-shapes .emblem{visibility:hidden}
 <!-- Shape layers: 뒤(글자 아래) / 앞(글자 위) -->
 <div id="intro" aria-label="인트로">
   <div class="in-grid" id="inGrid" aria-hidden="true"></div>
+  <img class="in-planet" src="brand/planet-marble.webp" alt="" aria-hidden="true">
   <div class="in-box">
     <div class="in-name">miint<span>.s0da</span></div>
     <ul class="in-list">
@@ -479,26 +485,7 @@ html.live-shapes .emblem{visibility:hidden}
 <header class="top">
   <div class="top-in">
     <a href="#hero" class="brand" aria-label="miint.s&#x30;da 처음으로">
-      <svg class="sym" viewBox="0 0 64 64" width="38" height="38" aria-hidden="true" focusable="false">
-      <defs>
-        <linearGradient id="symG" gradientUnits="userSpaceOnUse" x1="6" y1="58" x2="58" y2="8"><stop offset="0" stop-color="#00D4E8"/><stop offset=".45" stop-color="#8B3DFF"/><stop offset=".75" stop-color="#FF3EA5"/><stop offset="1" stop-color="#FFB347"/></linearGradient>
-        <mask id="symMask" maskUnits="userSpaceOnUse" x="-20" y="-20" width="110" height="110"><rect x="-20" y="-20" width="110" height="110" fill="#fff"/><circle cx="32" cy="33" r="17" fill="#000"/></mask>
-      </defs>
-      <g class="sym-g"><g fill="none" stroke="url(#symG)" stroke-width="2.2" stroke-linecap="round">
-        <path d="M3 35 A29 8.5 0 0 1 61 35" mask="url(#symMask)" transform="rotate(-17 32 35)"/>
-        <circle cx="32" cy="33" r="17"/>
-        <path d="M3 35 A29 8.5 0 0 0 61 35" transform="rotate(-17 32 35)"/>
-        <path d="M24 26 C24 21.5,29 21.5,32 26 C35 30.5,40 30.5,40 26 C40 21.5,35 21.5,32 26 C29 30.5,24 30.5,24 26Z" stroke-width="1.8" stroke-linejoin="round"/>
-      </g>
-      <path d="M58.5 19.5 C59.1 24,60.5 25.4,65 26 C60.5 26.6,59.1 28,58.5 32.5 C57.9 28,56.5 26.6,52 26 C56.5 25.4,57.9 24,58.5 19.5Z" fill="#FFB347" stroke="none"/></g>
-      <g class="sym-s"><g fill="none" stroke="var(--acc)" stroke-width="2.2" stroke-linecap="round">
-        <path d="M3 35 A29 8.5 0 0 1 61 35" mask="url(#symMask)" transform="rotate(-17 32 35)"/>
-        <circle cx="32" cy="33" r="17"/>
-        <path d="M3 35 A29 8.5 0 0 0 61 35" transform="rotate(-17 32 35)"/>
-        <path d="M24 26 C24 21.5,29 21.5,32 26 C35 30.5,40 30.5,40 26 C40 21.5,35 21.5,32 26 C29 30.5,24 30.5,24 26Z" stroke-width="1.8" stroke-linejoin="round"/>
-      </g>
-      <path d="M58.5 19.5 C59.1 24,60.5 25.4,65 26 C60.5 26.6,59.1 28,58.5 32.5 C57.9 28,56.5 26.6,52 26 C56.5 25.4,57.9 24,58.5 19.5Z" fill="var(--acc)" stroke="none"/></g>
-    </svg>
+      <img class="sym" src="brand/symbol-mini.png" alt="" width="57" height="40" decoding="async">
       <span style="display:flex;align-items:baseline">
         <span class="logo">mi<span class="i">i</span>nt<span class="dot">.</span>s<span class="zero">0</span>da</span>
         
@@ -674,6 +661,7 @@ html.live-shapes .emblem{visibility:hidden}
 
 <footer>
   <div class="foot-in">
+    <img class="foot-planet" src="brand/planet-marble.webp" alt="" loading="lazy" aria-hidden="true">
     <div class="foot-big">
       <p class="fb-en">VISUAL WORLDS<br>IN MOTION.<br><span>SYSTEMS &amp; CODE.</span></p>
       <p class="fb-ko">디자인과 이야기, 기술과 감성을 연결해 경험이 머무는 비주얼 월드를 만듭니다.</p>
@@ -1013,7 +1001,6 @@ function frame(now) {
   root.style.setProperty('--bg', rgba(bg));
   root.style.setProperty('--bgv', `${bg[0] | 0} ${bg[1] | 0} ${bg[2] | 0}`);
   root.style.setProperty('--acc', rgba(ac));
-  { const gw = k => (k === 0 || k === 4) ? 1 : 0; root.style.setProperty('--symg', mix(gw(i), gw(j), s).toFixed(3)); }   /* 심볼: 히어로·소개는 그라데이션, 프로젝트 구간은 섹션 단색 */
 
   /* 도형 */
   const bA = boxFor(i), bB = boxFor(j);
@@ -1285,6 +1272,7 @@ body::after {
   text-align: center;
 }
 
+.about-planet { display:block; width:min(240px,56vw); height:auto; margin:0 auto 14px; }
 .sticker-badge {
   display: inline-block;
   background: #FFFFFF;
@@ -1983,6 +1971,7 @@ body::after { left: 6px; }
   &lt;main id=&quot;top&quot; class=&quot;container studio-board&quot;&gt;
 
     &lt;section class=&quot;hero-stage&quot;&gt;
+      &lt;img class=&quot;about-planet&quot; src=&quot;brand/planet-marble.webp&quot; alt=&quot;&quot;&gt;
       &lt;div class=&quot;sticker-badge&quot;&gt;✦ VISUAL WORLDS IN MOTION&lt;/div&gt;
       &lt;h1 class=&quot;hero-headline&quot;&gt;
         좋아하는 컬러 &lt;span class=&quot;hl-mint&quot;&gt;Mint&lt;/span&gt;에&lt;br&gt;
