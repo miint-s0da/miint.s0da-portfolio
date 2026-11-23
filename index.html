@@ -116,7 +116,7 @@ header.top{
 /* =========================================================
    HERO
    ========================================================= */
-#hero{position:relative;z-index:21;min-height:100vh;min-height:100svh;padding:92px 0 48px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;--rpad:24px}
+#hero{position:relative;z-index:21;min-height:100vh;min-height:100svh;padding:clamp(84px,calc(100svh - 800px + 80px),92px) 0 clamp(28px,4.4svh,48px);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;--rpad:24px}
 .wrap{width:100%;max-width:1280px;margin:0 auto;position:relative}
 .hero-meta{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px}
 .pill{display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:rgb(var(--bgv)/.8);font:600 11px/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase}
@@ -293,10 +293,6 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 .in-list li.on{opacity:1;transform:none}
 .in-year{margin-top:28px;font:600 12px/1 var(--f-mono);letter-spacing:.16em;color:#D4FF00;opacity:0;transition:opacity .6s ease}
 .in-year.on{opacity:1}
-.in-planet{position:absolute;right:max(6vw,24px);top:50%;width:min(22vw,270px);height:auto;transform:translateY(-50%) scale(.86);opacity:0;animation:inPl 1.6s .5s cubic-bezier(.22,1,.36,1) forwards;pointer-events:none}
-@keyframes inPl{to{opacity:1;transform:translateY(-50%) scale(1)}}
-@media(max-width:700px){.in-planet{width:42vw;right:-4vw;top:auto;bottom:4vh;transform:none;opacity:0}@keyframes inPl{to{opacity:.55;transform:none}}}
-@media(prefers-reduced-motion:reduce){.in-planet{animation:none;opacity:1;transform:translateY(-50%)}}
 .in-skip{position:absolute;right:24px;bottom:24px;background:transparent;border:1px solid rgba(255,255,255,.3);color:#F4F4F6;border-radius:999px;padding:10px 16px;font:700 11px/1 var(--f-mono);letter-spacing:.12em;cursor:pointer}
 @media(prefers-reduced-motion:reduce){#intro{display:none}}
 /* 히어로 꽉 채우기: 헤드라인이 화면 폭을 가득 채우도록 래퍼 제한 해제 */
@@ -341,7 +337,7 @@ html.hero-wait #hero .hero-ko .ln>span{transform:translateY(110%)}
 html.hero-go #hero .hero-ko .hk{background-size:100% 100%}
 html:not(.hero-wait) #hero .hero-ko .hk{background-size:100% 100%}
 @media(prefers-reduced-motion:reduce){html.hero-wait #hero .hero-ko .ln>span{transform:none}#hero .hero-ko .hk{background-size:100% 100%;transition:none}}
-#hero .hero-sub{margin:-6px 0 0;padding-bottom:max(0px,min(5.5vw,84px,calc(100svh - 820px)));font-size:15px;line-height:1.7;color:var(--mut);word-break:keep-all;max-width:560px}
+#hero .hero-sub{margin:-6px 0 0;padding-bottom:clamp(30px,min(6vw,9svh),90px);font-size:15px;line-height:1.7;color:var(--mut);word-break:keep-all;max-width:560px}
 #hero .hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
 @media(min-width:820px){#hero .hero-tags{position:absolute;right:clamp(0px,calc(var(--rpad) - (100vw - 1280px) / 2),var(--rpad));bottom:48px;flex-direction:column;align-items:flex-end;flex-wrap:nowrap}}
 #hero .hero-tags li{font:500 11px/1 var(--f-mono);letter-spacing:.06em;padding:8px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg)}
@@ -355,11 +351,11 @@ html:not(.hero-wait) #hero .hero-ko .hk{background-size:100% 100%}
 @media(max-width:819px){#hero .hero-stars{display:none}}
 /* 히어로 정리: 영문 타이틀은 작게 왼쪽, 한글 문구를 크게 */
 @media(max-width:819px){.pill-en{display:none}}
-#hero .kin{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:clamp(20px,3vw,36px);padding-top:12px;padding-bottom:48px}
+#hero .kin{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:clamp(16px,min(3vw,3.4svh),36px);padding-top:12px;padding-bottom:clamp(24px,4.4svh,48px)}
 #hero .hero-en{margin:0;font:600 clamp(.7rem,1vw,.9rem)/1.9 var(--f-mono);letter-spacing:.2em;color:var(--mut)}
 #hero .hero-en #t3{color:var(--acc)}
 .ko-sub{display:block;margin-top:4px;font:500 12px/1.6 var(--f-sans);letter-spacing:0;color:var(--mut);opacity:.85}
-#hero .hero-ko{margin:0;font-family:"Noto Sans KR",Pretendard,system-ui,sans-serif;font-weight:800;font-size:clamp(2.1rem,8.4vw,8.8rem);line-height:1.16;letter-spacing:-.05em;word-break:keep-all;color:var(--fg)}
+#hero .hero-ko{margin:0;font-family:"Noto Sans KR",Pretendard,system-ui,sans-serif;font-weight:800;font-size:clamp(2.1rem,min(8.4vw,calc((100svh - 500px) / 2.32)),8.8rem);line-height:1.16;letter-spacing:-.05em;word-break:keep-all;color:var(--fg)}
 @media(max-width:819px){#hero .hero-ko{font-size:10.4vw}}
 /* 연락처: 카드 2장 레이아웃 (정보 카드 + 폼 카드) */
 .contact-grid{display:grid;grid-template-columns:1fr;gap:28px;align-items:stretch}
@@ -467,7 +463,6 @@ html.live-shapes .emblem{visibility:hidden}
 <!-- Shape layers: 뒤(글자 아래) / 앞(글자 위) -->
 <div id="intro" aria-label="인트로">
   <div class="in-grid" id="inGrid" aria-hidden="true"></div>
-  <img class="in-planet" src="brand/planet-marble.webp" alt="" aria-hidden="true">
   <div class="in-box">
     <div class="in-name">miint<span>.s0da</span></div>
     <ul class="in-list">
@@ -1660,7 +1655,9 @@ border: 1px solid rgba(0,0,0,0.05);
 }
 .m-stat span { display: block; font-size: 0.74rem; font-weight: 700; color: var(--ink-sub); }
 .m-stat strong { font-size: 1.15rem; font-weight: 900; color: var(--purple); }
-.who-planet { display:block; width:78px; height:auto; margin:14px 0 0; }
+.who-row { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:14px 0 16px; }
+.who-row .sticky-title { margin:0; }
+.who-planet { display:block; width:84px; height:auto; flex:none; margin:-8px -4px -8px 0; }
 .sticky-title {
 font-size: 1.35rem;
 font-weight: 900;
@@ -2047,8 +2044,10 @@ body::after { left: 6px; }
           &lt;circle cx=&quot;56&quot; cy=&quot;34&quot; r=&quot;2.5&quot; fill=&quot;rgba(255,255,255,0.5)&quot;/&gt;
         &lt;/svg&gt;
         &lt;span class=&quot;chip chip-dark&quot;&gt;WHO AM I?&lt;/span&gt;
-        &lt;img class=&quot;who-planet&quot; src=&quot;brand/planet-marble.webp&quot; alt=&quot;&quot;&gt;
-        &lt;h3 class=&quot;sticky-title&quot;&gt;miint.s0da&lt;/h3&gt;
+        &lt;div class=&quot;who-row&quot;&gt;
+          &lt;h3 class=&quot;sticky-title&quot;&gt;miint.s0da&lt;/h3&gt;
+          &lt;img class=&quot;who-planet&quot; src=&quot;brand/planet-marble.webp&quot; alt=&quot;&quot;&gt;
+        &lt;/div&gt;
         &lt;ul class=&quot;check-list&quot;&gt;
           &lt;li&gt;💡 궁금하면 일단 찾아보고, 해보고, 뜯어봅니다.&lt;/li&gt;
           &lt;li&gt;🎧 BIGBANG 20년 차, 진심 어린 덕질 중!&lt;/li&gt;
@@ -2686,9 +2685,10 @@ document.querySelectorAll('.strip').forEach(s => s.addEventListener('click', () 
     if (innerWidth < 820) return;
     const hr = hero.getBoundingClientRect();
     const sel = ['.hero-meta .pill', '.hero-en', '.hero-ko', '.hero-sub', '.hero-tags', '.hero-foot'];
-    const rects = sel.map(q => hero.querySelector(q)).filter(Boolean).map(e => { const r = e.getBoundingClientRect(); return { l: r.left - hr.left - 28, r: r.right - hr.left + 28, t: r.top - hr.top - 28, b: r.bottom - hr.top + 28 }; });
+    const rects = sel.map(q => hero.querySelector(q)).filter(Boolean).map(e => { const r = e.getBoundingClientRect(); const pb = e.classList.contains('hero-sub') ? (parseFloat(getComputedStyle(e).paddingBottom) || 0) : 0; return { l: r.left - hr.left - 28, r: r.right - hr.left + 28, t: r.top - hr.top - 28, b: r.bottom - pb - hr.top + 28 }; });
     const sb = hero.querySelector('.hero-sub').getBoundingClientRect(), fb = hero.querySelector('.hero-foot').getBoundingClientRect();
-    rects.push({ l: hr.width / 2 - 190, r: hr.width / 2 + 190, t: sb.bottom - hr.top - 4, b: fb.top - hr.top + 4 });   /* 가운데 도형 자리 */
+    const spb = parseFloat(getComputedStyle(hero.querySelector('.hero-sub')).paddingBottom) || 0;
+    rects.push({ l: hr.width / 2 - 190, r: hr.width / 2 + 190, t: sb.bottom - spb - hr.top - 6, b: fb.top - hr.top + 4 });   /* 가운데 도형 자리 */
     const cells = [];
     for (let y = 2 * U; y < hr.height - 40; y += U) for (let x = U; x < hr.width - 80; x += U)
       if (!rects.some(a => x > a.l && x < a.r && y > a.t && y < a.b)) cells.push([x, y]);
