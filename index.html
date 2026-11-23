@@ -211,6 +211,8 @@ header.top{
 .eyebrow{font:600 12px/1 var(--f-mono);letter-spacing:.16em;color:var(--acc);display:block;margin-bottom:18px}
 .about-grid h2{margin:0 0 20px;font:800 clamp(1.9rem,4.4vw,3.4rem)/1.25 var(--f-display);letter-spacing:-.03em;word-break:keep-all}
 .about-grid p.lead{max-width:560px;margin:0 0 28px;color:var(--mut);font-size:15px;line-height:1.85;word-break:keep-all}
+.about-contact{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.about-contact .btn{text-transform:none;letter-spacing:.02em}
 .steps{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 @media(min-width:640px){.steps{grid-template-columns:repeat(5,1fr)}}
 .steps li{padding:14px;border:1px solid var(--line);border-radius:12px;background:rgb(var(--bgv)/.7);transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .25s,background .25s}
@@ -317,6 +319,12 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 .emblem{display:block;width:clamp(150px,17vw,250px);margin:0 auto 26px;overflow:visible;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
 .emblem .o{stroke:var(--fg);stroke-width:2.2;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 .copy:hover .emblem{transform:rotate(6deg) scale(1.06)}
+/* 도형 모션 통일: 조각이 모여 조립된 뒤, 셋 모두 같은 부유 모션 */
+.emblem.ready .pc{opacity:0;transform-box:fill-box;transform-origin:center;transform:translate(calc(var(--dx) * 1px),calc(var(--dy) * 1px)) rotate(calc(var(--dr) * 1deg)) scale(.5);transition:transform .9s cubic-bezier(.22,1.2,.36,1) calc(var(--i) * 55ms),opacity .5s calc(var(--i) * 55ms)}
+.emblem.ready.in .pc{opacity:1;transform:none;animation:embFloat 5.2s ease-in-out calc(1.2s + var(--i) * 140ms) infinite}
+@keyframes embFloat{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(0,-1.8px) rotate(1.6deg)}}
+@media(prefers-reduced-motion:reduce){.emblem.ready .pc,.emblem.ready.in .pc{opacity:1;transform:none;transition:none;animation:none}}
+
 .pv img{width:100%;height:100%;object-fit:cover;display:block}
 .pv-ph{position:absolute;inset:0;display:grid;place-items:center;border:1.5px dashed var(--line);border-radius:14px;background:color-mix(in srgb,var(--bg) 90%,var(--acc) 10%);font:600 11px/1.4 var(--f-mono);letter-spacing:.1em;color:var(--mut);text-align:center;padding:16px}
 @media(max-width:819px){
@@ -325,25 +333,25 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
   .pvw{margin-top:40px}
   .emblem{width:128px;margin-bottom:18px}}
 /* MORE WORKS: 세로 띠 아코디언 (데스크톱: 호버/포커스로 펼침, 모바일: 가로 스와이프) */
-.more{position:relative;z-index:2;padding:120px max(24px,env(safe-area-inset-left)) 110px}
-.more-ttl{margin:0 0 36px;font:800 clamp(2rem,4.4vw,3.4rem)/1.05 var(--f-display);letter-spacing:-.02em}
-.more-strips{display:flex;gap:10px;height:min(64vh,560px)}
+.more{position:relative;z-index:2;padding:80px max(24px,env(safe-area-inset-left)) 72px}
+.more-ttl{margin:0 0 24px;font:800 clamp(2rem,4.4vw,3.4rem)/1.05 var(--f-display);letter-spacing:-.02em}
+.more-strips{display:flex;gap:10px;height:clamp(200px,26vh,250px)}
 .strip{position:relative;flex:1 1 0;min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:14px;background:rgb(var(--bgv)/.7);cursor:pointer;transition:flex .6s cubic-bezier(.2,.8,.2,1),border-color .25s;outline:none}
-.strip:hover,.strip:focus-visible,.strip.open{flex:5;border-color:var(--acc)}
+.strip:hover,.strip:focus-visible,.strip.open{flex:3;border-color:var(--acc)}
 .s-num{position:absolute;left:14px;top:16px;font:700 11px/1 var(--f-mono);color:var(--acc);letter-spacing:.1em}
 .s-title{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);writing-mode:vertical-rl;font:800 clamp(1.1rem,2vw,1.6rem)/1 var(--f-display);letter-spacing:.02em;white-space:nowrap;transition:opacity .3s}
 .strip:hover .s-title,.strip:focus-visible .s-title,.strip.open .s-title{opacity:0}
-.s-body{position:absolute;inset:0;padding:56px 28px 28px;display:flex;flex-direction:column;gap:18px;opacity:0;transition:opacity .4s .15s;pointer-events:none}
+.s-body{position:absolute;inset:0;padding:38px 20px 16px;display:flex;flex-direction:column;gap:10px;opacity:0;transition:opacity .4s .15s;pointer-events:none}
 .strip:hover .s-body,.strip:focus-visible .s-body,.strip.open .s-body{opacity:1;pointer-events:auto}
 .s-ph{flex:1;min-height:0;display:grid;place-items:center;border:1.5px dashed var(--line);border-radius:10px;font:600 11px/1.4 var(--f-mono);letter-spacing:.1em;color:var(--mut);background:var(--bg)}
 .s-title{font-family:var(--f-display)}
-.s-desc{margin:0;font-size:14px;color:var(--mut)}
+.s-desc{margin:0;font-size:12.5px;line-height:1.5;color:var(--mut);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .strip .cta{align-self:flex-start}
 @media(max-width:819px){
   .more{padding-top:90px}
   .more-strips{height:auto;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:24px;padding-bottom:12px;margin:0 -24px;padding-left:24px;padding-right:24px;scrollbar-width:none}
   .more-strips::-webkit-scrollbar{display:none}
-  .strip{flex:0 0 78vw;height:440px;scroll-snap-align:start}
+  .strip{flex:0 0 78vw;height:230px;scroll-snap-align:start}
   .strip:hover,.strip:focus-visible,.strip.open{flex:0 0 78vw}
   .s-title{position:static;transform:none;writing-mode:horizontal-tb;margin:44px 0 0 28px;font-size:1.3rem}
   .s-body{position:static;opacity:1;pointer-events:auto;padding:14px 28px 28px;height:calc(100% - 96px)}
@@ -352,11 +360,11 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 }
 @media(prefers-reduced-motion:reduce){.strip,.s-body,.s-title{transition:none}}.steps em{display:block;margin-top:8px;font:500 11px/1.5 var(--f-mono);font-style:normal;color:var(--mut)}
 /* MORE WORKS 타이포 카드 */
-.s-type{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:28px;border:1.5px dashed var(--line);border-radius:10px;background:var(--bg)}
-.s-big{font:800 clamp(6rem,14vw,12rem)/.85 var(--f-display);color:var(--acc)}
-.s-name{font:800 clamp(1.6rem,3vw,2.6rem)/1 var(--f-display);letter-spacing:-.01em}
+.s-type{flex:1;min-height:0;display:flex;flex-direction:row;align-items:center;gap:16px;padding:10px 16px;border:1.5px dashed var(--line);border-radius:10px;background:var(--bg)}
+.s-big{font:800 clamp(3rem,5vw,4.2rem)/.9 var(--f-display);color:var(--acc)}
+.s-name{font:800 clamp(1.2rem,2vw,1.7rem)/1 var(--f-display);letter-spacing:-.01em}
 .s-slogan{font:600 11px/1 var(--f-mono);letter-spacing:.16em;color:var(--mut)}
-.s-lines{list-style:none;margin:0;padding:0;display:grid;gap:8px;font:600 clamp(13px,1.6vw,16px)/1 var(--f-mono);letter-spacing:.12em;color:var(--fg)}
+.s-lines{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,auto);gap:6px 18px;font:600 12px/1 var(--f-mono);letter-spacing:.12em;color:var(--fg)}
 .s-lines b{color:var(--acc);font-weight:800}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
@@ -451,7 +459,7 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 <section class="track" id="p1" data-ch="1">
   <div class="stage">
     <div class="copy">
-      <svg class="emblem" viewBox="-50 -50 100 100" aria-hidden="true"><circle cx="-24" cy="0" r="23" fill="#FFD500" class="o"/><circle cx="24" cy="0" r="23" fill="#1E90FF" class="o"/><rect x="-16" y="-5" width="32" height="10" rx="4" fill="#FF1493" class="o"/><rect x="-5" y="-16" width="10" height="32" rx="4" fill="#FF1493" class="o"/><rect x="-47" y="-43" width="10" height="10" rx="1" fill="#1E90FF" class="o" transform="rotate(15 -42.0 -38.0)"/><circle cx="42" cy="-38" r="4.5" fill="#FF1493" class="o"/><circle cx="-40" cy="38" r="4.5" fill="#FFD500" class="o"/><rect x="37" y="33" width="10" height="10" rx="1" fill="#FF1493" class="o" transform="rotate(-12 42.0 38.0)"/><circle cx="0" cy="-42" r="3" fill="#FFD500" class="o"/><rect x="-3" y="39" width="6" height="6" rx="0" fill="#1E90FF" class="o" transform="rotate(45 0.0 42.0)"/></svg>
+      <svg class="emblem" viewBox="-50 -50 100 100" aria-hidden="true"><g class="pc" style="--i:0;--dx:-30;--dy:-30;--dr:-60"><circle cx="-24" cy="0" r="23" fill="#FFD500" class="o"/></g><g class="pc" style="--i:1;--dx:7;--dy:23;--dr:-31"><circle cx="24" cy="0" r="23" fill="#1E90FF" class="o"/></g><g class="pc" style="--i:2;--dx:-17;--dy:15;--dr:-2"><rect x="-16" y="-5" width="32" height="10" rx="4" fill="#FF1493" class="o"/></g><g class="pc" style="--i:3;--dx:20;--dy:7;--dr:27"><rect x="-5" y="-16" width="10" height="32" rx="4" fill="#FF1493" class="o"/></g><g class="pc" style="--i:4;--dx:-4;--dy:-1;--dr:56"><rect x="-47" y="-43" width="10" height="10" rx="1" fill="#1E90FF" class="o" transform="rotate(15 -42.0 -38.0)"/></g><g class="pc" style="--i:5;--dx:-28;--dy:-9;--dr:-36"><circle cx="42" cy="-38" r="4.5" fill="#FF1493" class="o"/></g><g class="pc" style="--i:6;--dx:9;--dy:-17;--dr:-7"><circle cx="-40" cy="38" r="4.5" fill="#FFD500" class="o"/></g><g class="pc" style="--i:7;--dx:-15;--dy:-25;--dr:22"><rect x="37" y="33" width="10" height="10" rx="1" fill="#FF1493" class="o" transform="rotate(-12 42.0 38.0)"/></g><g class="pc" style="--i:8;--dx:22;--dy:28;--dr:51"><circle cx="0" cy="-42" r="3" fill="#FFD500" class="o"/></g><g class="pc" style="--i:9;--dx:-2;--dy:20;--dr:-41"><rect x="-3" y="39" width="6" height="6" rx="0" fill="#1E90FF" class="o" transform="rotate(45 0.0 42.0)"/></g></svg>
       <div class="row"><span class="chip">PROJECT 01</span><span class="cat">브랜드 · 플랫폼</span></div>
       <h3 class="ttl">UNI+ON</h3>
       <p class="tag">게임·웹툰 굿즈가 흩어져 찾기 어려운 문제를, 카테고리 탐색에서 장바구니까지 이어지는 하나의 흐름으로 해결</p>
@@ -465,7 +473,7 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 <section class="track" id="p2" data-ch="2">
   <div class="stage">
     <div class="copy">
-      <svg class="emblem" viewBox="-50 -50 100 100" aria-hidden="true"><rect x="-27.5" y="-33" width="22" height="11" rx="0" fill="#FF72C6" class="n"/><rect x="5.5" y="-33" width="22" height="11" rx="0" fill="#FF72C6" class="n"/><rect x="-38.5" y="-22" width="77" height="22" rx="0" fill="#FF72C6" class="n"/><rect x="-27.5" y="0" width="55" height="11" rx="0" fill="#FF72C6" class="n"/><rect x="-16.5" y="11" width="33" height="11" rx="0" fill="#FF72C6" class="n"/><rect x="-5.5" y="22" width="11" height="11" rx="0" fill="#FF72C6" class="n"/><rect x="-25.5" y="-20.5" width="7" height="7" rx="0" fill="#fff" class="n"/><rect x="-46.5" y="-42.5" width="9" height="9" rx="0" fill="#39DDF2" class="n"/><rect x="38.5" y="-35.5" width="7" height="7" rx="0" fill="#B8B8FF" class="n"/><rect x="-47" y="21" width="6" height="6" rx="0" fill="#39DDF2" class="n"/><rect x="38" y="32" width="8" height="8" rx="0" fill="#2EF8B6" class="n"/><rect x="5" y="-48" width="6" height="6" rx="0" fill="#B8B8FF" class="n"/></svg>
+      <svg class="emblem" viewBox="-50 -50 100 100" aria-hidden="true"><g class="pc" style="--i:0;--dx:-30;--dy:-30;--dr:-60"><rect x="-27.5" y="-33" width="22" height="11" rx="0" fill="#FF72C6" class="n"/></g><g class="pc" style="--i:1;--dx:7;--dy:23;--dr:-31"><rect x="5.5" y="-33" width="22" height="11" rx="0" fill="#FF72C6" class="n"/></g><g class="pc" style="--i:2;--dx:-17;--dy:15;--dr:-2"><rect x="-38.5" y="-22" width="77" height="22" rx="0" fill="#FF72C6" class="n"/></g><g class="pc" style="--i:3;--dx:20;--dy:7;--dr:27"><rect x="-27.5" y="0" width="55" height="11" rx="0" fill="#FF72C6" class="n"/></g><g class="pc" style="--i:4;--dx:-4;--dy:-1;--dr:56"><rect x="-16.5" y="11" width="33" height="11" rx="0" fill="#FF72C6" class="n"/></g><g class="pc" style="--i:5;--dx:-28;--dy:-9;--dr:-36"><rect x="-5.5" y="22" width="11" height="11" rx="0" fill="#FF72C6" class="n"/></g><g class="pc" style="--i:6;--dx:9;--dy:-17;--dr:-7"><rect x="-25.5" y="-20.5" width="7" height="7" rx="0" fill="#fff" class="n"/></g><g class="pc" style="--i:7;--dx:-15;--dy:-25;--dr:22"><rect x="-46.5" y="-42.5" width="9" height="9" rx="0" fill="#39DDF2" class="n"/></g><g class="pc" style="--i:8;--dx:22;--dy:28;--dr:51"><rect x="38.5" y="-35.5" width="7" height="7" rx="0" fill="#B8B8FF" class="n"/></g><g class="pc" style="--i:9;--dx:-2;--dy:20;--dr:-41"><rect x="-47" y="21" width="6" height="6" rx="0" fill="#39DDF2" class="n"/></g><g class="pc" style="--i:10;--dx:-26;--dy:12;--dr:-12"><rect x="38" y="32" width="8" height="8" rx="0" fill="#2EF8B6" class="n"/></g><g class="pc" style="--i:11;--dx:11;--dy:4;--dr:17"><rect x="5" y="-48" width="6" height="6" rx="0" fill="#B8B8FF" class="n"/></g></svg>
       <div class="row"><span class="chip">PROJECT 02</span><span class="cat">캐릭터 IP · 브랜드</span></div>
       <h3 class="ttl">PIXELINK</h3>
       <p class="slogan">PIXEL + NEON, LINKED.</p>
@@ -480,7 +488,7 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 <section class="track" id="p3" data-ch="3">
   <div class="stage">
     <div class="copy">
-      <svg class="emblem" viewBox="-50 -50 100 100" aria-hidden="true"><circle cx="0" cy="0" r="45" fill="none" stroke="#50D9F5" stroke-width="1.2" vector-effect="non-scaling-stroke"/><ellipse cx="0" cy="0" rx="40" ry="16" fill="none" stroke="#50D9F5" stroke-width="1.2" vector-effect="non-scaling-stroke" transform="rotate(-28)"/><ellipse cx="0" cy="0" rx="40" ry="16" fill="none" stroke="var(--fg)" stroke-opacity=".25" stroke-width="1.2" vector-effect="non-scaling-stroke" transform="rotate(32)"/><rect x="-22" y="-20" width="44" height="44" rx="0" fill="#7952A8" class="n" transform="rotate(45 0.0 2.0)"/><rect x="-14" y="-12" width="28" height="28" rx="0" fill="#50D9F5" class="n" transform="rotate(45 0.0 2.0)"/><rect x="-6" y="-4" width="12" height="12" rx="0" fill="#E8E4F4" class="n" transform="rotate(45 0.0 2.0)"/><rect x="-35" y="32.5" width="6" height="11" rx="0" fill="#B36BC6" class="n" transform="rotate(25 -32.0 38.0)"/><rect x="31.5" y="27.5" width="5" height="9" rx="0" fill="#7952A8" class="n" transform="rotate(-30 34.0 32.0)"/><rect x="-10" y="42.5" width="4" height="7" rx="0" fill="#50D9F5" class="n" transform="rotate(12 -8.0 46.0)"/></svg>
+      <svg class="emblem" viewBox="-50 -50 100 100" aria-hidden="true"><g class="pc" style="--i:0;--dx:-30;--dy:-30;--dr:-60"><circle cx="0" cy="0" r="45" fill="none" stroke="#50D9F5" stroke-width="1.2" vector-effect="non-scaling-stroke"/></g><g class="pc" style="--i:1;--dx:7;--dy:23;--dr:-31"><ellipse cx="0" cy="0" rx="40" ry="16" fill="none" stroke="#50D9F5" stroke-width="1.2" vector-effect="non-scaling-stroke" transform="rotate(-28)"/></g><g class="pc" style="--i:2;--dx:-17;--dy:15;--dr:-2"><ellipse cx="0" cy="0" rx="40" ry="16" fill="none" stroke="var(--fg)" stroke-opacity=".25" stroke-width="1.2" vector-effect="non-scaling-stroke" transform="rotate(32)"/></g><g class="pc" style="--i:3;--dx:20;--dy:7;--dr:27"><rect x="-22" y="-20" width="44" height="44" rx="0" fill="#7952A8" class="n" transform="rotate(45 0.0 2.0)"/></g><g class="pc" style="--i:4;--dx:-4;--dy:-1;--dr:56"><rect x="-14" y="-12" width="28" height="28" rx="0" fill="#50D9F5" class="n" transform="rotate(45 0.0 2.0)"/></g><g class="pc" style="--i:5;--dx:-28;--dy:-9;--dr:-36"><rect x="-6" y="-4" width="12" height="12" rx="0" fill="#E8E4F4" class="n" transform="rotate(45 0.0 2.0)"/></g><g class="pc" style="--i:6;--dx:9;--dy:-17;--dr:-7"><rect x="-35" y="32.5" width="6" height="11" rx="0" fill="#B36BC6" class="n" transform="rotate(25 -32.0 38.0)"/></g><g class="pc" style="--i:7;--dx:-15;--dy:-25;--dr:22"><rect x="31.5" y="27.5" width="5" height="9" rx="0" fill="#7952A8" class="n" transform="rotate(-30 34.0 32.0)"/></g><g class="pc" style="--i:8;--dx:22;--dy:28;--dr:51"><rect x="-10" y="42.5" width="4" height="7" rx="0" fill="#50D9F5" class="n" transform="rotate(12 -8.0 46.0)"/></g></svg>
       <div class="row"><span class="chip">PROJECT 03</span><span class="cat">게임 IP · 시네마틱</span></div>
       <h3 class="ttl">VORTEXFALL</h3>
       <p class="tag">낯선 세계관을 글로 설명하는 대신, 직접 비교하고 조작하며 이해하는 원페이지 런칭 흐름으로 설계</p>
@@ -507,46 +515,29 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
   <div class="sym6" id="sym6" aria-hidden="true"><small>세 개의 프로젝트, 하나의 도형 시스템</small></div>
   <div class="wrap about-grid">
     <div>
-      <span class="eyebrow">CREATOR &amp; WORKFLOW</span>
-      <h2>Visual Systems Builder,<br>논리적 설계에서 인터랙션까지.</h2>
-      <p class="lead">N 성향을 가진 설계형 ESTP 창작자 miint.s0da입니다. 아이디어를 시각 언어로 구체화하고, 코드로 생명력을 불어넣는 5단계 프로세스로 작업합니다.</p>
-      <ul class="steps">
-        <li><small>01</small><b>IDEA</b><em>(추후)</em></li>
-        <li><small>02</small><b>STRUCTURE</b><em>UNI+ON 사용자 흐름</em></li>
-        <li><small>03</small><b>VISUAL</b><em>VORTEXFALL AI 파이프라인</em></li>
-        <li><small>04</small><b>DETAIL</b><em>(추후)</em></li>
-        <li><small>05</small><b>RESULT</b><em>(추후)</em></li>
-      </ul>
+      <span class="eyebrow">ABOUT</span>
+      <h2>별을 그리는 아이<br>miint.s0da</h2>
+      <p class="lead">아무것도 없는 밤하늘에 별을 하나씩 그리듯, 아이디어를 꺼내 색과 캐릭터, 살아 움직이는 웹으로 만듭니다.</p>
     </div>
-    <div class="box">
-      <div>
-        <div class="top"><b>FULL ARCHIVE</b><span>24 HISTORY · 28 SKILLS</span></div>
+    <div>
+      <div class="box">
+        <div>
+          <div class="top"><b>FULL ARCHIVE</b><span>24 HISTORY · 28 SKILLS</span></div>
+        </div>
+        <div>
+          <h3>저를 좀 더 알고 싶으시다면?</h3>
+          <p>저에 대한 소개페이지입니다.</p>
+        </div>
+        <a class="go" href="#aboutme" data-about="history"><span>FLOW FLOW ME</span><span aria-hidden="true">→</span></a>
       </div>
-      <div>
-        <h3>저를 좀 더 알고 싶으시다면?</h3>
-        <p>저에 대한 소개페이지입니다.</p>
+      <div class="about-contact" id="contact">
+        <a class="btn fill" href="mailto:lemonti07@naver.com"><span>lemonti07@naver.com</span><span aria-hidden="true">↗</span></a>
+        <a class="btn line" href="https://www.instagram.com/miint.s0da" target="_blank" rel="noopener"><span>@miint.s0da</span><span aria-hidden="true">↗</span></a>
       </div>
-      <a class="go" href="#aboutme" data-about="history"><span>FLOW FLOW ME</span><span aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
 <!-- ============== CONTACT ============== -->
-<section class="contact" id="contact">
-  <div class="wrap">
-    <div class="contact-grid">
-      <div class="contact-card contact-info">
-        <span class="eyebrow">CONTACT</span>
-        <h2 class="contact-ttl">편하게 연락 주세요.</h2>
-        <p>작업 의뢰, 협업, 질문 모두 환영합니다.</p>
-        <div class="cbtns">
-          <a class="btn fill" href="mailto:lemonti07@naver.com"><span>lemonti07@naver.com</span><span aria-hidden="true">↗</span></a>
-          <a class="btn line" href="https://www.instagram.com/miint.s0da" target="_blank" rel="noopener"><span>@miint.s0da</span><span aria-hidden="true">↗</span></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 </main>
 
 <footer>
@@ -819,23 +810,15 @@ if (!RM) {
   setInterval(() => {            /* 천천히, 한두 칸씩 */
     if (document.hidden || scrollY > innerHeight || !cells.length) return;
     const n = Math.random() < .35 ? 2 : 1;
-    for (let k = 0; k < n; k++) lit(cells[(Math.random() * cells.length) | 0], Math.random() < .5 ? 'blink' : 'fill');
+    for (let k = 0; k < n; k++) lit(cells[(Math.random() * cells.length) | 0], 'blink');
   }, 820);
-  setInterval(() => {            /* 한 줄이 아래에서 위로 차례로 채워졌다 비워짐 */
-    if (document.hidden || scrollY > innerHeight || !cells.length) return;
-    const col = (Math.random() * cols) | 0;
-    for (let r = ROWS - 1; r >= 0; r--) setTimeout(() => {
-      const c = cells[col * ROWS + r]; if (!c || c._busy) return; c._busy = true; c.classList.add('on');
-      setTimeout(() => { c.classList.remove('on'); setTimeout(() => { c._busy = false; }, 1200); }, 1500);
-    }, (ROWS - 1 - r) * 280);
-  }, 6400);
   let lastHot = -1;              /* 마우스·터치가 지나간 칸이 켜짐 */
   const hot = (x, y) => {
     if (!cells.length || scrollY > innerHeight) return;
     const hr = hero.getBoundingClientRect(), pr = PXG.getBoundingClientRect(), px = x - pr.left, py = y - hr.top;
     const c = Math.floor((px - gx0) / (cw + gap)), r = Math.floor((py - gy0) / (cw + gap));
     if (c < 0 || c >= cols || r < 0 || r >= ROWS) { lastHot = -1; return; }
-    const i = c * ROWS + r; if (i === lastHot) return; lastHot = i; lit(cells[i], 'fill', 700);
+    const i = c * ROWS + r; if (i === lastHot) return; lastHot = i; lit(cells[i], 'blink');
   };
   addEventListener('pointermove', e => hot(e.clientX, e.clientY), { passive: true });
   addEventListener('pointerdown', e => hot(e.clientX, e.clientY), { passive: true });
@@ -2503,6 +2486,15 @@ document.querySelectorAll('.strip').forEach(s => s.addEventListener('click', () 
   addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(fade); }, { passive: true });
   addEventListener('resize', () => { if (!raf) raf = requestAnimationFrame(fade); });
   fade();
+})();
+</script>
+<script>
+/* 프로젝트 도형: 화면에 들어오면 조각이 모여 조립됨 (세 도형 동일) */
+(() => {
+  const els = [...document.querySelectorAll('.emblem')];
+  if (!('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('in', e.isIntersecting)), { threshold: .35 });
+  els.forEach(e => { e.classList.add('ready'); io.observe(e); });
 })();
 </script>
 </body>
