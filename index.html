@@ -1655,7 +1655,9 @@ border: 1px solid rgba(0,0,0,0.05);
 }
 .m-stat span { display: block; font-size: 0.74rem; font-weight: 700; color: var(--ink-sub); }
 .m-stat strong { font-size: 1.15rem; font-weight: 900; color: var(--purple); }
-.who-planet { display:block; width:54px; height:auto; margin:14px 0 2px -2px; }
+.who-wm { position:absolute; inset:0; overflow:hidden; border-radius:inherit; pointer-events:none; z-index:0; }
+.who-wm img { position:absolute; right:-26px; bottom:-30px; width:210px; height:auto; opacity:.5; }
+.style-binder > .chip, .style-binder > .sticky-title, .style-binder > .check-list { position:relative; z-index:1; }
 .sticky-title {
 font-size: 1.35rem;
 font-weight: 900;
@@ -2043,8 +2045,8 @@ body::after { left: 6px; }
           &lt;circle cx=&quot;24&quot; cy=&quot;34&quot; r=&quot;2.5&quot; fill=&quot;rgba(255,255,255,0.5)&quot;/&gt;
           &lt;circle cx=&quot;56&quot; cy=&quot;34&quot; r=&quot;2.5&quot; fill=&quot;rgba(255,255,255,0.5)&quot;/&gt;
         &lt;/svg&gt;
+        &lt;div class=&quot;who-wm&quot; aria-hidden=&quot;true&quot;&gt;&lt;img src=&quot;brand/planet-marble.webp&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
         &lt;span class=&quot;chip chip-dark&quot;&gt;WHO AM I?&lt;/span&gt;
-        &lt;img class=&quot;who-planet&quot; src=&quot;brand/planet-marble.webp&quot; alt=&quot;&quot;&gt;
         &lt;h3 class=&quot;sticky-title&quot;&gt;miint.s0da&lt;/h3&gt;
         &lt;ul class=&quot;check-list&quot;&gt;
           &lt;li&gt;💡 궁금하면 일단 찾아보고, 해보고, 뜯어봅니다.&lt;/li&gt;
