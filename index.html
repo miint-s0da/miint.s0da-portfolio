@@ -319,6 +319,8 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 .emblem{display:block;width:clamp(150px,17vw,250px);margin:0 auto 26px;overflow:visible;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
 .emblem .o{stroke:var(--fg);stroke-width:2.2;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 .copy:hover .emblem{transform:rotate(6deg) scale(1.06)}
+/* 스크립트가 도형 레이어를 켜면 정적 도형은 자리만 남기고 숨김 */
+html.live-shapes .emblem{visibility:hidden}
 /* 도형 모션 통일: 조각이 모여 조립된 뒤, 셋 모두 같은 부유 모션 */
 .emblem.ready .pc{opacity:0;transform-box:fill-box;transform-origin:center;transform:translate(calc(var(--dx) * 1px),calc(var(--dy) * 1px)) rotate(calc(var(--dr) * 1deg)) scale(.5);transition:transform .9s cubic-bezier(.22,1.2,.36,1) calc(var(--i) * 55ms),opacity .5s calc(var(--i) * 55ms)}
 .emblem.ready.in .pc{opacity:1;transform:none;animation:embFloat 5.2s ease-in-out calc(1.2s + var(--i) * 140ms) infinite}
@@ -666,6 +668,7 @@ function boxFor(i) {
   const w = innerWidth, h = innerHeight;
   if (i === 0) return { cx: w / 2, cy: h * .52, S: Math.min(w * 1.05, h * 1.3) };
   if (i === 4) { const r = sym6.getBoundingClientRect(); return { cx: r.left + r.width / 2, cy: r.top + r.height / 2 - 20, S: Math.min(r.width, isMob() ? 340 : 560) }; }
+  if (i >= 1 && i <= 3) { const e = document.querySelector('#p' + i + ' .emblem'); if (e) { const r = e.getBoundingClientRect(); return { cx: r.left + r.width / 2, cy: r.top + r.height / 2, S: r.width }; } }
   if (isMob()) return { cx: w / 2, cy: h * .26, S: Math.min(w * .7, h * .32) };
   return { cx: w * .70, cy: h * .53, S: Math.min(w * .46, h * .78) };
 }
@@ -879,7 +882,7 @@ function frame(now) {
   else if (vc >= cs[N - 1].c) { i = N - 1; s = 0; }
   else for (let k = 0; k < N - 1; k++) {
     if (vc >= cs[k].c && vc < cs[k + 1].c) {
-      const t = (vc - cs[k].c) / (cs[k + 1].c - cs[k].c), hold = .3;
+      const t = (vc - cs[k].c) / (cs[k + 1].c - cs[k].c), hold = .4;
       s = clamp((t - hold) / (1 - 2 * hold), 0, 1); s = s * s * (3 - 2 * s); i = k; break;
     }
   }
@@ -896,6 +899,7 @@ function frame(now) {
   /* 도형 */
   const bA = boxFor(i), bB = boxFor(j);
   const cx = mix(bA.cx, bB.cx, s), cy = mix(bA.cy, bB.cy, s), S = mix(bA.S, bB.S, s);
+  const kS = Math.min(1, Math.max(.45, S / 560));
   els.forEach((el, k) => {
     const a = CH[i][k], b = CH[j][k];
     const oa = (isMob() && i === 0 && FRONT.has(k)) ? 0 : a.o, ob = (isMob() && j === 0 && FRONT.has(k)) ? 0 : b.o;
@@ -904,7 +908,7 @@ function frame(now) {
     if (!RM) { X += Math.cos(now / 1500 + k * 1.9) * S * .004; Y += Math.sin(now / 1100 + k * 1.7) * S * .007; }
     const fill = lerpCol(tok(a.f, A, theme), tok(b.f, B, theme), s);
     const sc = lerpCol(tok(a.sc, A, theme), tok(b.sc, B, theme), s);
-    let sw = mix(a.sw, b.sw, s), sh = mix(a.sh, b.sh, s), o = mix(oa, ob, s);
+    let sw = mix(a.sw, b.sw, s) * kS, sh = mix(a.sh, b.sh, s) * kS, o = mix(oa, ob, s);
     let Wm = W, Hm = Hh, rot = mix(a.r, b.r, s), rad = mix(a.rad, b.rad, s), fillc = fill;
     const wt = (i === 0 && !RM) ? 1 - s : 0;
     if (wt > 0) {
@@ -972,6 +976,7 @@ function frame(now) {
   setActive(s < .5 ? i : j);
   requestAnimationFrame(frame);
 }
+document.documentElement.classList.add('live-shapes');
 requestAnimationFrame(frame);
 })();
 
@@ -2477,7 +2482,7 @@ document.querySelectorAll('.strip').forEach(s => s.addEventListener('click', () 
   function fade() {
     raf = 0;
     const end = hero ? hero.offsetHeight * 0.55 : innerHeight * 0.5;
-    const o = Math.min(1, Math.max(0, 1 - (scrollY - end * 0.6) / (end * 0.4)));
+    const o = 1;  /* 도형 레이어는 항상 보임: 스크롤하면 프로젝트별 도형으로 변함 */
     const v = o.toFixed(3);
     if (LB) LB.style.opacity = v;
     if (LF) LF.style.opacity = v;
