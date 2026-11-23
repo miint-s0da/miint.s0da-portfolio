@@ -307,30 +307,22 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 #caseOverlay iframe{width:100%;height:100%;border:0;display:block}
 /* PROJECT 섹션: 텍스트 + 큰 미리보기 1장 (미리보기가 텍스트 영역보다 크게) */
 .track{position:relative;z-index:2}
-.stage{position:relative;max-width:1280px;margin:0 auto;padding:110px 24px 90px;display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.4fr);gap:clamp(28px,5vw,72px);align-items:center;min-height:100vh;min-height:100svh}
+.stage{position:relative;max-width:1280px;margin:0 auto;padding:110px 24px 90px;display:grid;grid-template-columns:minmax(0,40fr) minmax(0,60fr);gap:clamp(28px,5vw,72px);align-items:center;min-height:100vh;min-height:100svh}
 @media(min-width:820px){.stage{padding-right:84px}}
 .stage .copy{position:relative;z-index:10;max-width:460px}
 .pvw{position:relative}
 .pvw::before{content:"";position:absolute;inset:-7% -4% -9% 10%;background:var(--acc);border-radius:22px;transform:rotate(1.8deg)}
 .pv{position:relative;margin:0;aspect-ratio:16/10;border:2px solid var(--fg);border-radius:14px;overflow:hidden;background:var(--bg);z-index:1}
 .track .ttl{color:var(--acc);font-size:clamp(2.3rem,4.8vw,4.2rem)}
-.sticker{position:absolute;z-index:3;width:clamp(76px,9vw,128px);left:-4%;top:-11%;transform:rotate(-10deg);filter:drop-shadow(4px 5px 0 rgb(0 0 0/.35));transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
-.pvw:hover .sticker{transform:rotate(6deg) scale(1.08)}
-/* 02는 좌우를 뒤집어 리듬 */
-@media(min-width:820px){
-  #p2 .stage{grid-template-columns:minmax(0,1.4fr) minmax(0,.95fr)}
-  #p2 .pvw{order:-1}
-  #p2 .pvw::before{inset:-7% 10% -9% -4%;transform:rotate(-1.8deg)}
-  #p2 .sticker{left:auto;right:-4%;top:-11%;transform:rotate(10deg)}
-  #p2 .pvw:hover .sticker{transform:rotate(-6deg) scale(1.08)}
-}
+.emblem{display:block;width:clamp(84px,9vw,128px);margin-bottom:24px;transform:rotate(-8deg);filter:drop-shadow(4px 5px 0 rgb(0 0 0/.35));transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.copy:hover .emblem{transform:rotate(6deg) scale(1.08)}
 .pv img{width:100%;height:100%;object-fit:cover;display:block}
 .pv-ph{position:absolute;inset:0;display:grid;place-items:center;border:1.5px dashed var(--line);border-radius:14px;background:color-mix(in srgb,var(--bg) 90%,var(--acc) 10%);font:600 11px/1.4 var(--f-mono);letter-spacing:.1em;color:var(--mut);text-align:center;padding:16px}
 @media(max-width:819px){
   .stage{display:block;padding:96px 24px 72px;min-height:0}
   .stage .copy{max-width:none}
   .pvw{margin-top:40px}
-  .sticker{width:68px;left:-2%;top:-14%}}
+  .emblem{width:72px;margin-bottom:18px}}
 /* MORE WORKS: 세로 띠 아코디언 (데스크톱: 호버/포커스로 펼침, 모바일: 가로 스와이프) */
 .more{position:relative;z-index:2;padding:120px max(24px,env(safe-area-inset-left)) 110px}
 .more-ttl{margin:0 0 36px;font:800 clamp(2rem,4.4vw,3.4rem)/1.05 var(--f-display);letter-spacing:-.02em}
@@ -458,13 +450,14 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 <section class="track" id="p1" data-ch="1">
   <div class="stage">
     <div class="copy">
+      <svg class="emblem" viewBox="0 0 100 100" aria-hidden="true"><circle cx="27" cy="50" r="23" fill="#FFD500" stroke="var(--fg)" stroke-width="3" stroke-linejoin="round"/><circle cx="73" cy="50" r="23" fill="#1E90FF" stroke="var(--fg)" stroke-width="3" stroke-linejoin="round"/><path d="M44 33h12v11h11v12H56v11H44V56H33V44h11z" fill="#FF1493" stroke="var(--fg)" stroke-width="3" stroke-linejoin="round"/></svg>
       <div class="row"><span class="chip">PROJECT 01</span><span class="cat">브랜드 · 플랫폼</span></div>
       <h3 class="ttl">UNI+ON</h3>
       <p class="tag">게임·웹툰 굿즈가 흩어져 찾기 어려운 문제를, 카테고리 탐색에서 장바구니까지 이어지는 하나의 흐름으로 해결</p>
       <ul class="tags"><li>카테고리 탐색</li><li>커머스 동선</li><li>반응형</li></ul>
       <div class="foot"><span class="state">완료</span><a class="cta" href="https://unionverse.vercel.app" target="_blank" rel="noopener">사이트 보기 <span aria-hidden="true">↗</span></a><a class="cta ghost" href="case/uni-on.html" data-case="uni-on">CASE STUDY <span aria-hidden="true">→</span></a></div>
     </div>
-        <div class="pvw"><figure class="pv"><img src="build/uni-on/uni-on_04_live.webp" alt="UNI+ON 사이트 화면" loading="lazy"></figure><svg class="sticker" viewBox="0 0 100 100" aria-hidden="true"><circle cx="27" cy="50" r="23" fill="#FFD500" stroke="var(--fg)" stroke-width="3" stroke-linejoin="round"/><circle cx="73" cy="50" r="23" fill="#1E90FF" stroke="var(--fg)" stroke-width="3" stroke-linejoin="round"/><path d="M44 33h12v11h11v12H56v11H44V56H33V44h11z" fill="#FF1493" stroke="var(--fg)" stroke-width="3" stroke-linejoin="round"/></svg></div>
+        <div class="pvw"><figure class="pv"><img src="build/uni-on/uni-on_04_live.webp" alt="UNI+ON 사이트 화면" loading="lazy"></figure></div>
   </div>
 </section>
 
@@ -472,6 +465,7 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 <section class="track" id="p2" data-ch="2">
   <div class="stage">
     <div class="copy">
+      <svg class="emblem" viewBox="0 0 100 100" aria-hidden="true"><g fill="#FF72C6"><rect x="22.5" y="17" width="22" height="11"/><rect x="55.5" y="17" width="22" height="11"/><rect x="11.5" y="28" width="77" height="22"/><rect x="22.5" y="50" width="55" height="11"/><rect x="33.5" y="61" width="33" height="11"/><rect x="44.5" y="72" width="11" height="11"/></g><rect x="24.5" y="29.5" width="7" height="7" fill="#fff"/><rect x="4" y="8" width="9" height="9" fill="#39DDF2"/><rect x="86" y="14" width="7" height="7" fill="#B8B8FF"/><rect x="88" y="78" width="8" height="8" fill="#2EF8B6"/></svg>
       <div class="row"><span class="chip">PROJECT 02</span><span class="cat">캐릭터 IP · 브랜드</span></div>
       <h3 class="ttl">PIXELINK</h3>
       <p class="slogan">PIXEL + NEON, LINKED.</p>
@@ -479,7 +473,7 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
       <ul class="tags"><li>캐릭터 경험 설계</li><li>브랜드 확장 구조</li><li>인터랙션</li></ul>
       <div class="foot"><span class="state">제작 중 · 재작업 예정</span><a class="cta" href="https://pixel-neon-linked.vercel.app" target="_blank" rel="noopener">사이트 보기 <span aria-hidden="true">↗</span></a><a class="cta ghost" href="case/pixelink.html" data-case="pixelink">CASE STUDY <span aria-hidden="true">→</span></a></div>
     </div>
-        <div class="pvw"><figure class="pv"><img src="build/pixelink/pixelink_04_live.webp" alt="PIXELINK 사이트 화면" loading="lazy"></figure><svg class="sticker" viewBox="0 0 100 100" aria-hidden="true"><g fill="#FF72C6"><rect x="22.5" y="17" width="22" height="11"/><rect x="55.5" y="17" width="22" height="11"/><rect x="11.5" y="28" width="77" height="22"/><rect x="22.5" y="50" width="55" height="11"/><rect x="33.5" y="61" width="33" height="11"/><rect x="44.5" y="72" width="11" height="11"/></g><rect x="24.5" y="29.5" width="7" height="7" fill="#fff"/><rect x="4" y="8" width="9" height="9" fill="#39DDF2"/><rect x="86" y="14" width="7" height="7" fill="#B8B8FF"/><rect x="88" y="78" width="8" height="8" fill="#2EF8B6"/></svg></div>
+        <div class="pvw"><figure class="pv"><img src="build/pixelink/pixelink_04_live.webp" alt="PIXELINK 사이트 화면" loading="lazy"></figure></div>
   </div>
 </section>
 
@@ -487,13 +481,14 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 <section class="track" id="p3" data-ch="3">
   <div class="stage">
     <div class="copy">
+      <svg class="emblem" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="none" stroke="#50D9F5" stroke-width="1.6"/><ellipse cx="50" cy="50" rx="42" ry="17" fill="none" stroke="#50D9F5" stroke-width="1.6" transform="rotate(-28 50 50)"/><rect x="28" y="30" width="44" height="44" fill="#7952A8" transform="rotate(45 50 52)"/><rect x="36" y="38" width="28" height="28" fill="#50D9F5" transform="rotate(45 50 52)"/><rect x="44" y="46" width="12" height="12" fill="#E8E4F4" transform="rotate(45 50 52)"/><rect x="16" y="82" width="6" height="11" fill="#B36BC6" transform="rotate(25 19 87)"/><rect x="80" y="76" width="5" height="9" fill="#7952A8" transform="rotate(-30 82 80)"/></svg>
       <div class="row"><span class="chip">PROJECT 03</span><span class="cat">게임 IP · 시네마틱</span></div>
       <h3 class="ttl">VORTEXFALL</h3>
       <p class="tag">낯선 세계관을 글로 설명하는 대신, 직접 비교하고 조작하며 이해하는 원페이지 런칭 흐름으로 설계</p>
       <ul class="tags"><li>체험형 스토리텔링</li><li>원페이지 흐름 설계</li><li>직접 조작 UI</li></ul>
       <div class="foot"><span class="state">제작 중</span><a class="cta" href="https://vortexfall.vercel.app" target="_blank" rel="noopener">사이트 보기 <span aria-hidden="true">↗</span></a><a class="cta ghost" href="case/vortexfall.html" data-case="vortexfall">CASE STUDY <span aria-hidden="true">→</span></a></div>
     </div>
-        <div class="pvw"><figure class="pv"><img src="build/vortexfall/vortexfall_04_live.webp" alt="VORTEXFALL 사이트 화면" loading="lazy"></figure><svg class="sticker" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="none" stroke="#50D9F5" stroke-width="1.6"/><ellipse cx="50" cy="50" rx="42" ry="17" fill="none" stroke="#50D9F5" stroke-width="1.6" transform="rotate(-28 50 50)"/><rect x="28" y="30" width="44" height="44" fill="#7952A8" transform="rotate(45 50 52)"/><rect x="36" y="38" width="28" height="28" fill="#50D9F5" transform="rotate(45 50 52)"/><rect x="44" y="46" width="12" height="12" fill="#E8E4F4" transform="rotate(45 50 52)"/><rect x="16" y="82" width="6" height="11" fill="#B36BC6" transform="rotate(25 19 87)"/><rect x="80" y="76" width="5" height="9" fill="#7952A8" transform="rotate(-30 82 80)"/></svg></div>
+        <div class="pvw"><figure class="pv"><img src="build/vortexfall/vortexfall_04_live.webp" alt="VORTEXFALL 사이트 화면" loading="lazy"></figure></div>
   </div>
 </section>
 
@@ -607,7 +602,7 @@ const TH = {
   dark: [
     { bg:'#09090B', acc:'#D4FF00', pal:['#D4FF00','#A1A1AA','#27272A','#F4F4F6'], ink:'#F4F4F6' },
     { bg:'#14121C', acc:'#FFD500', pal:['#FFD500','#1E90FF','#FF1493','#FFFFFF'], ink:'#F4F4F6' },
-    { bg:'#0A0F1D', acc:'#39DDF2', pal:['#39DDF2','#FF72C6','#B8B8FF','#2EF8B6'], ink:'#F8F4EC' },
+    { bg:'#0A0F1D', acc:'#FF72C6', pal:['#39DDF2','#FF72C6','#B8B8FF','#2EF8B6'], ink:'#F8F4EC' },
     { bg:'#17142F', acc:'#50D9F5', pal:['#50D9F5','#7952A8','#B36BC6','#E8E4F4'], ink:'#E8E4F4' },
     { bg:'#0C0C0E', acc:'#D9B77A', pal:['#3E6A9E','#8FC9D1','#8FA89B','#D9B77A'], ink:'#E9E4DA' },
     { bg:'#08080A', acc:'#FF4B2B', pal:['#FF4B2B','#F4F4F6','#6B6B73','#1A1A1F'], ink:'#F4F4F6' },
