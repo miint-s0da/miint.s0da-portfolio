@@ -277,6 +277,36 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 #hero .kin h1,#hero .kin h2{font-family:"Syne","Noto Sans KR",Inter,system-ui,sans-serif;font-weight:800;letter-spacing:-.01em}
 #hero .kin .solid{color:var(--fg);-webkit-text-stroke:0}
 #hero .kin .sk-mo{display:inline-block;transform:skewX(-12deg);transform-origin:0 100%}
+/* SELECTED WORKS 행 리스트 (② 에이전시형 틀) */
+#works{position:relative;z-index:21;padding:clamp(64px,9vw,120px) max(24px,env(safe-area-inset-left))}
+@media(min-width:820px){#works{padding-right:84px}}
+.wl-head{padding-bottom:22px;border-bottom:1px solid var(--line)}
+.wl-head .eyebrow{margin-bottom:12px}
+.wl-head h2{margin:0;font:800 clamp(1.6rem,3.6vw,3rem)/1 var(--f-display);letter-spacing:-.02em;text-transform:uppercase}
+.wrow{--rc:var(--rd);display:grid;grid-template-columns:56px minmax(0,1.7fr) minmax(0,1fr) auto;gap:clamp(12px,2.4vw,32px);align-items:center;padding:clamp(22px,3vw,38px) 14px;border-bottom:1px solid var(--line);color:var(--fg);text-decoration:none;transition:background-color .28s,padding-left .28s cubic-bezier(.22,1,.36,1),border-color .28s}
+:root[data-theme="light"] .wrow{--rc:var(--rcl)}
+.wrow:hover,.wrow:focus-visible{background:color-mix(in srgb,var(--rc) 14%,transparent);padding-left:30px;border-color:var(--rc);outline:none}
+.wr-n{font:700 14px var(--f-mono);color:var(--rc)}
+.wr-t small{display:block;margin-bottom:10px;font:500 11px/1 var(--f-mono);letter-spacing:.14em;color:var(--mut)}
+.wr-t b{display:block;font:800 clamp(1.5rem,3.1vw,2.9rem)/1 var(--f-display);letter-spacing:-.03em;transition:color .28s}
+.wrow:hover .wr-t b,.wrow:focus-visible .wr-t b{color:var(--rc)}
+.wr-s{font-size:13px;line-height:1.75;color:var(--mut);text-wrap:pretty}
+.wr-r{display:flex;align-items:center;gap:18px}
+.wr-c{font:600 11px/1 var(--f-mono);letter-spacing:.1em;padding:7px 13px;border:1px solid var(--line);border-radius:999px;white-space:nowrap}
+.wr-a{font-size:1.7rem;font-weight:800;transition:transform .25s,color .25s}
+.wrow:hover .wr-a,.wrow:focus-visible .wr-a{transform:translate(4px,-4px);color:var(--rc)}
+@media(max-width:1099px){
+  .wrow{grid-template-columns:44px minmax(0,1fr) auto;row-gap:12px}
+  .wr-s{grid-column:2/-1;order:4}}
+@media(max-width:819px){
+  .wrow{grid-template-columns:34px minmax(0,1fr) auto;padding-inline:4px}
+  .wr-c{display:none}
+  .wrow:hover,.wrow:focus-visible{padding-left:12px}}
+/* 히어로 정리: 영문 타이틀은 작게 왼쪽, 한글 문구를 크게 */
+#hero .kin{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(20px,3vw,36px);padding-top:32px;padding-bottom:48px}
+#hero .hero-en{margin:0;font:600 clamp(.7rem,1vw,.9rem)/1.9 var(--f-mono);letter-spacing:.2em;color:var(--mut)}
+#hero .hero-en #t3{color:var(--acc)}
+#hero .hero-ko{margin:0;font-family:"Noto Sans KR",Pretendard,system-ui,sans-serif;font-weight:800;font-size:clamp(1.65rem,6.4vw,6.2rem);line-height:1.2;letter-spacing:-.045em;word-break:keep-all;color:var(--fg)}
 /* 연락처: 카드 2장 레이아웃 (정보 카드 + 폼 카드) */
 .contact-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:28px;align-items:stretch}
 .contact-card{position:relative;border-radius:26px;margin:0;max-width:none;box-shadow:12px 12px 0 #D4FF00}
@@ -467,8 +497,6 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 <!-- ============== HERO ============== -->
 <section id="hero">
   <div id="pxgrid" aria-hidden="true"></div>
-  <div class="hcard hc1" data-depth="-0.05"><div style="display:flex;justify-content:space-between"><small>LAYER_Z: 04</small><small>●</small></div><b>KINETIC TYPO +<br>SPATIAL MOTION</b></div>
-  <div class="hcard hc2" data-depth="0.04"><small>ARCHIVE // 2026</small><b>3 SELECTED WORKS</b></div>
 
   <div class="wrap hero-meta">
     <span class="pill">GRAPHIC SYSTEM &amp; INTERACTIVE DESIGN</span>
@@ -476,12 +504,8 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
   </div>
 
   <div class="wrap kin">
-    <div class="ln"><h1 id="t1">VISUAL WORLDS</h1></div>
-    <div class="ln l2"><span class="bar"></span><h1 id="t2" class="solid"><span class="sk-in">IN</span> <span class="sk-mo">MOTION</span></h1></div>
-    <div class="l3">
-      <div class="ln"><h2 id="t3">SYSTEMS &amp; CODE.</h2></div>
-      <p class="intro">생각을 명확한 시각 언어로 옮기고, 그래픽 요소를 분해하고 재조합해 살아 움직이는 웹 경험으로 확장합니다.</p>
-    </div>
+    <p class="hero-en"><span id="t1">VISUAL WORLDS</span> <span id="t2">IN MOTION</span><br><span id="t3">SYSTEMS &amp; CODE.</span></p>
+    <h1 class="hero-ko">생각을 시각 언어로 옮겨<br>살아 움직이는 웹으로<br>확장합니다.</h1>
   </div>
 
   <div class="wrap hero-foot">
@@ -505,6 +529,18 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
     <span>✦ VISUAL WORLDS IN MOTION</span>
   </div>
 </div>
+
+<!-- ============== SELECTED WORKS (행 리스트) ============== -->
+<section id="works" aria-labelledby="wlTtl">
+  <div class="wrap">
+    <div class="wl-head"><div><span class="eyebrow">INDEX</span><h2 id="wlTtl">SELECTED WORKS (03)</h2></div></div>
+    <div class="wl-rows">
+      <a class="wrow" href="#p1" style="--rd:#FFD500;--rcl:#E0107E"><span class="wr-n">01</span><span class="wr-t"><small>브랜드 · 플랫폼</small><b>UNI+ON</b></span><span class="wr-s">게임·웹툰 굿즈가 흩어져 찾기 어려운 문제를, 카테고리 탐색에서 장바구니까지 이어지는 하나의 흐름으로 해결</span><span class="wr-r"><span class="wr-c">완료</span><span class="wr-a" aria-hidden="true">↗</span></span></a>
+      <a class="wrow" href="#p2" style="--rd:#39DDF2;--rcl:#C42B8E"><span class="wr-n">02</span><span class="wr-t"><small>캐릭터 IP · 브랜드</small><b>PIXELINK</b></span><span class="wr-s">캐릭터 하나로 브랜드를 만들 때 글 없이도 성격이 전달되도록, 인트로·커서·호버를 캐릭터 경험으로 설계</span><span class="wr-r"><span class="wr-c">제작 중</span><span class="wr-a" aria-hidden="true">↗</span></span></a>
+      <a class="wrow" href="#p3" style="--rd:#50D9F5;--rcl:#49316F"><span class="wr-n">03</span><span class="wr-t"><small>게임 IP · 시네마틱</small><b>VORTEXFALL</b></span><span class="wr-s">낯선 세계관을 글로 설명하는 대신, 직접 비교하고 조작하며 이해하는 원페이지 런칭 흐름으로 설계</span><span class="wr-r"><span class="wr-c">제작 중</span><span class="wr-a" aria-hidden="true">↗</span></span></a>
+    </div>
+  </div>
+</section>
 
 <!-- ============== PROJECT 01 · BUILD TRACK ============== -->
 <section class="track" id="p1" data-ch="1">
@@ -815,6 +851,7 @@ function fitTitles() {
   });
 }
 function fitHero() {
+  return;  /* 히어로 영문 타이틀은 작게 고정: 폭 맞춤 확대 안 함 */
   const kin = document.querySelector('.kin'); if (!kin) return;
   const t1 = document.getElementById('t1'), t2 = document.getElementById('t2'), t3 = document.getElementById('t3');
   const W = kin.clientWidth, wide = innerWidth >= 1100;
@@ -1067,7 +1104,6 @@ function frame(now) {
   const sy = scrollY;
   if (sy < h * 1.2 && !RM) {
     const shf = sy * .18;
-    t1.style.transform = `translateX(${-shf}px)`; t2.style.transform = `translateX(${shf}px)`; t3.style.transform = `translateX(${-shf * .6}px)`;
   }
 
   /* 히어로: 격자는 스크롤하면 서서히 사라짐 */
