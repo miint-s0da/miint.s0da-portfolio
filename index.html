@@ -111,7 +111,7 @@ header.top{
 /* =========================================================
    HERO
    ========================================================= */
-#hero{position:relative;z-index:21;min-height:100vh;min-height:100svh;padding:104px 0 48px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;--rpad:24px}
+#hero{position:relative;z-index:21;min-height:100vh;min-height:100svh;padding:92px 0 48px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;--rpad:24px}
 .wrap{width:100%;max-width:1280px;margin:0 auto;position:relative}
 .hero-meta{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px}
 .pill{display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:rgb(var(--bgv)/.8);font:600 11px/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase}
@@ -332,7 +332,7 @@ html.hero-wait #hero .hero-ko .ln>span{transform:translateY(110%)}
 html.hero-go #hero .hero-ko .hk{background-size:100% 100%}
 html:not(.hero-wait) #hero .hero-ko .hk{background-size:100% 100%}
 @media(prefers-reduced-motion:reduce){html.hero-wait #hero .hero-ko .ln>span{transform:none}#hero .hero-ko .hk{background-size:100% 100%;transition:none}}
-#hero .hero-sub{margin:-6px 0 0;font-size:15px;line-height:1.7;color:var(--mut);word-break:keep-all;max-width:560px}
+#hero .hero-sub{margin:-6px 0 0;padding-bottom:max(0px,min(5.5vw,84px,calc(100svh - 820px)));font-size:15px;line-height:1.7;color:var(--mut);word-break:keep-all;max-width:560px}
 #hero .hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
 @media(min-width:820px){#hero .hero-tags{position:absolute;right:clamp(0px,calc(var(--rpad) - (100vw - 1280px) / 2),var(--rpad));bottom:48px;flex-direction:column;align-items:flex-end;flex-wrap:nowrap}}
 #hero .hero-tags li{font:500 11px/1 var(--f-mono);letter-spacing:.06em;padding:8px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg)}
@@ -343,7 +343,7 @@ html:not(.hero-wait) #hero .hero-ko .hk{background-size:100% 100%}
 @media(max-width:819px){#hero .hero-stars{display:none}}
 /* 히어로 정리: 영문 타이틀은 작게 왼쪽, 한글 문구를 크게 */
 @media(max-width:819px){.pill-en{display:none}}
-#hero .kin{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:clamp(20px,3vw,36px);padding-top:32px;padding-bottom:48px}
+#hero .kin{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:clamp(20px,3vw,36px);padding-top:12px;padding-bottom:48px}
 #hero .hero-en{margin:0;font:600 clamp(.7rem,1vw,.9rem)/1.9 var(--f-mono);letter-spacing:.2em;color:var(--mut)}
 #hero .hero-en #t3{color:var(--acc)}
 .ko-sub{display:block;margin-top:4px;font:500 12px/1.6 var(--f-sans);letter-spacing:0;color:var(--mut);opacity:.85}
@@ -394,6 +394,7 @@ html:not(.hero-wait) #hero .hero-ko .hk{background-size:100% 100%}
 .pvw{position:relative}
 .pv{position:relative;margin:0;aspect-ratio:16/10;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg);box-shadow:0 18px 40px rgb(0 0 0/.22)}
 .track .ttl{font-size:clamp(2.3rem,4.8vw,4.2rem)}
+.ttl-ko{display:block;margin:-6px 0 16px;font:500 13px/1.4 var(--f-sans);letter-spacing:.06em;color:var(--mut)}
 .emblem{display:block;width:clamp(150px,17vw,250px);margin:0 auto 26px;overflow:visible;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
 .emblem .o{stroke:var(--fg);stroke-width:2.2;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 .copy:hover .emblem{transform:rotate(6deg) scale(1.06)}
@@ -544,6 +545,7 @@ html.live-shapes .emblem{visibility:hidden}
       <svg class="emblem" viewBox="-50 -50 100 100" aria-hidden="true"><g class="pc" style="--i:0;--dx:-30;--dy:-30;--dr:-60"><circle cx="-24" cy="0" r="23" fill="#FFD500" class="o"/></g><g class="pc" style="--i:1;--dx:7;--dy:23;--dr:-31"><circle cx="24" cy="0" r="23" fill="#1E90FF" class="o"/></g><g class="pc" style="--i:2;--dx:-17;--dy:15;--dr:-2"><rect x="-16" y="-5" width="32" height="10" rx="4" fill="#FF1493" class="o"/></g><g class="pc" style="--i:3;--dx:20;--dy:7;--dr:27"><rect x="-5" y="-16" width="10" height="32" rx="4" fill="#FF1493" class="o"/></g><g class="pc" style="--i:4;--dx:-4;--dy:-1;--dr:56"><rect x="-47" y="-43" width="10" height="10" rx="1" fill="#1E90FF" class="o" transform="rotate(15 -42.0 -38.0)"/></g><g class="pc" style="--i:5;--dx:-28;--dy:-9;--dr:-36"><circle cx="42" cy="-38" r="4.5" fill="#FF1493" class="o"/></g><g class="pc" style="--i:6;--dx:9;--dy:-17;--dr:-7"><circle cx="-40" cy="38" r="4.5" fill="#FFD500" class="o"/></g><g class="pc" style="--i:7;--dx:-15;--dy:-25;--dr:22"><rect x="37" y="33" width="10" height="10" rx="1" fill="#FF1493" class="o" transform="rotate(-12 42.0 38.0)"/></g><g class="pc" style="--i:8;--dx:22;--dy:28;--dr:51"><circle cx="0" cy="-42" r="3" fill="#FFD500" class="o"/></g><g class="pc" style="--i:9;--dx:-2;--dy:20;--dr:-41"><rect x="-3" y="39" width="6" height="6" rx="0" fill="#1E90FF" class="o" transform="rotate(45 0.0 42.0)"/></g></svg>
       <div class="row"><span class="chip">PROJECT 01</span><span class="cat">브랜드 · 플랫폼</span></div>
       <h3 class="ttl">UNI+ON</h3>
+      <span class="ttl-ko">(유니온)</span>
       <p class="tag">게임·웹툰 굿즈가 흩어져 찾기 어려운 문제를, 카테고리 탐색에서 장바구니까지 이어지는 하나의 흐름으로 해결</p>
       <div class="foot"><a class="cta" href="https://unionverse.vercel.app" target="_blank" rel="noopener">사이트 보기 <span aria-hidden="true">↗</span></a><a class="cta ghost" href="case/uni-on.html" data-case="uni-on">CASE STUDY <span aria-hidden="true">→</span></a></div>
     </div>
@@ -558,6 +560,7 @@ html.live-shapes .emblem{visibility:hidden}
       <svg class="emblem" viewBox="-50 -50 100 100" aria-hidden="true"><g class="pc" style="--i:0;--dx:-30;--dy:-30;--dr:-60"><rect x="-27.5" y="-33" width="22" height="11" rx="0" fill="#FF72C6" class="n"/></g><g class="pc" style="--i:1;--dx:7;--dy:23;--dr:-31"><rect x="5.5" y="-33" width="22" height="11" rx="0" fill="#FF72C6" class="n"/></g><g class="pc" style="--i:2;--dx:-17;--dy:15;--dr:-2"><rect x="-38.5" y="-22" width="77" height="22" rx="0" fill="#FF72C6" class="n"/></g><g class="pc" style="--i:3;--dx:20;--dy:7;--dr:27"><rect x="-27.5" y="0" width="55" height="11" rx="0" fill="#FF72C6" class="n"/></g><g class="pc" style="--i:4;--dx:-4;--dy:-1;--dr:56"><rect x="-16.5" y="11" width="33" height="11" rx="0" fill="#FF72C6" class="n"/></g><g class="pc" style="--i:5;--dx:-28;--dy:-9;--dr:-36"><rect x="-5.5" y="22" width="11" height="11" rx="0" fill="#FF72C6" class="n"/></g><g class="pc" style="--i:6;--dx:9;--dy:-17;--dr:-7"><rect x="-25.5" y="-20.5" width="7" height="7" rx="0" fill="#fff" class="n"/></g><g class="pc" style="--i:7;--dx:-15;--dy:-25;--dr:22"><rect x="-46.5" y="-42.5" width="9" height="9" rx="0" fill="#39DDF2" class="n"/></g><g class="pc" style="--i:8;--dx:22;--dy:28;--dr:51"><rect x="38.5" y="-35.5" width="7" height="7" rx="0" fill="#B8B8FF" class="n"/></g><g class="pc" style="--i:9;--dx:-2;--dy:20;--dr:-41"><rect x="-47" y="21" width="6" height="6" rx="0" fill="#39DDF2" class="n"/></g><g class="pc" style="--i:10;--dx:-26;--dy:12;--dr:-12"><rect x="38" y="32" width="8" height="8" rx="0" fill="#2EF8B6" class="n"/></g><g class="pc" style="--i:11;--dx:11;--dy:4;--dr:17"><rect x="5" y="-48" width="6" height="6" rx="0" fill="#B8B8FF" class="n"/></g></svg>
       <div class="row"><span class="chip">PROJECT 02</span><span class="cat">캐릭터 IP · 브랜드</span></div>
       <h3 class="ttl">PIXELINK</h3>
+      <span class="ttl-ko">(픽셀링크)</span>
       <p class="slogan">PIXEL + NEON, LINKED.</p>
       <p class="tag">캐릭터 하나로 브랜드를 만들 때 글 없이도 성격이 전달되도록, 인트로·커서·호버를 캐릭터 경험으로 설계</p>
       <div class="foot"><span class="state">제작 중</span><a class="cta" href="https://pixel-neon-linked.vercel.app" target="_blank" rel="noopener">사이트 보기 <span aria-hidden="true">↗</span></a><a class="cta ghost" href="case/pixelink.html" data-case="pixelink">CASE STUDY <span aria-hidden="true">→</span></a></div>
@@ -573,6 +576,7 @@ html.live-shapes .emblem{visibility:hidden}
       <svg class="emblem" viewBox="-50 -50 100 100" aria-hidden="true"><g class="pc" style="--i:0;--dx:-30;--dy:-30;--dr:-60"><circle cx="0" cy="0" r="45" fill="none" stroke="#50D9F5" stroke-width="1.2" vector-effect="non-scaling-stroke"/></g><g class="pc" style="--i:1;--dx:7;--dy:23;--dr:-31"><ellipse cx="0" cy="0" rx="40" ry="16" fill="none" stroke="#50D9F5" stroke-width="1.2" vector-effect="non-scaling-stroke" transform="rotate(-28)"/></g><g class="pc" style="--i:2;--dx:-17;--dy:15;--dr:-2"><ellipse cx="0" cy="0" rx="40" ry="16" fill="none" stroke="var(--fg)" stroke-opacity=".25" stroke-width="1.2" vector-effect="non-scaling-stroke" transform="rotate(32)"/></g><g class="pc" style="--i:3;--dx:20;--dy:7;--dr:27"><rect x="-22" y="-20" width="44" height="44" rx="0" fill="#7952A8" class="n" transform="rotate(45 0.0 2.0)"/></g><g class="pc" style="--i:4;--dx:-4;--dy:-1;--dr:56"><rect x="-14" y="-12" width="28" height="28" rx="0" fill="#50D9F5" class="n" transform="rotate(45 0.0 2.0)"/></g><g class="pc" style="--i:5;--dx:-28;--dy:-9;--dr:-36"><rect x="-6" y="-4" width="12" height="12" rx="0" fill="#E8E4F4" class="n" transform="rotate(45 0.0 2.0)"/></g><g class="pc" style="--i:6;--dx:9;--dy:-17;--dr:-7"><rect x="-35" y="32.5" width="6" height="11" rx="0" fill="#B36BC6" class="n" transform="rotate(25 -32.0 38.0)"/></g><g class="pc" style="--i:7;--dx:-15;--dy:-25;--dr:22"><rect x="31.5" y="27.5" width="5" height="9" rx="0" fill="#7952A8" class="n" transform="rotate(-30 34.0 32.0)"/></g><g class="pc" style="--i:8;--dx:22;--dy:28;--dr:51"><rect x="-10" y="42.5" width="4" height="7" rx="0" fill="#50D9F5" class="n" transform="rotate(12 -8.0 46.0)"/></g></svg>
       <div class="row"><span class="chip">PROJECT 03</span><span class="cat">게임 IP · 시네마틱</span></div>
       <h3 class="ttl">VORTEXFALL</h3>
+      <span class="ttl-ko">(보텍스폴)</span>
       <p class="tag">낯선 세계관을 글로 설명하는 대신, 직접 비교하고 조작하며 이해하는 원페이지 런칭 흐름으로 설계</p>
       <div class="foot"><span class="state">제작 중</span><a class="cta" href="https://vortexfall.vercel.app" target="_blank" rel="noopener">사이트 보기 <span aria-hidden="true">↗</span></a><a class="cta ghost" href="case/vortexfall.html" data-case="vortexfall">CASE STUDY <span aria-hidden="true">→</span></a></div>
     </div>
@@ -771,7 +775,8 @@ function boxFor(i) {
       const tr = rg.getBoundingClientRect(), lr = ln.getBoundingClientRect(), kr = document.querySelector('#hero .kin').getBoundingClientRect();
       if (w >= 820) {
         const sub = document.querySelector('#hero .hero-sub').getBoundingClientRect(), ft = document.querySelector('#hero .hero-foot').getBoundingClientRect();
-        return { cx: w / 2, cy: (sub.bottom + ft.top) / 2, S: 270 };
+        const sp = parseFloat(getComputedStyle(document.querySelector('#hero .hero-sub')).paddingBottom) || 0;
+        return { cx: w / 2, cy: (sub.bottom - sp + ft.top) / 2, S: 270 };
       }
       const en = document.querySelector('#hero .hero-en').getBoundingClientRect(), S = 150;
       return { cx: kr.right - 24 - S * .37, cy: en.top + en.height / 2, S };
@@ -1037,8 +1042,9 @@ function frame(now) {
   /* 레이어 깊이감 (마우스) */
   if (!RM) {
     mx += (tmx - mx) * .06; my += (tmy - my) * .06;
-    LB.style.transform = `translate3d(${(-mx * 10).toFixed(2)}px,${(-my * 8).toFixed(2)}px,0)`;
-    LF.style.transform = `translate3d(${(mx * 22).toFixed(2)}px,${(my * 16).toFixed(2)}px,0)`;
+    const par = (i === 0 ? s : 1) * Math.pow(Math.min(1, S / 560), 2);   /* 도형이 작아진 만큼 시차도 줄여 앞·뒤 조각이 어긋나지 않게 */   /* 히어로에서는 세 도형이 같은 선에 정렬되도록 시차 없음 */
+    LB.style.transform = `translate3d(${(-mx * 10 * par).toFixed(2)}px,${(-my * 8 * par).toFixed(2)}px,0)`;
+    LF.style.transform = `translate3d(${(mx * 22 * par).toFixed(2)}px,${(my * 16 * par).toFixed(2)}px,0)`;
     cards.forEach(c => { const d = parseFloat(c.dataset.depth) || .05; c.style.transform = `translate3d(${(mx * d * 260).toFixed(1)}px,${(my * d * 200).toFixed(1)}px,0)`; });
   }
 
