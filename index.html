@@ -111,7 +111,7 @@ header.top{
 /* =========================================================
    HERO
    ========================================================= */
-#hero{position:relative;z-index:21;min-height:100vh;min-height:100svh;padding:96px 0 48px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;--rpad:24px}
+#hero{position:relative;z-index:21;min-height:100vh;min-height:100svh;padding:104px 0 48px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;--rpad:24px}
 .wrap{width:100%;max-width:1280px;margin:0 auto;position:relative}
 .hero-meta{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px}
 .pill{display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:rgb(var(--bgv)/.8);font:600 11px/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase}
@@ -332,10 +332,14 @@ html.hero-wait #hero .hero-ko .ln>span{transform:translateY(110%)}
 html.hero-go #hero .hero-ko .hk{background-size:100% 100%}
 html:not(.hero-wait) #hero .hero-ko .hk{background-size:100% 100%}
 @media(prefers-reduced-motion:reduce){html.hero-wait #hero .hero-ko .ln>span{transform:none}#hero .hero-ko .hk{background-size:100% 100%;transition:none}}
-#hero .hero-sub{margin:-6px 0 0;padding-bottom:clamp(0px,9vw,150px);font-size:15px;line-height:1.7;color:var(--mut);word-break:keep-all;max-width:560px}
+#hero .hero-sub{margin:-6px 0 0;font-size:15px;line-height:1.7;color:var(--mut);word-break:keep-all;max-width:560px}
 #hero .hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
 @media(min-width:820px){#hero .hero-tags{margin-left:auto;margin-right:calc(24px - var(--rpad));justify-content:flex-end}}
 #hero .hero-tags li{font:500 11px/1 var(--f-mono);letter-spacing:.06em;padding:8px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg)}
+/* 히어로 배경: 선으로만 이루어진 원·마름모·사각 (정적) */
+#hero .hero-lines{position:absolute;z-index:0;pointer-events:none;right:calc(var(--rpad) - 36px);top:52%;width:min(27vw,400px);height:auto;aspect-ratio:1;transform:translateY(-50%);overflow:visible}
+#hero .wrap{z-index:1}
+@media(max-width:819px){#hero .hero-lines{width:70vw;right:-18vw;top:120px;transform:none;opacity:.35}}
 /* 히어로 정리: 영문 타이틀은 작게 왼쪽, 한글 문구를 크게 */
 @media(max-width:819px){.pill-en{display:none}}
 #hero .kin{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(20px,3vw,36px);padding-top:32px;padding-bottom:48px}
@@ -499,6 +503,7 @@ html.live-shapes .emblem{visibility:hidden}
 <section id="hero">
   <div id="pxgrid" aria-hidden="true"></div>
 
+  <svg class="hero-lines" viewBox="-100 -100 200 200" aria-hidden="true" focusable="false"><g transform="scale(1)" opacity="0.55" fill="none" stroke="var(--acc)" stroke-width="1.2" vector-effect="non-scaling-stroke"><circle cx="-18" cy="-8" r="62" vector-effect="non-scaling-stroke"/></g><g transform="scale(0.82)" opacity="0.34" fill="none" stroke="var(--fg)" stroke-width="1.2" vector-effect="non-scaling-stroke"><circle cx="-18" cy="-8" r="62" vector-effect="non-scaling-stroke"/></g><g transform="scale(0.64)" opacity="0.24" fill="none" stroke="var(--fg)" stroke-width="1.2" vector-effect="non-scaling-stroke"><circle cx="-18" cy="-8" r="62" vector-effect="non-scaling-stroke"/></g><g transform="scale(0.46)" opacity="0.16" fill="none" stroke="var(--fg)" stroke-width="1.2" vector-effect="non-scaling-stroke"><circle cx="-18" cy="-8" r="62" vector-effect="non-scaling-stroke"/></g><g transform="scale(1)" opacity="0.55" fill="none" stroke="var(--acc)" stroke-width="1.2" vector-effect="non-scaling-stroke"><rect x="-58" y="-58" width="116" height="116" transform="translate(22 6) rotate(45)" vector-effect="non-scaling-stroke"/></g><g transform="scale(0.82)" opacity="0.34" fill="none" stroke="var(--fg)" stroke-width="1.2" vector-effect="non-scaling-stroke"><rect x="-58" y="-58" width="116" height="116" transform="translate(22 6) rotate(45)" vector-effect="non-scaling-stroke"/></g><g transform="scale(0.64)" opacity="0.24" fill="none" stroke="var(--fg)" stroke-width="1.2" vector-effect="non-scaling-stroke"><rect x="-58" y="-58" width="116" height="116" transform="translate(22 6) rotate(45)" vector-effect="non-scaling-stroke"/></g><g transform="scale(0.46)" opacity="0.16" fill="none" stroke="var(--fg)" stroke-width="1.2" vector-effect="non-scaling-stroke"><rect x="-58" y="-58" width="116" height="116" transform="translate(22 6) rotate(45)" vector-effect="non-scaling-stroke"/></g><g transform="scale(1)" opacity="0.55" fill="none" stroke="var(--acc)" stroke-width="1.2" vector-effect="non-scaling-stroke"><rect x="-46" y="-46" width="92" height="92" rx="16" transform="translate(-2 20)" vector-effect="non-scaling-stroke"/></g><g transform="scale(0.82)" opacity="0.34" fill="none" stroke="var(--fg)" stroke-width="1.2" vector-effect="non-scaling-stroke"><rect x="-46" y="-46" width="92" height="92" rx="16" transform="translate(-2 20)" vector-effect="non-scaling-stroke"/></g><g transform="scale(0.64)" opacity="0.24" fill="none" stroke="var(--fg)" stroke-width="1.2" vector-effect="non-scaling-stroke"><rect x="-46" y="-46" width="92" height="92" rx="16" transform="translate(-2 20)" vector-effect="non-scaling-stroke"/></g><g transform="scale(0.46)" opacity="0.16" fill="none" stroke="var(--fg)" stroke-width="1.2" vector-effect="non-scaling-stroke"><rect x="-46" y="-46" width="92" height="92" rx="16" transform="translate(-2 20)" vector-effect="non-scaling-stroke"/></g></svg>
   <div class="wrap hero-meta">
     <span class="pill">그래픽 시스템 · 인터랙티브 디자인<span class="pill-en" style="opacity:.55;margin-left:10px">GRAPHIC SYSTEM &amp; INTERACTIVE DESIGN</span></span>
   </div>
@@ -725,7 +730,7 @@ const pop = { sw: 3, sc: 'ink', sh: 5 };
 
 const CH = [
   /* 0 INDEX — 선형 도형 제거: 히어로는 격자 그래픽만 사용 */
-  [ p(-28,0,18,18,{rad:50,f:'P0'}), p(0,0,13.4,13.4,{r:45,f:'P2'}), p(28,0,18,18,{rad:22,f:'P3'}), H(), H(), H(), H(), H(), H(), H(), H(), H() ],
+  [ H(), H(), H(), H(), H(), H(), H(), H(), H(), H(), H(), H() ],
   /* 1 UNI+ON — 두 원 + 플러스 */
   [ p(-24,0,46,46,{rad:50,f:0,...pop}), p(24,0,46,46,{rad:50,f:1,...pop}), p(0,0,32,10,{rad:14,f:2,sw:3,sc:'ink',sh:4}), p(0,0,10,32,{rad:14,f:2,sw:3,sc:'ink',sh:4}),
     p(-42,-38,10,10,{r:15,f:1,sw:3,sc:'ink',sh:3}), p(42,-38,9,9,{rad:50,f:2,sw:3,sc:'ink',sh:3}), p(-40,38,9,9,{rad:50,f:0,sw:3,sc:'ink',sh:3}), p(42,38,10,10,{r:-12,f:2,sw:3,sc:'ink',sh:3}),
