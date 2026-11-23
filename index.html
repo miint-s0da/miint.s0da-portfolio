@@ -480,7 +480,7 @@ html.live-shapes .emblem{visibility:hidden}
       <h3 class="ttl">PIXELINK</h3>
       <p class="slogan">PIXEL + NEON, LINKED.</p>
       <p class="tag">캐릭터 하나로 브랜드를 만들 때 글 없이도 성격이 전달되도록, 인트로·커서·호버를 캐릭터 경험으로 설계</p>
-      <div class="foot"><span class="state">제작 중</span></div>
+      <div class="foot"><span class="state">제작 중</span><a class="cta" href="https://pixel-neon-linked.vercel.app" target="_blank" rel="noopener">사이트 보기 <span aria-hidden="true">↗</span></a><a class="cta ghost" href="case/pixelink.html" data-case="pixelink">CASE STUDY <span aria-hidden="true">→</span></a></div>
     </div>
         <div class="pvw"><figure class="pv"><img src="build/pixelink/pixelink_04_live.webp" alt="PIXELINK 사이트 화면" loading="lazy"></figure></div>
   </div>
@@ -494,7 +494,7 @@ html.live-shapes .emblem{visibility:hidden}
       <div class="row"><span class="chip">PROJECT 03</span><span class="cat">게임 IP · 시네마틱</span></div>
       <h3 class="ttl">VORTEXFALL</h3>
       <p class="tag">낯선 세계관을 글로 설명하는 대신, 직접 비교하고 조작하며 이해하는 원페이지 런칭 흐름으로 설계</p>
-      <div class="foot"><span class="state">제작 중</span></div>
+      <div class="foot"><span class="state">제작 중</span><a class="cta" href="https://vortexfall.vercel.app" target="_blank" rel="noopener">사이트 보기 <span aria-hidden="true">↗</span></a><a class="cta ghost" href="case/vortexfall.html" data-case="vortexfall">CASE STUDY <span aria-hidden="true">→</span></a></div>
     </div>
         <div class="pvw"><figure class="pv"><img src="build/vortexfall/vortexfall_04_live.webp" alt="VORTEXFALL 사이트 화면" loading="lazy"></figure></div>
   </div>
@@ -517,9 +517,16 @@ html.live-shapes .emblem{visibility:hidden}
   <div class="sym6" id="sym6" aria-hidden="true"><small>세 개의 프로젝트, 하나의 도형 시스템</small></div>
   <div class="wrap about-grid">
     <div>
-      <span class="eyebrow">ABOUT</span>
-      <h2>별을 그리는 아이<br>miint.s0da</h2>
-      <p class="lead">아무것도 없는 밤하늘에 별을 하나씩 그리듯, 아이디어를 꺼내 색과 캐릭터, 살아 움직이는 웹으로 만듭니다.</p>
+      <span class="eyebrow">CREATOR &amp; WORKFLOW</span>
+      <h2>Visual Systems Builder,<br>논리적 설계에서 인터랙션까지.</h2>
+      <p class="lead">N 성향을 가진 설계형 ESTP 창작자 miint.s0da입니다. 아이디어를 시각 언어로 구체화하고, 코드로 생명력을 불어넣는 5단계 프로세스로 작업합니다.</p>
+      <ul class="steps">
+        <li><small>01</small><b>IDEA</b><em>(추후)</em></li>
+        <li><small>02</small><b>STRUCTURE</b><em>UNI+ON 사용자 흐름</em></li>
+        <li><small>03</small><b>VISUAL</b><em>VORTEXFALL AI 파이프라인</em></li>
+        <li><small>04</small><b>DETAIL</b><em>(추후)</em></li>
+        <li><small>05</small><b>RESULT</b><em>(추후)</em></li>
+      </ul>
     </div>
     <div>
       <div class="box">
@@ -882,7 +889,7 @@ function frame(now) {
   else if (vc >= cs[N - 1].c) { i = N - 1; s = 0; }
   else for (let k = 0; k < N - 1; k++) {
     if (vc >= cs[k].c && vc < cs[k + 1].c) {
-      const t = (vc - cs[k].c) / (cs[k + 1].c - cs[k].c), hold = .4;
+      const t = (vc - cs[k].c) / (cs[k + 1].c - cs[k].c), hold = .2;
       s = clamp((t - hold) / (1 - 2 * hold), 0, 1); s = s * s * (3 - 2 * s); i = k; break;
     }
   }
