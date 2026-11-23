@@ -246,6 +246,12 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 .foot-in{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between;align-items:center}
 .foot-in .logo{font-size:24px}
 .foot-in small{display:block;margin-top:8px;font:400 11px/1.6 var(--f-mono);color:var(--mut);letter-spacing:.04em}
+.stats{display:flex;gap:0}
+.stats>div{padding:0 28px;border-left:1px solid var(--line)}
+.stats>div:first-child{border-left:0;padding-left:0}
+.stats b{display:block;font:800 2.6rem/1 var(--f-display);letter-spacing:-.03em;color:var(--fg)}
+.stats span{display:block;margin-top:8px;font:500 11px/1 var(--f-mono);letter-spacing:.12em;color:var(--mut)}
+@media(max-width:640px){.stats>div{padding:0 16px}.stats b{font-size:2rem}}
 .links{display:flex;flex-wrap:wrap;gap:22px;font:600 12px/1 var(--f-mono)}
 .links a{display:inline-flex;gap:8px;align-items:center;transition:color .2s}
 .links a:hover{color:var(--acc)}
@@ -305,11 +311,14 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 #hero .hero-ko .ln{display:block;overflow:hidden;padding-bottom:.08em}
 #hero .hero-ko .ln>span{display:block;transition:transform .9s cubic-bezier(.22,1,.36,1)}
 #hero .hero-ko .ln:nth-child(2)>span{transition-delay:.14s}
-#hero .hero-ko .hk{font-style:normal;background:linear-gradient(transparent 66%,color-mix(in srgb,var(--acc) 38%,transparent) 66%) no-repeat 0 0/0% 100%;transition:background-size .9s .7s cubic-bezier(.22,1,.36,1)}
+#hero .hero-ko .hk{font-style:normal;background:linear-gradient(transparent 80%,color-mix(in srgb,var(--acc) 55%,transparent) 80%) no-repeat 0 0/0% 100%;transition:background-size .9s .7s cubic-bezier(.22,1,.36,1)}
 html.hero-wait #hero .hero-ko .ln>span{transform:translateY(110%)}
 html.hero-go #hero .hero-ko .hk{background-size:100% 100%}
 html:not(.hero-wait) #hero .hero-ko .hk{background-size:100% 100%}
 @media(prefers-reduced-motion:reduce){html.hero-wait #hero .hero-ko .ln>span{transform:none}#hero .hero-ko .hk{background-size:100% 100%;transition:none}}
+#hero .hero-sub{margin:-6px 0 0;font-size:15px;line-height:1.7;color:var(--mut);word-break:keep-all;max-width:560px}
+#hero .hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+#hero .hero-tags li{font:500 11px/1 var(--f-mono);letter-spacing:.06em;padding:8px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg)}
 /* 히어로 정리: 영문 타이틀은 작게 왼쪽, 한글 문구를 크게 */
 @media(max-width:819px){.pill-en{display:none}}
 #hero .kin{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(20px,3vw,36px);padding-top:32px;padding-bottom:48px}
@@ -478,6 +487,8 @@ html.live-shapes .emblem{visibility:hidden}
   <div class="wrap kin">
     <p class="hero-en"><span id="t1">VISUAL WORLDS</span> <span id="t2">IN MOTION</span><br><span id="t3">SYSTEMS &amp; CODE.</span></p>
     <h1 class="hero-ko"><span class="ln"><span>생각을 시각 언어로,</span></span><span class="ln"><span><em class="hk">움직이는 웹</em>으로.</span></span></h1>
+    <p class="hero-sub">디자인과 이야기, 기술과 감성을 연결해 경험이 머무는 비주얼 월드를 만듭니다.</p>
+    <ul class="hero-tags" aria-label="가능한 작업"><li>WEB DESIGN</li><li>BRANDING</li><li>ILLUSTRATION</li><li>UI/UX</li><li>MOTION</li><li>IP</li></ul>
   </div>
 
   <div class="wrap hero-foot">
@@ -612,6 +623,11 @@ html.live-shapes .emblem{visibility:hidden}
       <a class="logo" href="#hero">mi<span class="i">i</span>nt<span class="dot">.</span>s<span class="zero">0</span>da</a>
       <small>VISUAL WORLDS IN MOTION · © 2026 ALL RIGHTS RESERVED.</small>
       <button class="intro-replay" type="button">INTRO 다시 보기 ▶</button>
+    </div>
+    <div class="stats" aria-label="요약 수치">
+      <div><b>5</b><span>PROJECTS</span></div>
+      <div><b>5</b><span>PROCESS</span></div>
+      <div><b>∞</b><span>VISUAL WORLDS</span></div>
     </div>
   </div>
 </footer>
