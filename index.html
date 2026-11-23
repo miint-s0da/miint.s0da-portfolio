@@ -334,11 +334,11 @@ html:not(.hero-wait) #hero .hero-ko .hk{background-size:100% 100%}
 @media(prefers-reduced-motion:reduce){html.hero-wait #hero .hero-ko .ln>span{transform:none}#hero .hero-ko .hk{background-size:100% 100%;transition:none}}
 #hero .hero-sub{margin:-6px 0 0;padding-bottom:clamp(0px,9vw,150px);font-size:15px;line-height:1.7;color:var(--mut);word-break:keep-all;max-width:560px}
 #hero .hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
-@media(min-width:820px){#hero .hero-tags{position:absolute;right:clamp(0px,calc(var(--rpad) - (100vw - 1280px) / 2),var(--rpad));bottom:48px;flex-direction:column;align-items:flex-end;flex-wrap:nowrap}}
+@media(min-width:820px){#hero .hero-tags{margin-left:auto;margin-right:calc(24px - var(--rpad));justify-content:flex-end}}
 #hero .hero-tags li{font:500 11px/1 var(--f-mono);letter-spacing:.06em;padding:8px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg)}
 /* 히어로 정리: 영문 타이틀은 작게 왼쪽, 한글 문구를 크게 */
 @media(max-width:819px){.pill-en{display:none}}
-#hero .kin{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:clamp(20px,3vw,36px);padding-top:32px;padding-bottom:48px}
+#hero .kin{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(20px,3vw,36px);padding-top:32px;padding-bottom:48px}
 #hero .hero-en{margin:0;font:600 clamp(.7rem,1vw,.9rem)/1.9 var(--f-mono);letter-spacing:.2em;color:var(--mut)}
 #hero .hero-en #t3{color:var(--acc)}
 .ko-sub{display:block;margin-top:4px;font:500 12px/1.6 var(--f-sans);letter-spacing:0;color:var(--mut);opacity:.85}
@@ -507,7 +507,6 @@ html.live-shapes .emblem{visibility:hidden}
     <p class="hero-en"><span id="t1">VISUAL WORLDS</span> <span id="t2">IN MOTION</span><br><span id="t3">SYSTEMS &amp; CODE.</span><span class="ko-sub">움직이는 비주얼 월드 · 시스템과 코드</span></p>
     <h1 class="hero-ko"><span class="ln"><span>생각을 시각 언어로,</span></span><span class="ln"><span><em class="hk">움직이는 웹</em>으로.</span></span></h1>
     <p class="hero-sub">디자인과 이야기, 기술과 감성을 연결해 경험이 머무는 비주얼 월드를 만듭니다.</p>
-    <ul class="hero-tags" aria-label="가능한 작업"><li>WEB DESIGN</li><li>BRANDING</li><li>ILLUSTRATION</li><li>UI/UX</li><li>MOTION</li><li>IP</li></ul>
   </div>
 
   <div class="wrap hero-foot">
@@ -515,6 +514,7 @@ html.live-shapes .emblem{visibility:hidden}
       <a class="btn fill" href="#p1"><span>작업 보기 (03)<span style="opacity:.6;margin-left:10px">VIEW SELECTED WORKS</span></span><span aria-hidden="true">↓</span></a>
       <a class="btn line" href="#aboutme" data-about="profile">소개 보기 <span style="opacity:.6;margin-left:6px">CREATOR PROFILE</span> →</a>
     </div>
+    <ul class="hero-tags" aria-label="가능한 작업"><li>WEB DESIGN</li><li>BRANDING</li><li>ILLUSTRATION</li><li>UI/UX</li><li>MOTION</li><li>IP</li></ul>
   </div>
 </section>
 
@@ -759,14 +759,14 @@ const isMob = () => innerWidth < 820;
 function boxFor(i) {
   const w = innerWidth, h = innerHeight;
   if (i === 0) {
-    const ko = document.querySelector('#hero .hero-ko'), tg = document.querySelector('#hero .hero-tags');
+    const ko = document.querySelector('#hero .hero-ko');
     if (ko && ko.children[1]) {
       const ln = ko.children[1], rg = document.createRange(); rg.selectNodeContents(ln.firstElementChild);
       const tr = rg.getBoundingClientRect(), lr = ln.getBoundingClientRect(), kr = document.querySelector('#hero .kin').getBoundingClientRect();
-      if (w >= 820 && tg) {
-        const sub = document.querySelector('#hero .hero-sub').getBoundingClientRect(), tr2 = tg.getBoundingClientRect();
-        const S = clamp(Math.min(w * .15, 240), 150, 240);
-        return { cx: tr2.left - 48 - S * .5, cy: tr2.top + tr2.height / 2, S };
+      if (w >= 820) {
+        const sub = document.querySelector('#hero .hero-sub').getBoundingClientRect(), ft = document.querySelector('#hero .hero-foot').getBoundingClientRect();
+        const top = sub.bottom - parseFloat(getComputedStyle(document.querySelector('#hero .hero-sub')).paddingBottom) + 24, bot = ft.top - 24, S = clamp(Math.min(w * .3, (bot - top) / .34), 330, 560);
+        return { cx: w / 2, cy: (top + bot) / 2, S };
       }
       const en = document.querySelector('#hero .hero-en').getBoundingClientRect(), S = 150;
       return { cx: kr.right - 24 - S * .37, cy: en.top + en.height / 2, S };
