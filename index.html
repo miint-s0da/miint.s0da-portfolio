@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" data-theme="dark">
+<html lang="ko" data-theme="light">
 <head>
 <meta charset="UTF-8"><link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -23,7 +23,7 @@
   color-scheme:dark;
 }
 :root[data-theme="light"]{
-  --fg:#09090B; --bg:#F4F4F6; --bgv:244 244 246; --acc:#047857;
+  --fg:#09090B; --bg:#F3F6FF; --bgv:243 246 255; --acc:#2F5BFF;
   color-scheme:light;
 }
 *{box-sizing:border-box}
@@ -207,11 +207,17 @@ header.top{
 .sym6{position:relative;height:150px;margin:0 auto 56px;max-width:1280px}
 .sym6 small{position:absolute;left:0;right:0;bottom:0;text-align:center;font:500 12px/1 var(--f-sans);letter-spacing:.04em;color:var(--mut)}
 .about-grid{display:grid;gap:48px;grid-template-columns:1fr;align-items:center}
-@media(min-width:1000px){.about-grid{grid-template-columns:7fr 5fr;gap:64px}}
+@media(min-width:1000px){.about-grid{grid-template-columns:6fr 5fr;gap:56px;align-items:start}}
 .eyebrow{font:600 12px/1 var(--f-mono);letter-spacing:.16em;color:var(--acc);display:block;margin-bottom:18px}
-.about-grid h2{margin:0 0 20px;font:800 clamp(1.9rem,4.4vw,3.4rem)/1.25 var(--f-display);letter-spacing:-.03em;word-break:keep-all}
+.about-grid h2{margin:0 0 20px;font:800 clamp(1.6rem,3.2vw,2.5rem)/1.3 var(--f-display);letter-spacing:-.03em;word-break:keep-all}
 .about-grid p.lead{max-width:560px;margin:0 0 28px;color:var(--mut);font-size:15px;line-height:1.85;word-break:keep-all}
-.hist{display:grid;gap:26px;padding:32px;border:1px solid var(--line);border-radius:26px;background:rgb(var(--bgv)/.7)}
+.hist{display:grid;gap:24px;padding:32px;border:1px solid var(--line);border-radius:26px;background:rgb(var(--bgv)/.7)}
+.hist .sep{height:1px;background:var(--line)}
+.hist h3{margin:12px 0 6px;font:800 1.5rem/1.3 var(--f-display);letter-spacing:-.02em}
+.hist #contact p{margin:0 0 18px;font-size:14px;color:var(--mut)}
+.hist .cbtns{margin:0 0 10px}
+.hist .cbtns .btn,.hist .about-go{text-transform:none;letter-spacing:.02em}
+.hist .about-go{width:100%;justify-content:space-between}
 .hist .k{font:600 11px/1 var(--f-mono);letter-spacing:.16em;color:var(--acc)}
 .hist p{margin:12px 0 0;font-size:15px;line-height:1.8;word-break:keep-all}
 .hist .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
@@ -271,6 +277,8 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 /* 히어로 꽉 채우기: 헤드라인이 화면 폭을 가득 채우도록 래퍼 제한 해제 */
 /* 히어로 내용은 다른 섹션과 같은 폭(1280, 좌우 24, 오른쪽 점 영역)에 맞춤 */
 #hero .wrap{max-width:1280px;padding-left:24px;padding-right:var(--rpad)}
+/* 라이트: 루미너스 블루의 깊이감 */
+:root[data-theme="light"] #hero{background:radial-gradient(900px 520px at 88% 6%,rgba(47,91,255,.14),transparent 62%),radial-gradient(700px 420px at 4% 96%,rgba(47,91,255,.08),transparent 65%)}
 /* 히어로 정리: 영문 타이틀은 작게 왼쪽, 한글 문구를 크게 */
 @media(max-width:819px){.pill-en{display:none}}
 #hero .kin{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(20px,3vw,36px);padding-top:32px;padding-bottom:48px}
@@ -543,27 +551,21 @@ html.live-shapes .emblem{visibility:hidden}
         <span class="k">SKILLS</span>
         <div class="chips"><span>Figma</span><span>HTML5 / CSS3</span><span>JavaScript</span><span>Claude Code</span><span>Photoshop</span><span>Illustrator</span></div>
       </div>
-    </div>
-  </div>
-</section>
-<!-- ============== CONTACT ============== -->
-
-<section class="contact" id="contact">
-  <div class="wrap">
-    <div class="contact-grid">
-      <div class="contact-card contact-info">
-        <span class="eyebrow">CONTACT</span>
-        <h2 class="contact-ttl">편하게 연락 주세요.</h2>
+      <div class="sep" aria-hidden="true"></div>
+      <div id="contact">
+        <span class="k">CONTACT</span>
+        <h3>편하게 연락 주세요.</h3>
         <p>작업 의뢰, 협업, 질문 모두 환영합니다.</p>
         <div class="cbtns">
           <a class="btn fill" href="mailto:lemonti07@naver.com"><span>lemonti07@naver.com</span><span aria-hidden="true">↗</span></a>
           <a class="btn line" href="https://www.instagram.com/miint.s0da" target="_blank" rel="noopener"><span>@miint.s0da</span><span aria-hidden="true">↗</span></a>
         </div>
-        <div class="cabout"><a class="btn line" href="#aboutme" data-about="profile"><span>About Me 보러가기</span><span aria-hidden="true">→</span></a></div>
+        <a class="btn line about-go" href="#aboutme" data-about="profile"><span>About Me 보러가기</span><span aria-hidden="true">→</span></a>
       </div>
     </div>
   </div>
 </section>
+<!-- ============== CONTACT ============== -->
 
 </main>
 
@@ -592,7 +594,7 @@ const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 const mix = (a, b, s) => a + (b - a) * s;
 
 /* ---------- theme ---------- */
-let theme = 'dark';
+let theme = 'light';
 try { const t = localStorage.getItem('ms-theme'); if (t === 'light' || t === 'dark') theme = t; } catch (e) {}
 root.dataset.theme = theme;
 $('#theme').addEventListener('click', () => {
@@ -625,13 +627,13 @@ const TH = {
     { bg:'#09090B', acc:'#D4FF00', pal:['#D4FF00','#A1A1AA','#27272A','#F4F4F6'], ink:'#F4F4F6' }
   ],
   light: [
-    { bg:'#F4F4F6', acc:'#047857', pal:['#059669','#A1A1AA','#D4D4D8','#09090B'], ink:'#09090B' },
+    { bg:'#F3F6FF', acc:'#2F5BFF', pal:['#2F5BFF','#A1A1AA','#D4D4D8','#09090B'], ink:'#09090B' },
     { bg:'#FFFDF2', acc:'#E0107E', pal:['#FFD500','#1E90FF','#FF1493','#FFFFFF'], ink:'#111111' },
     { bg:'#F8F4EC', acc:'#C42B8E', pal:['#39DDF2','#FF72C6','#B8B8FF','#2EF8B6'], ink:'#181820' },
     { bg:'#E8E4F4', acc:'#49316F', pal:['#50D9F5','#7952A8','#B36BC6','#17142F'], ink:'#17142F' },
     { bg:'#F1EBE0', acc:'#7A5A26', pal:['#2D4A6B','#8FC9D1','#8FA89B','#D9B77A'], ink:'#1A1A1A' },
     { bg:'#E9E9EC', acc:'#C22E1A', pal:['#D6361F','#111111','#8A8A93','#FFFFFF'], ink:'#111111' },
-    { bg:'#F4F4F6', acc:'#047857', pal:['#059669','#A1A1AA','#D4D4D8','#09090B'], ink:'#09090B' }
+    { bg:'#F3F6FF', acc:'#2F5BFF', pal:['#2F5BFF','#A1A1AA','#D4D4D8','#09090B'], ink:'#09090B' }
   ]
 };
 for (const mode of ['dark', 'light']) { const aboutTheme = TH[mode][6]; TH[mode].splice(4, 3, aboutTheme); }
