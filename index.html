@@ -62,7 +62,7 @@ header.top{
 .logo .i{color:var(--acc)} .logo .dot{color:#f43f5e} .logo .zero{display:inline-block;font-family:"JetBrains Mono",monospace;font-variant-numeric:slashed-zero;font-weight:700;font-size:.92em;letter-spacing:-.08em}
 .tools{display:flex;align-items:center;gap:10px}
 /* 도형 모음 메뉴: 2×2 도형 버튼을 누르면 도형이 왼쪽으로 펼쳐지며 글자가 됩니다 */
-.sm{position:relative;display:flex;align-items:center}
+.sm{position:relative;display:none;align-items:center}  /* 우측 도형 메뉴 숨김 (챕터 점·히어로 버튼으로 이동) */
 .g{display:block;width:14px;height:14px;flex:none}
 .g-c{border-radius:50%;background:var(--acc)}
 .g-d{border:2px solid var(--fg);transform:rotate(45deg) scale(.8)}
@@ -245,11 +245,6 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 
 .contact{position:relative;z-index:2;padding:96px max(24px,env(safe-area-inset-left)) 104px;border-top:1px solid var(--line)}
 .contact-ttl{margin:14px 0 36px;font:800 clamp(2rem,5vw,3.6rem)/1.05 var(--f-display);letter-spacing:-.02em;text-transform:uppercase}
-.cform{display:grid;gap:18px;max-width:720px;border-radius:26px;padding:clamp(26px,4vw,40px);background:#09090B;color:#F4F4F6;border:1px solid rgba(255,255,255,.16)}
-.cform label{display:grid;gap:8px;font:600 12px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:rgba(244,244,246,.7)}
-.cform input,.cform textarea{width:100%;font:500 15px/1.5 var(--f-mono);color:#F4F4F6;background:transparent;border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:14px 16px;outline:none}
-.cform input:focus,.cform textarea:focus{border-color:#D4FF00}
-.cform textarea{resize:vertical}
 .cbtns{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
 .cbtns button{border:0;cursor:pointer;font-family:inherit}
 
@@ -271,20 +266,22 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 /* 히어로 꽉 채우기: 헤드라인이 화면 폭을 가득 채우도록 래퍼 제한 해제 */
 #hero .kin.wrap{max-width:none;padding-left:clamp(16px,3vw,48px);padding-right:clamp(16px,3vw,48px)}
 /* 히어로 정리: 영문 타이틀은 작게 왼쪽, 한글 문구를 크게 */
+@media(max-width:819px){.pill-en{display:none}}
 #hero .kin{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(20px,3vw,36px);padding-top:32px;padding-bottom:48px}
 #hero .hero-en{margin:0;font:600 clamp(.7rem,1vw,.9rem)/1.9 var(--f-mono);letter-spacing:.2em;color:var(--mut)}
 #hero .hero-en #t3{color:var(--acc)}
 #hero .hero-ko{margin:0;font-family:"Noto Sans KR",Pretendard,system-ui,sans-serif;font-weight:800;font-size:clamp(1.65rem,6.4vw,6.2rem);line-height:1.2;letter-spacing:-.045em;word-break:keep-all;color:var(--fg)}
 /* 연락처: 카드 2장 레이아웃 (정보 카드 + 폼 카드) */
-.contact-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:28px;align-items:stretch}
+.contact-grid{display:grid;grid-template-columns:1fr;gap:28px;align-items:stretch}
 .contact-card{position:relative;border-radius:26px;margin:0;max-width:none;box-shadow:12px 12px 0 #D4FF00}
 .contact-info{background:#D4FF00;color:#09090B;padding:clamp(26px,4vw,40px);display:flex;flex-direction:column;gap:18px;box-shadow:12px 12px 0 #09090B}
 .contact-info .eyebrow{color:#09090B}
 .contact-info .contact-ttl{margin:0;color:#09090B}
 .contact-info p{margin:0;font:500 15px/1.6 var(--f-mono);color:#09090B}
 .contact-list{list-style:none;padding:0;margin:auto 0 0;display:grid;gap:10px;font:600 12px/1.4 var(--f-mono);letter-spacing:.1em;color:#09090B}
-.contact-grid .cform{display:grid;gap:18px;padding:clamp(26px,4vw,40px);margin:0;border:1px solid rgba(255,255,255,.16)}
 .contact-info .contact-ttl{font-size:clamp(1.8rem,3.2vw,2.5rem);line-height:1.2}
+.contact-info .cbtns{margin-top:8px}
+.contact-info .cbtns .btn{background:var(--bg);color:var(--fg);border:1px solid var(--bg);text-transform:none;letter-spacing:.02em}
 @media(min-width:900px){.contact-grid{padding-right:64px}}
 @media(max-width:860px){.contact-grid{grid-template-columns:1fr}}
 /* 푸터: 인트로 다시 보기 */
@@ -295,10 +292,6 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 .contact-info{background:var(--acc);color:var(--bg);box-shadow:12px 12px 0 var(--fg)}
 .contact-info .eyebrow,.contact-info .contact-ttl,.contact-info p,.contact-list{color:var(--bg)}
 .contact-grid .contact-card{box-shadow:12px 12px 0 var(--fg)}
-.contact-grid .cform{background:var(--bg);color:var(--fg);border:1px solid var(--line)}
-.cform label{color:var(--mut)}
-.cform input,.cform textarea{color:var(--fg);border:1px solid var(--line)}
-.cform input:focus,.cform textarea:focus{border-color:var(--acc)}
 
 @media(max-width:819px){
   /* 모바일 히어로: 소개 문구 박스가 버튼을 덮지 않게 흐름 배치 */
@@ -316,7 +309,8 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 .stage{position:relative;max-width:1280px;margin:0 auto;padding:110px 24px 90px;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.5fr);gap:clamp(28px,5vw,72px);align-items:center;min-height:100vh;min-height:100svh}
 @media(min-width:820px){.stage{padding-right:84px}}
 .stage .copy{position:relative;z-index:10;max-width:460px}
-.pv{position:relative;margin:0;aspect-ratio:16/10;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg);box-shadow:0 18px 40px rgb(0 0 0/.18)}
+.pv{position:relative;margin:0;aspect-ratio:16/10;border:2px solid var(--acc);border-radius:14px;overflow:hidden;background:var(--bg);box-shadow:10px 10px 0 color-mix(in srgb,var(--acc) 38%,transparent)}
+.track .ttl{color:var(--acc)}
 .pv img{width:100%;height:100%;object-fit:cover;display:block}
 .pv-ph{position:absolute;inset:0;display:grid;place-items:center;border:1.5px dashed var(--line);border-radius:14px;background:color-mix(in srgb,var(--bg) 90%,var(--acc) 10%);font:600 11px/1.4 var(--f-mono);letter-spacing:.1em;color:var(--mut);text-align:center;padding:16px}
 @media(max-width:819px){
@@ -416,8 +410,7 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
   <div id="pxgrid" aria-hidden="true"></div>
 
   <div class="wrap hero-meta">
-    <span class="pill">GRAPHIC SYSTEM &amp; INTERACTIVE DESIGN</span>
-    <span class="hint">SCROLL TO DECONSTRUCT &amp; MERGE ↓</span>
+    <span class="pill">그래픽 시스템 · 인터랙티브 디자인<span class="pill-en" style="opacity:.55;margin-left:10px">GRAPHIC SYSTEM &amp; INTERACTIVE DESIGN</span></span>
   </div>
 
   <div class="wrap kin">
@@ -427,8 +420,8 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 
   <div class="wrap hero-foot">
     <div class="btns">
-      <a class="btn fill" href="#p1"><span>VIEW SELECTED WORKS (03)</span><span aria-hidden="true">↓</span></a>
-      <a class="btn line" href="#aboutme" data-about="profile">CREATOR PROFILE →</a>
+      <a class="btn fill" href="#p1"><span>작업 보기 (03)<span style="opacity:.6;margin-left:10px">VIEW SELECTED WORKS</span></span><span aria-hidden="true">↓</span></a>
+      <a class="btn line" href="#aboutme" data-about="profile">소개 보기 <span style="opacity:.6;margin-left:6px">CREATOR PROFILE</span> →</a>
     </div>
     <div class="role">ESTP CREATIVE DIRECTOR · DESIGN TO CODE</div>
   </div>
@@ -454,7 +447,6 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
       <div class="row"><span class="chip">PROJECT 01</span><span class="cat">브랜드 · 플랫폼</span></div>
       <h3 class="ttl">UNI+ON</h3>
       <p class="tag">게임·웹툰 굿즈가 흩어져 찾기 어려운 문제를, 카테고리 탐색에서 장바구니까지 이어지는 하나의 흐름으로 해결</p>
-      <p class="desc">굵은 외곽선과 오프셋 그림자의 팝 그래픽으로 흩어진 문화 콘텐츠를 하나의 탐색 체계로 묶었습니다. 메인과 서브 페이지, 장바구니까지 이어지는 사용자 흐름을 설계하고 데스크톱부터 모바일까지 같은 경험으로 구현했습니다.</p>
       <ul class="tags"><li>카테고리 탐색</li><li>커머스 동선</li><li>반응형</li></ul>
       <div class="foot"><span class="state">완료</span><a class="cta" href="https://unionverse.vercel.app" target="_blank" rel="noopener">사이트 보기 <span aria-hidden="true">↗</span></a><a class="cta ghost" href="case/uni-on.html" data-case="uni-on">CASE STUDY <span aria-hidden="true">→</span></a></div>
     </div>
@@ -470,7 +462,6 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
       <h3 class="ttl">PIXELINK</h3>
       <p class="slogan">PIXEL + NEON, LINKED.</p>
       <p class="tag">캐릭터 하나로 브랜드를 만들 때 글 없이도 성격이 전달되도록, 인트로·커서·호버를 캐릭터 경험으로 설계</p>
-      <p class="desc">UNI+ON의 히어로 캐릭터에서 출발한 독립 브랜드입니다. 레트로 픽셀 감성에 파스텔 네온을 더한 BI와 세계관을 설계하고, 픽셀 커서와 호버 인터랙션으로 캐릭터의 개성을 사이트 전체에 입혔습니다.</p>
       <ul class="tags"><li>캐릭터 경험 설계</li><li>브랜드 확장 구조</li><li>인터랙션</li></ul>
       <div class="foot"><span class="state">제작 중 · 재작업 예정</span><a class="cta" href="https://pixel-neon-linked.vercel.app" target="_blank" rel="noopener">사이트 보기 <span aria-hidden="true">↗</span></a><a class="cta ghost" href="case/pixelink.html" data-case="pixelink">CASE STUDY <span aria-hidden="true">→</span></a></div>
     </div>
@@ -485,7 +476,6 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
       <div class="row"><span class="chip">PROJECT 03</span><span class="cat">게임 IP · 시네마틱</span></div>
       <h3 class="ttl">VORTEXFALL</h3>
       <p class="tag">낯선 세계관을 글로 설명하는 대신, 직접 비교하고 조작하며 이해하는 원페이지 런칭 흐름으로 설계</p>
-      <p class="desc">차원 균열로 분리된 두 세계와 인공 생명체 카엘을 중심으로, 세계관·원초 에너지·캐릭터·게임 시스템을 시네마틱 원페이지 웹사이트로 구현한 오리지널 게임 IP 프로젝트.</p>
       <ul class="tags"><li>체험형 스토리텔링</li><li>원페이지 흐름 설계</li><li>직접 조작 UI</li></ul>
       <div class="foot"><span class="state">제작 중</span><a class="cta" href="https://vortexfall.vercel.app" target="_blank" rel="noopener">사이트 보기 <span aria-hidden="true">↗</span></a><a class="cta ghost" href="case/vortexfall.html" data-case="vortexfall">CASE STUDY <span aria-hidden="true">→</span></a></div>
     </div>
@@ -540,21 +530,12 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
       <div class="contact-card contact-info">
         <span class="eyebrow">CONTACT</span>
         <h2 class="contact-ttl">편하게 연락 주세요.</h2>
-        <p>작업 의뢰, 협업, 질문 모두 환영합니다. 남겨 주시면 확인 후 답장드릴게요.</p>
-        <ul class="contact-list">
-          <li>EMAIL · lemonti07@naver.com</li>
-          <li>INSTA · @miint.s0da</li>
-        </ul>
-      </div>
-      <form class="cform contact-card" id="cform">
-        <label>이름<input name="name" required autocomplete="name"></label>
-        <label>회신 이메일<input name="email" type="email" required autocomplete="email"></label>
-        <label>문의 내용<textarea name="msg" rows="5" required></textarea></label>
+        <p>작업 의뢰, 협업, 질문 모두 환영합니다.</p>
         <div class="cbtns">
-          <button class="btn fill" type="submit"><span>이메일로 보내기</span><span aria-hidden="true">→</span></button>
-          <a class="btn line" href="https://www.instagram.com/miint.s0da" target="_blank" rel="noopener"><span>인스타 DM 보내기</span><span aria-hidden="true">↗</span></a>
+          <a class="btn fill" href="mailto:lemonti07@naver.com"><span>lemonti07@naver.com</span><span aria-hidden="true">↗</span></a>
+          <a class="btn line" href="https://www.instagram.com/miint.s0da" target="_blank" rel="noopener"><span>@miint.s0da</span><span aria-hidden="true">↗</span></a>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </section>
@@ -1003,13 +984,6 @@ function frame(now) {
 }
 requestAnimationFrame(frame);
 })();
-
-document.getElementById('cform').addEventListener('submit', e => {
-  e.preventDefault();
-  const f = e.target, n = f.name.value.trim(), m = f.email.value.trim(), t = f.msg.value.trim();
-  const body = `이름: ${n}\n회신 이메일: ${m}\n\n${t}`;
-  location.href = `mailto:lemonti07@naver.com?subject=${encodeURIComponent('[포트폴리오 문의] ' + n)}&body=${encodeURIComponent(body)}`;
-});
 
 /* ---------- 인트로: 처음 방문 때 한 번만, 건너뛰기 가능 ---------- */
 (() => {
