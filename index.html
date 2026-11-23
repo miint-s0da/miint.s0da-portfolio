@@ -247,7 +247,7 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 .foot-in .logo{font-size:24px}
 .foot-in small{display:block;margin-top:8px;font:400 11px/1.6 var(--f-mono);color:var(--mut);letter-spacing:.04em}
 .foot-in{flex-direction:column;align-items:stretch;gap:44px}
-.fb-en{margin:0;font:800 clamp(2.6rem,8vw,7.2rem)/1 var(--f-display);letter-spacing:-.04em;text-transform:uppercase}
+.fb-en{margin:0;font:800 clamp(2.6rem,8vw,7.2rem)/1 var(--f-display);letter-spacing:-.012em;text-transform:uppercase}
 .fb-en span{color:var(--acc)}
 .fb-ko{margin:22px 0 0;max-width:560px;font-size:15px;line-height:1.75;color:var(--mut);word-break:keep-all}
 .foot-row{display:flex;flex-wrap:wrap;align-items:center;gap:18px 28px;padding-top:28px;border-top:1px solid var(--line)}
@@ -304,6 +304,11 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
   .steps li,.steps li:last-child{grid-column:auto;display:flex;align-items:center;gap:18px;padding:14px 18px}
   .steps small{margin:0;font-size:12px}
   .steps b{font-size:14px}}
+/* 프로젝트 카피: 화면에 들어올 때마다 한 줄씩 올라옴 */
+html.rv .track:not(.in) .copy>*:not(.emblem){opacity:0;transform:translateY(26px)}
+html.rv .track .copy>*:not(.emblem){transition:opacity .7s ease,transform .9s cubic-bezier(.22,1,.36,1);transition-delay:calc(var(--n,0) * 90ms)}
+html.rv .track.in .copy>*:not(.emblem){opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){html.rv .track:not(.in) .copy>*:not(.emblem){opacity:1;transform:none}}
 /* 5단계: 세로 타임라인 (점 + 이어지는 선 + 큰 번호) */
 .steps{display:flex;flex-direction:column;gap:0;position:relative}
 .steps::before{content:"";position:absolute;left:11px;top:26px;bottom:26px;width:1px;background:var(--line)}
@@ -329,7 +334,7 @@ html:not(.hero-wait) #hero .hero-ko .hk{background-size:100% 100%}
 @media(prefers-reduced-motion:reduce){html.hero-wait #hero .hero-ko .ln>span{transform:none}#hero .hero-ko .hk{background-size:100% 100%;transition:none}}
 #hero .hero-sub{margin:-6px 0 0;font-size:15px;line-height:1.7;color:var(--mut);word-break:keep-all;max-width:560px}
 #hero .hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
-@media(min-width:820px){#hero .hero-tags{position:absolute;right:0;bottom:48px;flex-direction:column;align-items:flex-end;flex-wrap:nowrap}}
+@media(min-width:820px){#hero .hero-tags{position:absolute;right:clamp(0px,calc(var(--rpad) - (100vw - 1280px) / 2),var(--rpad));bottom:48px;flex-direction:column;align-items:flex-end;flex-wrap:nowrap}}
 #hero .hero-tags li{font:500 11px/1 var(--f-mono);letter-spacing:.06em;padding:8px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg)}
 /* 히어로 정리: 영문 타이틀은 작게 왼쪽, 한글 문구를 크게 */
 @media(max-width:819px){.pill-en{display:none}}
@@ -721,7 +726,7 @@ const pop = { sw: 3, sc: 'ink', sh: 5 };
 
 const CH = [
   /* 0 INDEX — 선형 도형 제거: 히어로는 격자 그래픽만 사용 */
-  [ H(), H(), H(), H(), H(), H(), H(), H(), H(), H(), H(), H() ],
+  [ p(-28,0,18,18,{rad:50,f:'P0'}), p(0,0,13.4,13.4,{r:45,f:'P2'}), p(28,0,18,18,{rad:22,f:'P3'}), H(), H(), H(), H(), H(), H(), H(), H(), H() ],
   /* 1 UNI+ON — 두 원 + 플러스 */
   [ p(-24,0,46,46,{rad:50,f:0,...pop}), p(24,0,46,46,{rad:50,f:1,...pop}), p(0,0,32,10,{rad:14,f:2,sw:3,sc:'ink',sh:4}), p(0,0,10,32,{rad:14,f:2,sw:3,sc:'ink',sh:4}),
     p(-42,-38,10,10,{r:15,f:1,sw:3,sc:'ink',sh:3}), p(42,-38,9,9,{rad:50,f:2,sw:3,sc:'ink',sh:3}), p(-40,38,9,9,{rad:50,f:0,sw:3,sc:'ink',sh:3}), p(42,38,10,10,{r:-12,f:2,sw:3,sc:'ink',sh:3}),
@@ -754,7 +759,20 @@ const sym6 = $('#sym6');
 const isMob = () => innerWidth < 820;
 function boxFor(i) {
   const w = innerWidth, h = innerHeight;
-  if (i === 0) return { cx: w / 2, cy: h * .52, S: Math.min(w * 1.05, h * 1.3) };
+  if (i === 0) {
+    const ko = document.querySelector('#hero .hero-ko'), tg = document.querySelector('#hero .hero-tags');
+    if (ko && ko.children[1]) {
+      const ln = ko.children[1], rg = document.createRange(); rg.selectNodeContents(ln.firstElementChild);
+      const tr = rg.getBoundingClientRect(), lr = ln.getBoundingClientRect(), kr = document.querySelector('#hero .kin').getBoundingClientRect();
+      if (w >= 820 && tg) {
+        const left = tr.right + 40, right = tg.getBoundingClientRect().left - 40, S = Math.max(150, Math.min((right - left) / .74, 440));
+        return { cx: (left + right) / 2, cy: (lr.top + lr.bottom) / 2 - 4, S };
+      }
+      const en = document.querySelector('#hero .hero-en').getBoundingClientRect(), S = 150;
+      return { cx: kr.right - 24 - S * .37, cy: en.top + en.height / 2, S };
+    }
+    return { cx: w * .8, cy: h * .45, S: 360 };
+  }
   if (i === 4) { const r = sym6.getBoundingClientRect(); return { cx: r.left + r.width / 2, cy: r.top + r.height / 2 - 20, S: Math.min(r.width, isMob() ? 340 : 560) }; }
   if (i >= 1 && i <= 3) { const e = document.querySelector('#p' + i + ' .emblem'); if (e) { const r = e.getBoundingClientRect(); return { cx: r.left + r.width / 2, cy: r.top + r.height / 2, S: r.width }; } }
   if (isMob()) return { cx: w / 2, cy: h * .26, S: Math.min(w * .7, h * .32) };
@@ -965,7 +983,7 @@ function frame(now) {
   const kS = Math.min(1, Math.max(.45, S / 560));
   els.forEach((el, k) => {
     const a = CH[i][k], b = CH[j][k];
-    const oa = (isMob() && i === 0 && FRONT.has(k)) ? 0 : a.o, ob = (isMob() && j === 0 && FRONT.has(k)) ? 0 : b.o;
+    const oa = a.o, ob = b.o;
     const W = mix(a.w, b.w, s) / 100 * S, Hh = mix(a.h, b.h, s) / 100 * S;
     let X = cx + mix(a.x, b.x, s) / 100 * S, Y = cy + mix(a.y, b.y, s) / 100 * S;
     if (!RM) { X += Math.cos(now / 1500 + k * 1.9) * S * .004; Y += Math.sin(now / 1100 + k * 1.7) * S * .007; }
@@ -973,7 +991,7 @@ function frame(now) {
     const sc = lerpCol(tok(a.sc, A, theme), tok(b.sc, B, theme), s);
     let sw = mix(a.sw, b.sw, s) * kS, sh = mix(a.sh, b.sh, s) * kS, o = mix(oa, ob, s);
     let Wm = W, Hm = Hh, rot = mix(a.r, b.r, s), rad = mix(a.rad, b.rad, s), fillc = fill;
-    const wt = (i === 0 && !RM) ? 1 - s : 0;
+    const wt = 0;   /* 히어로 도형은 가만히 있고, 스크롤할 때만 변함 */
     if (wt > 0) {
       const u = now / 1000, ph = k * 1.7;
       if (k === 10) {                       /* 타이포 사이로 끼어드는 도형 (히어로 안에서만) */
@@ -2578,6 +2596,19 @@ document.querySelectorAll('.strip').forEach(s => s.addEventListener('click', () 
     setTimeout(() => { mo.disconnect(); go(); }, 12000);
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wait); else wait();
+  /* 스크롤로 히어로를 벗어났다 돌아올 때마다 다시 재생 */
+  let started = false;
+  const go0 = go; 
+  const hero = document.getElementById('hero');
+  if (hero && 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    new IntersectionObserver(es => {
+      const on = es[0].isIntersecting;
+      if (!de.classList.contains('hero-go') && !started) { if (on) started = false; return; }
+      started = true;
+      if (!on) { de.classList.add('hero-wait'); de.classList.remove('hero-go'); }
+      else if (de.classList.contains('hero-wait')) setTimeout(go, 80);
+    }, { threshold: .3 }).observe(hero);
+  }
 })();
 </script>
 <script>
@@ -2600,6 +2631,16 @@ document.querySelectorAll('.strip').forEach(s => s.addEventListener('click', () 
   ul.addEventListener('mouseenter', () => { paused = true; clearTimeout(timer); items.forEach(x => x.classList.remove('on', 'off')); i = -1; });
   ul.addEventListener('mouseleave', () => { paused = false; timer = setTimeout(step, 600); });
   new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible) { if (i < 0) timer = setTimeout(step, 400); } else { clearTimeout(timer); items.forEach(x => x.classList.remove('on', 'off')); i = -1; } }, { threshold: .4 }).observe(ul);
+})();
+</script>
+<script>
+(() => {
+  if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.documentElement.classList.add('rv');
+  const secs = [...document.querySelectorAll('.track')];
+  secs.forEach(t => [...t.querySelectorAll('.copy>*')].forEach((c, n) => c.style.setProperty('--n', n)));
+  const io = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('in', e.isIntersecting)), { threshold: .3 });
+  secs.forEach(t => io.observe(t));
 })();
 </script>
 </body>
