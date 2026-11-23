@@ -357,6 +357,12 @@ html:not(.hero-wait) #hero .hero-ko .hk{background-size:100% 100%}
 .ko-sub{display:block;margin-top:4px;font:500 12px/1.6 var(--f-sans);letter-spacing:0;color:var(--mut);opacity:.85}
 #hero .hero-ko{margin:0;font-family:"Noto Sans KR",Pretendard,system-ui,sans-serif;font-weight:800;font-size:clamp(2.1rem,min(8.4vw,calc((100svh - 500px) / 2.32)),8.8rem);line-height:1.16;letter-spacing:-.05em;word-break:keep-all;color:var(--fg)}
 @media(max-width:819px){#hero .hero-ko{font-size:10.4vw}}
+@media(min-width:820px) and (max-height:740px){
+  #hero{padding-top:80px;padding-bottom:20px}
+  #hero .kin{gap:14px;padding-bottom:20px}
+  #hero .hero-sub{padding-bottom:0}
+  #hero .hero-ko{font-size:clamp(2.1rem,min(8.4vw,calc((100svh - 330px) / 2.32)),8.8rem)}
+}
 /* 연락처: 카드 2장 레이아웃 (정보 카드 + 폼 카드) */
 .contact-grid{display:grid;grid-template-columns:1fr;gap:28px;align-items:stretch}
 .contact-card{position:relative;border-radius:26px;margin:0;max-width:none;box-shadow:12px 12px 0 #D4FF00}
@@ -782,6 +788,11 @@ function boxFor(i) {
     if (ko && ko.children[1]) {
       const ln = ko.children[1], rg = document.createRange(); rg.selectNodeContents(ln.firstElementChild);
       const tr = rg.getBoundingClientRect(), lr = ln.getBoundingClientRect(), kr = document.querySelector('#hero .kin').getBoundingClientRect();
+      if (w >= 820 && innerHeight <= 740) {   /* 낮은 화면: 카피 첫 줄 오른쪽 빈 곳 (칩 열 위) */
+        const l1 = ko.children[0].getBoundingClientRect(), ft = document.querySelector('#hero .hero-foot').getBoundingClientRect(), tg = document.querySelector('#hero .hero-tags').getBoundingClientRect(), S = 300;
+        const cy0 = (l1.top + l1.bottom) / 2 - 16, cy = Math.min(cy0, tg.top - 16 - S * .1);   /* 칩 열 위로 */
+        return { cx: Math.min(ft.right, w - 110) - S * .37, cy, S };
+      }
       if (w >= 820) {
         const sub = document.querySelector('#hero .hero-sub').getBoundingClientRect(), ft = document.querySelector('#hero .hero-foot').getBoundingClientRect();
         const sp = parseFloat(getComputedStyle(document.querySelector('#hero .hero-sub')).paddingBottom) || 0;
@@ -1412,7 +1423,7 @@ body::after {
 
 .bento-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(12, 1fr);
   gap: 28px;
   margin: 46px 0 84px;
 }
@@ -1423,10 +1434,11 @@ body::after {
   transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.card-persona { grid-column: span 2; }
-.card-full-span { grid-column: span 3; }
-.card-toolkit-wide { grid-column: span 2; }
-.card-process-side { grid-column: span 1; }
+.card-persona { grid-column: span 7; }
+.card-sticky-yellow { grid-column: span 5; }
+.card-full-span { grid-column: span 12; }
+.card-toolkit-wide { grid-column: span 8; }
+.card-process-side { grid-column: span 4; }
 
 .style-clip {
   background: #FFFFFF;
@@ -1654,7 +1666,7 @@ border: 1px solid rgba(0,0,0,0.05);
 }
 .m-stat span { display: block; font-size: 0.74rem; font-weight: 700; color: var(--ink-sub); }
 .m-stat strong { font-size: 1.15rem; font-weight: 900; color: var(--purple); }
-.who-planet { display:block; width:84px; height:auto; margin:16px 0 4px -6px; }
+.who-planet { display:block; width:54px; height:auto; margin:14px 0 2px -2px; }
 .sticky-title {
 font-size: 1.35rem;
 font-weight: 900;
@@ -1665,7 +1677,7 @@ line-height: 1.35;
 list-style: none;
 display: flex;
 flex-direction: column;
-gap: 18px;
+gap: 15px;
 line-height: 1.85;
 font-size: 0.92rem;
 font-weight: 600;
@@ -1944,7 +1956,7 @@ body::after { left: 6px; }
 .illust-showcase { grid-template-columns: 1fr; max-width: 340px; }
 .illust-frame.rot-l, .illust-frame.rot-r, .illust-frame.center-frame { transform: none; }
 .bento-grid { grid-template-columns: 1fr; }
-.card-persona, .card-full-span, .card-toolkit-wide, .card-process-side { grid-column: span 1; }
+.card-persona, .card-sticky-yellow, .card-full-span, .card-toolkit-wide, .card-process-side { grid-column: span 12; }
 .id-split { grid-template-columns: 1fr; }
 .history-grid { grid-template-columns: 1fr; }
 }
@@ -2684,7 +2696,8 @@ document.querySelectorAll('.strip').forEach(s => s.addEventListener('click', () 
     const rects = sel.map(q => hero.querySelector(q)).filter(Boolean).map(e => { const r = e.getBoundingClientRect(); const pb = e.classList.contains('hero-sub') ? (parseFloat(getComputedStyle(e).paddingBottom) || 0) : 0; return { l: r.left - hr.left - 28, r: r.right - hr.left + 28, t: r.top - hr.top - 28, b: r.bottom - pb - hr.top + 28 }; });
     const sb = hero.querySelector('.hero-sub').getBoundingClientRect(), fb = hero.querySelector('.hero-foot').getBoundingClientRect();
     const spb = parseFloat(getComputedStyle(hero.querySelector('.hero-sub')).paddingBottom) || 0;
-    rects.push({ l: hr.width / 2 - 190, r: hr.width / 2 + 190, t: sb.bottom - spb - hr.top - 6, b: fb.top - hr.top + 4 });   /* 가운데 도형 자리 */
+    if (innerHeight <= 740) { const k1 = hero.querySelector('.hero-ko').children[0].getBoundingClientRect(), mid = (k1.top + k1.bottom) / 2 - hr.top - 16; rects.push({ l: fb.right - hr.left - 300, r: fb.right - hr.left + 30, t: mid - 60, b: mid + 60 }); }
+    else rects.push({ l: hr.width / 2 - 190, r: hr.width / 2 + 190, t: sb.bottom - spb - hr.top - 6, b: fb.top - hr.top + 4 });   /* 가운데 도형 자리 */
     const cells = [];
     for (let y = 2 * U; y < hr.height - 40; y += U) for (let x = U; x < hr.width - 80; x += U)
       if (!rects.some(a => x > a.l && x < a.r && y > a.t && y < a.b)) cells.push([x, y]);
