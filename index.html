@@ -62,7 +62,7 @@ header.top{
 .logo .i{color:var(--acc)} .logo .dot{color:#f43f5e} .logo .zero{display:inline-block;font-family:"JetBrains Mono",monospace;font-variant-numeric:slashed-zero;font-weight:700;font-size:.92em;letter-spacing:-.08em}
 .tools{display:flex;align-items:center;gap:10px}
 /* 도형 모음 메뉴: 2×2 도형 버튼을 누르면 도형이 왼쪽으로 펼쳐지며 글자가 됩니다 */
-.sm{position:relative;display:none;align-items:center}  /* 우측 도형 메뉴 숨김 (챕터 점·히어로 버튼으로 이동) */
+.sm{position:relative;display:flex;align-items:center}
 .g{display:block;width:14px;height:14px;flex:none}
 .g-c{border-radius:50%;background:var(--acc)}
 .g-d{border:2px solid var(--fg);transform:rotate(45deg) scale(.8)}
@@ -211,8 +211,11 @@ header.top{
 .eyebrow{font:600 12px/1 var(--f-mono);letter-spacing:.16em;color:var(--acc);display:block;margin-bottom:18px}
 .about-grid h2{margin:0 0 20px;font:800 clamp(1.9rem,4.4vw,3.4rem)/1.25 var(--f-display);letter-spacing:-.03em;word-break:keep-all}
 .about-grid p.lead{max-width:560px;margin:0 0 28px;color:var(--mut);font-size:15px;line-height:1.85;word-break:keep-all}
-.about-contact{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
-.about-contact .btn{text-transform:none;letter-spacing:.02em}
+.hist{display:grid;gap:26px;padding:32px;border:1px solid var(--line);border-radius:26px;background:rgb(var(--bgv)/.7)}
+.hist .k{font:600 11px/1 var(--f-mono);letter-spacing:.16em;color:var(--acc)}
+.hist p{margin:12px 0 0;font-size:15px;line-height:1.8;word-break:keep-all}
+.hist .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.hist .chips span{font:500 12px/1 var(--f-mono);padding:8px 12px;border:1px solid var(--line);border-radius:8px;letter-spacing:.03em}
 .steps{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 @media(min-width:640px){.steps{grid-template-columns:repeat(5,1fr)}}
 .steps li{padding:14px;border:1px solid var(--line);border-radius:12px;background:rgb(var(--bgv)/.7);transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .25s,background .25s}
@@ -285,6 +288,9 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 .contact-info .contact-ttl{font-size:clamp(1.8rem,3.2vw,2.5rem);line-height:1.2}
 .contact-info .cbtns{margin-top:8px}
 .contact-info .cbtns .btn{background:var(--bg);color:var(--fg);border:1px solid var(--bg);text-transform:none;letter-spacing:.02em}
+.contact-info .cabout{margin-top:2px}
+.contact-info .cabout .btn{background:transparent;color:var(--bg);border:1.5px solid var(--bg);text-transform:none;letter-spacing:.02em}
+.contact-info .cabout .btn:hover{background:var(--bg);color:var(--fg)}
 @media(min-width:900px){.contact-grid{padding-right:64px}}
 @media(max-width:860px){.contact-grid{grid-template-columns:1fr}}
 /* 푸터: 인트로 다시 보기 */
@@ -528,25 +534,37 @@ html.live-shapes .emblem{visibility:hidden}
         <li><small>05</small><b>RESULT</b></li>
       </ul>
     </div>
-    <div>
-      <div class="box">
-        <div>
-          <div class="top"><b>FULL ARCHIVE</b><span>24 HISTORY · 28 SKILLS</span></div>
-        </div>
-        <div>
-          <h3>저를 좀 더 알고 싶으시다면?</h3>
-          <p>저에 대한 소개페이지입니다.</p>
-        </div>
-        <a class="go" href="#aboutme" data-about="history"><span>FLOW FLOW ME</span><span aria-hidden="true">→</span></a>
+    <div class="hist">
+      <div>
+        <span class="k">HISTORY</span>
+        <p>AI 바이브코딩 · 그린컴퓨터아트학원 (2026.08 ~ 2026.11)<br>웹디자인 · 멀티미디어콘텐츠제작 · 편집디자인 교육</p>
       </div>
-      <div class="about-contact" id="contact">
-        <a class="btn fill" href="mailto:lemonti07@naver.com"><span>lemonti07@naver.com</span><span aria-hidden="true">↗</span></a>
-        <a class="btn line" href="https://www.instagram.com/miint.s0da" target="_blank" rel="noopener"><span>@miint.s0da</span><span aria-hidden="true">↗</span></a>
+      <div>
+        <span class="k">SKILLS</span>
+        <div class="chips"><span>Figma</span><span>HTML5 / CSS3</span><span>JavaScript</span><span>Claude Code</span><span>Photoshop</span><span>Illustrator</span></div>
       </div>
     </div>
   </div>
 </section>
 <!-- ============== CONTACT ============== -->
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-card contact-info">
+        <span class="eyebrow">CONTACT</span>
+        <h2 class="contact-ttl">편하게 연락 주세요.</h2>
+        <p>작업 의뢰, 협업, 질문 모두 환영합니다.</p>
+        <div class="cbtns">
+          <a class="btn fill" href="mailto:lemonti07@naver.com"><span>lemonti07@naver.com</span><span aria-hidden="true">↗</span></a>
+          <a class="btn line" href="https://www.instagram.com/miint.s0da" target="_blank" rel="noopener"><span>@miint.s0da</span><span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="cabout"><a class="btn line" href="#aboutme" data-about="profile"><span>About Me 보러가기</span><span aria-hidden="true">→</span></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <footer>
@@ -801,7 +819,7 @@ function buildGrid() {
   }
   /* 일부 칸만 남기는 패턴: 첫 로드 때 전체가 천천히 채워진 뒤, 패턴 밖 칸은 비워서 배경이 답답하지 않게 */
   const keep = i => ((Math.floor(i / ROWS) * 3 + (i % ROWS)) % 4 === 0);
-  if (RM || revealed) cells.forEach((c, i) => { if (keep(i)) c.classList.add('fill'); });
+  if (true) cells.forEach((c, i) => { if (keep(i)) c.classList.add('fill'); });   /* 움직임은 깜빡임 하나로 통일: 처음에도 채우기 연출 없이 바로 배치 */
   else {
     revealed = true;
     cells.forEach((_, i) => {
