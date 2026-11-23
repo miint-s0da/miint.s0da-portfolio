@@ -329,7 +329,6 @@ html:not(.hero-wait) #hero .hero-ko .hk{background-size:100% 100%}
 @media(prefers-reduced-motion:reduce){html.hero-wait #hero .hero-ko .ln>span{transform:none}#hero .hero-ko .hk{background-size:100% 100%;transition:none}}
 #hero .hero-sub{margin:-6px 0 0;font-size:15px;line-height:1.7;color:var(--mut);word-break:keep-all;max-width:560px}
 #hero .hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
-@media(max-width:819px){#hero .hero-ko{font-size:10.4vw}}
 @media(min-width:820px){#hero .hero-tags{position:absolute;right:var(--rpad);bottom:48px;flex-direction:column;align-items:flex-end;flex-wrap:nowrap}}
 #hero .hero-tags li{font:500 11px/1 var(--f-mono);letter-spacing:.06em;padding:8px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg)}
 /* 히어로 정리: 영문 타이틀은 작게 왼쪽, 한글 문구를 크게 */
@@ -339,6 +338,7 @@ html:not(.hero-wait) #hero .hero-ko .hk{background-size:100% 100%}
 #hero .hero-en #t3{color:var(--acc)}
 .ko-sub{display:block;margin-top:4px;font:500 12px/1.6 var(--f-sans);letter-spacing:0;color:var(--mut);opacity:.85}
 #hero .hero-ko{margin:0;font-family:"Noto Sans KR",Pretendard,system-ui,sans-serif;font-weight:800;font-size:clamp(2.1rem,8.4vw,8.8rem);line-height:1.16;letter-spacing:-.05em;word-break:keep-all;color:var(--fg)}
+@media(max-width:819px){#hero .hero-ko{font-size:10.4vw}}
 /* 연락처: 카드 2장 레이아웃 (정보 카드 + 폼 카드) */
 .contact-grid{display:grid;grid-template-columns:1fr;gap:28px;align-items:stretch}
 .contact-card{position:relative;border-radius:26px;margin:0;max-width:none;box-shadow:12px 12px 0 #D4FF00}
