@@ -985,7 +985,7 @@ function drawLineArt(now, wt) {
 
 function frame(now) {
   const w = innerWidth, h = innerHeight, vc = h / 2;
-  const cs = secs.map(s => { const r = s.getBoundingClientRect(); return { h: r.height, c: r.top + r.height / 2 }; });
+  const cs = secs.map((s, idx) => { const r = (idx === N - 1 ? sym6 : s).getBoundingClientRect(); return { h: r.height, c: r.top + r.height / 2 }; });
 
   let i = 0, s = 0;
   if (vc <= cs[0].c) { i = 0; s = 0; }
