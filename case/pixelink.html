@@ -23,6 +23,7 @@ h2 small{display:block;font:800 11px/1 system-ui;letter-spacing:.12em;color:var(
 .pol figcaption{position:absolute;left:14px;right:14px;bottom:12px;font:700 13px/1.3 system-ui;color:var(--ink)}
 .pol:nth-of-type(even){transform:rotate(1deg)}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid2.res{grid-template-columns:1.5fr 1fr;align-items:start}
 .ux{display:grid;gap:14px}
 .ux .panel{margin:0}
 .ux b{color:var(--pink)}
@@ -31,7 +32,7 @@ th,td{border:2px solid var(--ink);padding:10px 12px;text-align:left;vertical-ali
 th{background:var(--yel)}
 .go{display:inline-block;margin:8px 10px 0 0;background:var(--cy);color:var(--ink);border:3px solid var(--ink);border-radius:999px;padding:12px 20px;font-weight:800;text-decoration:none;box-shadow:4px 4px 0 var(--ink)}
 .go.alt{background:#fff}
-@media(max-width:700px){.grid2{grid-template-columns:1fr}}
+@media(max-width:700px){.grid2,.grid2.res{grid-template-columns:1fr}}
 @keyframes pop{0%{transform:scale(.7);opacity:0}70%{transform:scale(1.03)}100%{transform:none;opacity:1}}
 .panel,.pol{animation:pop .45s cubic-bezier(.2,.9,.3,1.3) both}
 </style>
@@ -82,8 +83,8 @@ th{background:var(--yel)}
 
 <section>
   <h2><small>04 · RESULT</small>핵심 화면</h2>
-  <div class="grid2">
-    <figure class="pol" style="margin:0"><img src="pixelink/img/result3_goods.webp" alt="굿즈"><figcaption>GOODS</figcaption></figure>
+  <div class="grid2 res">
+    <figure class="pol" style="margin:0"><img src="pixelink/img/result3_goods_full.webp" alt="굿즈 구간 전체 화면"><figcaption>GOODS</figcaption></figure>
     <figure class="pol" style="margin:0"><img src="pixelink/img/result4_mobile.webp" alt="모바일 화면"><figcaption>모바일 · 반응형, 홈 화면 추가 지원</figcaption></figure>
   </div>
   <div class="panel" style="margin-top:18px"><p style="margin:0"><b>툴</b> 개발: Claude Code (기획·디자인 디렉션은 직접) · Notion(기획) · Gemini / ChatGPT(초안·히어로 시안) · Vercel</p>
