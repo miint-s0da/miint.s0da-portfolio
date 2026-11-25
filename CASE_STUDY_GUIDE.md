@@ -1,8 +1,8 @@
 # 포트폴리오 케이스 스터디 작성 가이드
 
-miint.s0da 포트폴리오(miint.s0da-portfolio.app)의 프로젝트마다 **CASE STUDY 팝업**을 붙인다.
+miint.s0da 포트폴리오(miints0da-portfolio.vercel.app)의 프로젝트마다 **CASE STUDY 팝업**을 붙인다.
 메인 카드에는 제목·한 줄 소개·설명·태그만 두고, 자세한 내용은 팝업에 넣는다.
-첫 번째 완성본: `case/vortexfall.html` — miint.s0da-portfolio.app/#case/vortexfall
+첫 번째 완성본: `case/vortexfall.html` — miints0da-portfolio.vercel.app/#case/vortexfall
 
 ## 구조 (모든 프로젝트 같은 순서)
 
