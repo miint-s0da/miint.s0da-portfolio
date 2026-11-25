@@ -282,20 +282,19 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 .cbtns{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
 .cbtns button{border:0;cursor:pointer;font-family:inherit}
 
-#intro{position:fixed;inset:0;z-index:100;background:#09090B;color:#F4F4F6;display:grid;place-items:center;overflow:hidden;transition:opacity .7s ease,visibility .7s}
+#intro{position:fixed;inset:0;z-index:100;background:rgb(var(--bgv));color:var(--fg);display:grid;place-items:center;overflow:hidden;transition:opacity .7s ease,visibility .7s}
 #intro.out{opacity:0;visibility:hidden}
-.in-grid{position:absolute;inset:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(56px,1fr));grid-auto-rows:56px;gap:10px;padding:10px}
-.in-grid i{display:block;border-radius:8px;background:#D4FF00;opacity:0;transform:scale(.6);transition:opacity 1s ease,transform 1s ease}
-.in-grid i.on{opacity:.2;transform:none}
-.in-box{position:relative;width:fit-content;max-width:92vw;padding:0 24px}
-.in-name{font:800 clamp(3.2rem,min(10vw,84px),9rem)/.92 var(--f-display);letter-spacing:-.04em;white-space:nowrap}
-.in-name span{color:#D4FF00}
-.in-list{list-style:none;margin:34px 0 0;padding:0;display:grid;gap:12px}
+.in-box{position:relative;width:fit-content;max-width:92vw;padding:0 24px;text-align:center}
+.in-sym{display:block;width:min(46vw,190px);height:auto;margin:0 auto 26px;overflow:visible;clip-path:inset(-20% 100% -20% -20%);animation:inSymReveal 1.2s .25s cubic-bezier(.65,0,.25,1) forwards}
+@keyframes inSymReveal{to{clip-path:inset(-20% -20% -20% -20%)}}
+.in-name{margin:0 auto;font:800 clamp(3.2rem,min(10vw,84px),9rem)/.92 var(--f-display);letter-spacing:-.04em;white-space:nowrap}
+.in-name span{color:var(--acc)}
+.in-list{list-style:none;margin:34px 0 0;padding:0;display:grid;gap:12px;justify-items:center}
 .in-list li{font:700 clamp(14px,2.4vw,18px)/1 var(--f-mono);letter-spacing:.14em;opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
 .in-list li.on{opacity:1;transform:none}
-.in-year{margin-top:28px;font:600 12px/1 var(--f-mono);letter-spacing:.16em;color:#D4FF00;opacity:0;transition:opacity .6s ease}
+.in-year{margin-top:28px;font:600 12px/1 var(--f-mono);letter-spacing:.16em;color:var(--acc);opacity:0;transition:opacity .6s ease}
 .in-year.on{opacity:1}
-.in-skip{position:absolute;right:24px;bottom:24px;background:transparent;border:1px solid rgba(255,255,255,.3);color:#F4F4F6;border-radius:999px;padding:10px 16px;font:700 11px/1 var(--f-mono);letter-spacing:.12em;cursor:pointer}
+.in-skip{position:absolute;right:24px;bottom:24px;background:transparent;border:1px solid var(--line);color:var(--fg);border-radius:999px;padding:10px 16px;font:700 11px/1 var(--f-mono);letter-spacing:.12em;cursor:pointer}
 @media(prefers-reduced-motion:reduce){#intro{display:none}}
 /* 히어로 꽉 채우기: 헤드라인이 화면 폭을 가득 채우도록 래퍼 제한 해제 */
 /* 히어로 내용은 다른 섹션과 같은 폭(1280, 좌우 24, 오른쪽 점 영역)에 맞춤 */
@@ -464,8 +463,8 @@ html.live-shapes .emblem{visibility:hidden}
 
 <!-- Shape layers: 뒤(글자 아래) / 앞(글자 위) -->
 <div id="intro" aria-label="인트로">
-  <div class="in-grid" id="inGrid" aria-hidden="true"></div>
   <div class="in-box">
+    <svg class="in-sym" viewBox="0 0 773 536" aria-hidden="true" focusable="false"><use href="#symP" style="fill:url(#symG)"/></svg>
     <div class="in-name">miint<span>.s0da</span></div>
     <ul class="in-list">
       <li>UNI+ON</li>
@@ -1098,12 +1097,6 @@ requestAnimationFrame(frame);
   const intro = document.getElementById('intro'); if (!intro) return;
   let seen = false; try { seen = sessionStorage.getItem('miint-intro') === '1'; } catch (e) {}
   if (seen || matchMedia('(prefers-reduced-motion: reduce)').matches) { intro.remove(); return; }
-  const g = document.getElementById('inGrid');
-  /* 창이 작을 때 기준으로만 칸을 만들면 창을 키울 때 아래쪽이 비므로, 모니터 크기까지 넉넉히 채움 */
-  const n = Math.ceil(Math.max(innerWidth, screen.width) / 66) * Math.ceil(Math.max(innerHeight, screen.height) / 66);
-  const cells = [];
-  for (let k = 0; k < n; k++) { const c = document.createElement('i'); g.appendChild(c); cells.push(c); }
-  cells.forEach(c => setTimeout(() => c.classList.add('on'), Math.random() * 2400));
   const lis = [...intro.querySelectorAll('.in-list li')], year = intro.querySelector('.in-year');
   lis.forEach((li, k) => setTimeout(() => li.classList.add('on'), 900 + k * 350));
   setTimeout(() => year.classList.add('on'), 2200);
