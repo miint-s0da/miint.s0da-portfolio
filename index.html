@@ -243,6 +243,8 @@ header.top{
 .hist .cbtns{display:flex;flex-wrap:wrap;gap:10px;margin:0}
 .hist .cbtns .btn,.hist .about-go{text-transform:none;letter-spacing:.02em}
 .hist .about-go{flex:1;justify-content:space-between}
+.hist .about-go .al-en,.hist .about-go .al-ko{white-space:nowrap}
+@media(max-width:480px){.hist .about-go .al{display:grid;gap:2px;line-height:1.25}.hist .about-go .al-en,.hist .about-go .al-ko{display:block}}
 .hist .k{font:600 11px/1 var(--f-mono);letter-spacing:.16em;color:var(--acc)}
 .hist p{margin:12px 0 0;font-size:15px;line-height:1.8;word-break:keep-all}
 .hist .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
@@ -297,7 +299,7 @@ footer{position:relative;z-index:2;padding:56px max(24px,env(safe-area-inset-lef
 .cbtns{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
 .cbtns button{border:0;cursor:pointer;font-family:inherit}
 
-#intro{position:fixed;inset:0;z-index:100;background:rgb(var(--bgv));color:var(--fg);display:grid;place-items:center;overflow:hidden;transition:opacity .7s ease,visibility .7s}
+#intro{position:fixed;inset:0;z-index:100;background-color:rgb(var(--bgv));background-image:linear-gradient(to right,var(--grid) 1px,transparent 1px),linear-gradient(to bottom,var(--grid) 1px,transparent 1px);background-size:64px 64px;color:var(--fg);display:grid;place-items:center;overflow:hidden;transition:opacity .7s ease,visibility .7s}
 #intro.out{opacity:0;visibility:hidden}
 .in-box{position:relative;width:fit-content;max-width:92vw;padding:0 24px;text-align:center}
 .in-sym{display:block;width:min(46vw,190px);height:auto;margin:0 auto 26px;overflow:visible;clip-path:inset(-20% 100% -20% -20%);animation:inSymReveal 1.2s .25s cubic-bezier(.65,0,.25,1) forwards}
@@ -686,7 +688,7 @@ html.live-shapes .emblem{visibility:hidden}
         </form>
         <div class="cbtns">
           <a class="btn line" href="https://www.instagram.com/miint.s0da" target="_blank" rel="noopener"><span>@miint.s0da</span><span aria-hidden="true">↗</span></a>
-          <a class="btn line about-go" href="#aboutme" data-about="profile"><span>About Me 보러가기</span><span aria-hidden="true">→</span></a>
+          <a class="btn line about-go" href="#aboutme" data-about="profile"><span class="al"><span class="al-en">About Me</span> <span class="al-ko">보러가기</span></span><span aria-hidden="true">→</span></a>
         </div>
       </div>
     </div>
