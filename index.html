@@ -225,9 +225,9 @@ header.top{
 .hist .rtitle{margin:12px 0 6px;font:800 1.25rem/1.3 var(--f-display);letter-spacing:-.02em}
 .hist h3{margin:12px 0 6px;font:800 1.5rem/1.3 var(--f-display);letter-spacing:-.02em}
 .hist #contact p{margin:0 0 18px;font-size:14px;color:var(--mut)}
-.cform{display:grid;gap:12px;margin:0 0 18px}
-.cform label{display:grid;gap:6px;font:600 11px/1 var(--f-mono);letter-spacing:.12em;color:var(--mut)}
-.cform input[type=text],.cform input[type=email],.cform textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:transparent;color:var(--fg);font:400 14px/1.5 inherit;font-family:inherit;letter-spacing:0;resize:vertical}
+.cform{display:grid;gap:10px;margin:0 0 14px}
+.cform label{display:grid;gap:5px;font:600 11px/1 var(--f-mono);letter-spacing:.12em;color:var(--mut)}
+.cform input[type=text],.cform input[type=email],.cform textarea{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:transparent;color:var(--fg);font:400 14px/1.5 inherit;font-family:inherit;letter-spacing:0;resize:vertical}
 .cform input:focus,.cform textarea:focus{outline:none;border-color:var(--acc)}
 .cform .cf-agree{display:flex;align-items:flex-start;gap:8px;font:400 12px/1.5 var(--f-mono);letter-spacing:0}
 .cform .cf-agree input{margin-top:3px;accent-color:var(--acc)}
@@ -670,13 +670,12 @@ html.live-shapes .emblem{visibility:hidden}
           <input type="checkbox" name="botcheck" class="cf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
           <label><span>이름</span><input type="text" name="name" required maxlength="60" autocomplete="name"></label>
           <label><span>이메일</span><input type="email" name="email" required maxlength="120" autocomplete="email"></label>
-          <label><span>문의 내용</span><textarea name="message" rows="4" required maxlength="2000"></textarea></label>
+          <label><span>문의 내용</span><textarea name="message" rows="3" required maxlength="2000"></textarea></label>
           <label class="cf-agree"><input type="checkbox" name="agree" required><span>문의 회신을 위해 이름·이메일을 수집하며, 메일 전송을 위해 외부 서비스(Web3Forms)를 거칩니다. 동의합니다. (필수)</span></label>
           <button class="btn fill" type="submit"><span>보내기</span><span aria-hidden="true">→</span></button>
           <p class="cf-status" id="cfStatus" role="status" aria-live="polite"></p>
         </form>
         <div class="cbtns">
-          <a class="btn fill" href="mailto:lemonti07@naver.com"><span>lemonti07@naver.com</span><span aria-hidden="true">↗</span></a>
           <a class="btn line" href="https://www.instagram.com/miint.s0da" target="_blank" rel="noopener"><span>@miint.s0da</span><span aria-hidden="true">↗</span></a>
         </div>
         <a class="btn line about-go" href="#aboutme" data-about="profile"><span>About Me 보러가기</span><span aria-hidden="true">→</span></a>
@@ -2759,9 +2758,9 @@ document.querySelectorAll('.strip').forEach(s => s.addEventListener('click', () 
       const res = await fetch(form.action, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
       const data = await res.json();
       if (res.ok && data.success) { form.reset(); say('문의가 전달되었어요. 확인 후 회신드릴게요!', 'ok'); }
-      else say('전송에 실패했어요. 아래 이메일로 보내주세요.', 'err');
+      else say('전송에 실패했어요. lemonti07@naver.com 으로 보내주세요.', 'err');
     } catch (err) {
-      say('네트워크 오류예요. 아래 이메일로 보내주세요.', 'err');
+      say('네트워크 오류예요. lemonti07@naver.com 으로 보내주세요.', 'err');
     }
     btn.disabled = false;
   });
