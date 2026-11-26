@@ -237,9 +237,12 @@ header.top{
 .hist .cform .cf-status{margin:0;min-height:1.2em;font:500 12px/1.5 var(--f-mono);color:var(--mut)}
 .cf-status.ok{color:var(--acc)!important}
 .cf-status.err{color:#ff5a5a!important}
-.hist .cbtns{margin:0 0 10px}
+.cform .cf-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:480px){.cform .cf-row{grid-template-columns:1fr}}
+.hist .cform .cf-status:empty{display:none}
+.hist .cbtns{display:flex;flex-wrap:wrap;gap:10px;margin:0}
 .hist .cbtns .btn,.hist .about-go{text-transform:none;letter-spacing:.02em}
-.hist .about-go{width:100%;justify-content:space-between}
+.hist .about-go{flex:1;justify-content:space-between}
 .hist .k{font:600 11px/1 var(--f-mono);letter-spacing:.16em;color:var(--acc)}
 .hist p{margin:12px 0 0;font-size:15px;line-height:1.8;word-break:keep-all}
 .hist .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
@@ -668,8 +671,10 @@ html.live-shapes .emblem{visibility:hidden}
           <input type="hidden" name="subject" value="[포트폴리오] 새 문의가 도착했어요">
           <input type="hidden" name="from_name" value="miint.s0da portfolio">
           <input type="checkbox" name="botcheck" class="cf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <label><span>이름</span><input type="text" name="name" required maxlength="60" autocomplete="name"></label>
-          <label><span>이메일</span><input type="email" name="email" required maxlength="120" autocomplete="email"></label>
+          <div class="cf-row">
+            <label><span>이름</span><input type="text" name="name" required maxlength="60" autocomplete="name"></label>
+            <label><span>회신받을 이메일</span><input type="email" name="email" required maxlength="120" autocomplete="email" placeholder="답장 받을 주소"></label>
+          </div>
           <label><span>문의 내용</span><textarea name="message" rows="3" required maxlength="2000"></textarea></label>
           <label class="cf-agree"><input type="checkbox" name="agree" required><span>문의 회신을 위해 이름·이메일을 수집하며, 메일 전송을 위해 외부 서비스(Web3Forms)를 거칩니다. 동의합니다. (필수)</span></label>
           <button class="btn fill" type="submit"><span>보내기</span><span aria-hidden="true">→</span></button>
@@ -677,8 +682,8 @@ html.live-shapes .emblem{visibility:hidden}
         </form>
         <div class="cbtns">
           <a class="btn line" href="https://www.instagram.com/miint.s0da" target="_blank" rel="noopener"><span>@miint.s0da</span><span aria-hidden="true">↗</span></a>
+          <a class="btn line about-go" href="#aboutme" data-about="profile"><span>About Me 보러가기</span><span aria-hidden="true">→</span></a>
         </div>
-        <a class="btn line about-go" href="#aboutme" data-about="profile"><span>About Me 보러가기</span><span aria-hidden="true">→</span></a>
       </div>
     </div>
   </div>
