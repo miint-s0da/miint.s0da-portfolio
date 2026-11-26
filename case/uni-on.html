@@ -13,6 +13,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font:400 15px/1.75 system
 main{max-width:960px;margin:0 auto;padding:72px 24px 96px}
 section{margin:0 0 56px}
 .card{background:#fff;border:3px solid var(--ink);border-radius:18px;box-shadow:8px 8px 0 var(--ink);padding:24px 26px;margin-bottom:22px}
+.card p{margin:0 0 10px}.card p:last-child{margin-bottom:0}
 .sticker{display:inline-block;background:var(--pk);color:#fff;border:3px solid var(--ink);border-radius:999px;padding:6px 14px;font:800 12px/1 system-ui;letter-spacing:.06em;box-shadow:3px 3px 0 var(--ink);transform:rotate(-2deg)}
 h1{font:900 clamp(3rem,10vw,6.4rem)/.95 system-ui;margin:22px 0 10px;letter-spacing:-.02em;text-shadow:5px 5px 0 var(--y),5px 5px 0 var(--ink)}
 .sub{font-weight:700;font-size:1.1rem;margin:0 0 26px}
@@ -20,12 +21,17 @@ h1{font:900 clamp(3rem,10vw,6.4rem)/.95 system-ui;margin:22px 0 10px;letter-spac
 .meta div{border:3px solid var(--ink);border-radius:14px;padding:12px;background:var(--y)}
 .meta small,h2 small{display:block;font:800 11px/1 system-ui;letter-spacing:.12em;color:var(--mut);margin-bottom:6px}
 h2{font:900 1.6rem/1.2 system-ui;margin:0 0 14px}
-.ph{border:3px dashed var(--ink);border-radius:14px;padding:44px 16px;text-align:center;font-weight:700;color:var(--mut);background:#fff8}
-.muted{color:var(--mut)}
-.flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-weight:800}
+b.k{display:inline-block;background:var(--y);border:2px solid var(--ink);border-radius:8px;padding:0 8px;margin-right:6px;font-size:12px;letter-spacing:.06em}
+.flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-weight:800;margin-bottom:18px}
 .flow span{border:3px solid var(--ink);border-radius:12px;padding:10px 14px;background:#fff;box-shadow:4px 4px 0 var(--ink)}
+figure{margin:0}
+.shot{border:3px solid var(--ink);border-radius:14px;box-shadow:6px 6px 0 var(--ink);background:#fff;overflow:hidden}
+.shot img{display:block;width:100%;height:auto}
+.shot figcaption{padding:8px 12px;border-top:3px solid var(--ink);font:800 12px/1.4 system-ui;background:var(--y)}
+.case{display:grid;grid-template-columns:1.25fr 1fr;gap:22px;align-items:start}
+.grid2{display:grid;grid-template-columns:1.5fr 1fr;gap:22px;align-items:start}
 .go{display:inline-block;margin-top:10px;background:var(--bl);color:#fff;border:3px solid var(--ink);border-radius:999px;padding:14px 24px;font-weight:900;text-decoration:none;box-shadow:5px 5px 0 var(--ink)}
-@media(max-width:700px){.meta{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.case,.grid2{grid-template-columns:1fr}.meta{grid-template-columns:1fr 1fr}}
 @keyframes pop{0%{transform:scale(.6) rotate(-6deg);opacity:0}70%{transform:scale(1.06)}100%{transform:none;opacity:1}}
 .card{animation:pop .5s cubic-bezier(.2,.9,.3,1.3) both}
 </style>
@@ -33,6 +39,7 @@ h2{font:900 1.6rem/1.2 system-ui;margin:0 0 14px}
 <body>
 <button class="close" type="button" aria-label="닫기" onclick="parent.postMessage({type:'case-close'},'*')">✕</button>
 <main>
+
 <section>
   <span class="sticker">CASE STUDY · 01</span>
   <h1>UNI+ON</h1>
@@ -42,11 +49,58 @@ h2{font:900 1.6rem/1.2 system-ui;margin:0 0 14px}
     <div><small>ROLE</small>브랜드 UX</div>
   </div>
 </section>
-<section class="card"><h2><small>UX RATIONALE</small>왜 이 레이아웃인가</h2>
+
+<section>
+  <h2><small>01 · CHALLENGE</small>왜 만들었나</h2>
+  <div class="card">
+    <p><b class="k">문제</b>게임·웹툰 굿즈가 흩어져 찾기 어렵다.</p>
+    <p><b class="k">목표</b>카테고리 탐색에서 장바구니까지 이어지는 하나의 흐름으로 해결한다.</p>
+  </div>
+</section>
+
+<section>
+  <h2><small>02 · UX</small>사용자 흐름과 근거</h2>
   <div class="flow"><span>카테고리 탐색</span>→<span>상세</span>→<span>장바구니</span></div>
-  </section>
+  <div class="card case">
+    <figure class="shot"><img src="uni-on/uni-on_lite_01_ux_menu.webp" alt="상단 말풍선 메뉴" loading="lazy"><figcaption>사례 1 · 상단 말풍선 메뉴</figcaption></figure>
+    <div>
+      <p><b class="k">문제</b>분류가 많아지면 원하는 곳을 찾기 어렵다.</p>
+      <p><b class="k">해결</b>채널 6개와 장바구니를 상단 메뉴로 고정하고, 마우스를 올리면 세부 페이지 입구를 말풍선으로 보여준다.</p>
+    </div>
+  </div>
+  <div class="card case">
+    <figure class="shot"><img src="uni-on/uni-on_lite_02_ux_linked.webp" alt="이어지는 세계" loading="lazy"><figcaption>사례 2 · 이어지는 세계</figcaption></figure>
+    <div>
+      <p><b class="k">문제</b>작품만 보고 끝나면 다음 탐색이 끊긴다.</p>
+      <p><b class="k">해결</b>상세 화면 아래에 캐릭터 · 굿즈 · 행사 · 크리에이터 카드를 두어 다른 채널로 이어지게 했다.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><small>03 · PROCESS &amp; DECISION</small>바뀐 과정과 선택</h2>
+  <figure class="shot" style="margin-bottom:22px"><img src="uni-on/uni-on_lite_03_process_ba.webp" alt="전 후 비교: 왼쪽 초기 시안, 오른쪽 현재 첫 화면" loading="lazy"><figcaption>왼쪽 BEFORE 초기 시안 · 오른쪽 AFTER 현재 첫 화면</figcaption></figure>
+  <div class="card">
+    <p><b class="k">변화</b>축제장 한 장면에 모든 콘텐츠를 담은 첫 화면을, 캐릭터 키 비주얼과 채널 버튼만 남기는 구성으로 줄였다.</p>
+    <p><b class="k">B안 대신 C안</b>투표 1위였던 B안(사이버펑크) 대신 C안(팝 그래픽)을 골랐다. 실제 작품 사진을 얹어 보니 B안은 어두운 화면에 콘텐츠가 묻히고, C안에서 콘텐츠가 가장 잘 보였다.</p>
+  </div>
+</section>
+
+<section>
+  <h2><small>04 · RESULT</small>핵심 화면</h2>
+  <figure class="shot" style="margin-bottom:22px"><img src="uni-on/uni-on_lite_04_result_main.webp" alt="메인 첫 화면" loading="lazy"><figcaption>데스크톱 · 메인 첫 화면</figcaption></figure>
+  <div class="grid2">
+    <figure class="shot"><img src="uni-on/uni-on_lite_05_result_list.webp" alt="채널 세부 목록" loading="lazy"><figcaption>데스크톱 · 채널 세부 목록(신작 애니메이션)</figcaption></figure>
+    <figure class="shot"><img src="uni-on/uni-on_lite_06_result_mobile.webp" alt="모바일 작품 카드 목록" loading="lazy"><figcaption>모바일 · 작품 카드 목록, 카테고리 이름 태그로 표시</figcaption></figure>
+  </div>
+</section>
+
 <section class="card">
-  <a class="go" href="https://unionverse.vercel.app" target="_blank" rel="noopener">사이트 보기 ↗</a></section>
+  <h2><small>05 · 툴</small>사용한 툴</h2>
+  <p>Notion(기획) · PowerPoint(기획서) · Claude(시안·구현) · ChatGPT / Gemini / Grok(일러스트) · Unsplash(사진) · GitHub + Vercel(배포)</p>
+  <a class="go" href="https://unionverse.vercel.app" target="_blank" rel="noopener">사이트 보기 ↗</a>
+</section>
+
 </main>
 </body>
 </html>
