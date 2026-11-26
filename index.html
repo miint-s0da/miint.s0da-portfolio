@@ -344,6 +344,10 @@ html.rv .track.in .copy>*:not(.emblem){opacity:1;transform:none}
 .steps small{grid-area:n;margin:0;font:italic 700 26px/1 var(--f-display);color:var(--mut)}
 .steps b{grid-area:t;font:700 17px/1.2 var(--f-display);letter-spacing:-.01em;align-self:end}
 .steps li em{grid-area:d;display:block;margin:0;font:500 13px/1.5 var(--f-sans);font-style:normal;color:var(--mut);align-self:start;word-break:keep-all}
+@media(min-width:1000px){
+  .steps li,.steps li:last-child{padding-top:26px;padding-bottom:26px}
+  .steps::before{top:40px;bottom:40px}
+}
 /* 히어로 카피: 인트로 뒤(또는 바로) 한 번만 한 줄씩 올라오고, 포인트 단어에 밑줄이 그어짐 */
 #hero .hero-ko .ln{display:block;overflow:hidden;padding-bottom:.08em}
 #hero .hero-ko .ln>span{display:block;transition:transform .9s cubic-bezier(.22,1,.36,1)}
